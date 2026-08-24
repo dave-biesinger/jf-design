@@ -1,0 +1,8 @@
+/* ============================================================
+   Journeyfront — Font Awesome (the brand's UI icon library)
+   The 2025 Brand Guide directs: "Use FontAwesome when available."
+   Free 6.x from CDN; the product itself runs FA 5/6.
+   Usage: <i class="fa-solid fa-gem"></i> — color via CSS `color`.
+   ============================================================ */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');

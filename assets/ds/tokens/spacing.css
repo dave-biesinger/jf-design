@@ -1,0 +1,34 @@
+/* ============================================================
+   Journeyfront — Spacing & layout tokens
+   4px base grid. The brand book uses a 115px page margin and a
+   signature 20px corner radius on cards, pills and swatches.
+   ============================================================ */
+
+:root {
+  /* Spacing scale (4px grid) */
+  --jf-space-0: 0;
+  --jf-space-1: 4px;
+  --jf-space-2: 8px;
+  --jf-space-3: 12px;
+  --jf-space-4: 16px;
+  --jf-space-5: 20px;
+  --jf-space-6: 24px;
+  --jf-space-7: 32px;
+  --jf-space-8: 40px;
+  --jf-space-9: 48px;
+  --jf-space-10: 64px;
+  --jf-space-11: 80px;
+  --jf-space-12: 96px;
+  --jf-space-margin: 115px;  /* brand-book page margin */
+
+  /* Container widths */
+  --jf-container-sm: 720px;
+  --jf-container-md: 960px;
+  --jf-container-lg: 1200px;
+  --jf-container-xl: 1440px;
+
+  /* Control sizing (form fields, buttons) */
+  --jf-control-h-sm: 32px;
+  --jf-control-h-md: 40px;
+  --jf-control-h-lg: 48px;
+}

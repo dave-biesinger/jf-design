@@ -1,0 +1,10 @@
+/* ============================================================
+   Journeyfront — Webfonts
+   Official font family: Lato (Google Fonts).
+   The brand book directs downloading Lato from Google Fonts, so
+   we load it from the Google Fonts CDN. Weights used by the brand:
+   300 Light · 400 Regular · 700 Bold · 900 Black  (+ 600 Semibold)
+   Fallback family: Arial (closest match to Lato).
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap');

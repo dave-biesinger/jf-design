@@ -1,0 +1,25 @@
+# Normalise line endings for text, leave binaries alone
+* text=auto eol=lf
+
+# The workbench and its support script are large single-file sources.
+# Keep them as text so diffs work, but don't let them dominate language stats.
+*.dc.html linguist-generated=false
+support.js -linguist-detectable
+
+# Binary assets — never try to merge or diff these as text
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.pdf  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+
+# SVGs are text but merging them is never meaningful
+*.svg -merge -diff
+
+# tokens.json is the review artifact — one token per line, diff it as text
+tokens/tokens.json text

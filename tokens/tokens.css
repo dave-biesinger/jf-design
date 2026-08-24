@@ -1,0 +1,108 @@
+/* Journeyfront design system tokens — baseline.
+   Values transcribed from the brand colour sheet (greys, colours, light, dark, gradients).
+   Regenerate with the "tokens.css" button in Token Workbench.dc.html. */
+:root {
+  /* Color — ramps */
+  --t-brand-50: #E8F6FC;
+  --t-brand-100: #B1E0F5;
+  --t-brand-300: #8FD2F0;
+  --t-brand-500: #3CB1E5;   /* primary */
+  --t-brand-700: #1A7195;   /* hover / pressed — interaction spec, not the palette sheet */
+  --t-brand-900: #11465B;
+  --t-neutral-0: #FFFFFF;
+  --t-neutral-100: #F7F8F9;
+  --t-neutral-300: #E5E5E5;
+  --t-neutral-500: #B7B7B7;
+  --t-neutral-700: #6A6A6A;
+  --t-neutral-900: #373232;
+  --t-positive-50: #E3FCF6;
+  --t-positive-100: #A1F4E1;
+  --t-positive-300: #6EEDD1;
+  --t-positive-500: #20E0B2;
+  --t-positive-900: #005B47;
+  --t-caution-50: #F2EDFD;
+  --t-caution-100: #D4C3FA;
+  --t-caution-300: #BFA2F7;
+  --t-caution-500: #D62CFF;
+  --t-caution-900: #5A0566;
+
+  /* Color — semantic */
+  --t-text: var(--t-neutral-900);
+  --t-text-heading: var(--t-brand-900);
+  --t-text-muted: var(--t-neutral-700);
+  --t-text-subtle: var(--t-neutral-500);
+  --t-text-inverse: var(--t-neutral-0);
+  --t-surface: var(--t-neutral-0);
+  --t-surface-subtle: var(--t-neutral-100);
+  --t-surface-tint: var(--t-brand-50);
+  --t-surface-sunken: var(--t-neutral-300);
+  --t-surface-dark: var(--t-brand-900);
+  --t-surface-topbar: var(--t-neutral-900);
+  --t-border: var(--t-neutral-300);
+  --t-border-strong: var(--t-neutral-500);
+  --t-primary: var(--t-brand-500);
+  --t-primary-hover: var(--t-brand-700);
+  --t-primary-tint: var(--t-brand-50);
+  --t-on-primary: var(--t-neutral-0);
+  --t-focus: var(--t-brand-300);
+
+  /* Type — families */
+  --t-font-display: Arial, Helvetica, sans-serif;
+  --t-font-body: Arial, Helvetica, sans-serif;
+  --t-font-mono: ui-monospace, Menlo, monospace;
+
+  /* Type — scale */
+  --t-size-display: 60px;
+  --t-size-h1: 38px;
+  --t-size-h2: 26px;
+  --t-size-h3: 19px;
+  --t-size-body: 15px;
+  --t-size-small: 12px;
+  --t-tracking-display: -0.02em;
+  --t-leading-body: 1.5;
+
+  /* Spacing */
+  --t-space-xs: 4px;
+  --t-space-sm: 8px;
+  --t-space-md: 16px;
+  --t-space-lg: 24px;
+  --t-space-xl: 40px;
+  --t-space-2xl: 64px;
+
+  /* Radii */
+  --t-radius-sm: 6px;
+  --t-radius-md: 10px;
+  --t-radius-lg: 20px;
+  --t-radius-pill: 999px;
+
+  /* Shadows */
+  --t-shadow-sm: 0 2px 6px rgba(17,70,91,.07);
+  --t-shadow-md: 0 6px 18px rgba(17,70,91,.09);
+  --t-shadow-lg: 0 14px 36px rgba(17,70,91,.12);
+
+  /* Motion */
+  --t-motion-fast: 120ms;
+  --t-motion-base: 200ms;
+  --t-motion-slow: 320ms;
+  --t-ease: cubic-bezier(.33,1,.68,1);
+
+  /* Borders */
+  --t-border-hairline: 1px;
+  --t-border-strong-w: 3px;
+
+  /* Logo & brand */
+  --t-brand-name: Journeyfront;
+  --t-logo-on-light: assets/logos/logo-color.svg;
+  --t-logo-on-dark: assets/logos/logo-white.svg;
+  --t-logo-favicon: assets/logos/favicon.svg;
+
+  /* Gradients — never behind headers or body type */
+  --t-gradient-primary: linear-gradient(90deg,var(--t-brand-500),var(--t-positive-500));
+  --t-gradient-ai: linear-gradient(90deg,var(--t-caution-500),var(--t-brand-500));
+  --t-gradient-full: linear-gradient(90deg,var(--t-caution-500),var(--t-brand-500),var(--t-positive-500));
+
+  /* Iconography */
+  --t-icon-color: var(--t-brand-500);
+  --t-icon-size: 17px;
+  --t-icon-weight: solid;
+}

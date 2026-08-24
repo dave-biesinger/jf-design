@@ -1,0 +1,70 @@
+/* ============================================================
+   Journeyfront — Typography tokens
+   Official font: Lato.  Bold for headlines & buttons, Regular for
+   body. Black / Semibold / Light for emphasis by best judgement.
+   Display sizes mirror the brand book (slides @ 1920×1080); the
+   UI scale below is tuned for product screens & the web.
+   ============================================================ */
+
+:root {
+  /* Families */
+  --jf-font-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --jf-font-fallback: Arial, 'Helvetica Neue', Helvetica, sans-serif; /* when Lato is unavailable */
+
+  /* Weights */
+  --jf-weight-light: 300;
+  --jf-weight-regular: 400;
+  --jf-weight-semibold: 600;
+  --jf-weight-bold: 700;
+  --jf-weight-black: 900;
+
+  /* ---- Display / marketing scale (brand-book sizes) ---- */
+  --jf-display-1: 130px;   /* cover hero */
+  --jf-display-2: 100px;   /* section title */
+  --jf-display-3: 70px;    /* page title */
+
+  /* ---- Heading scale (product + web) ---- */
+  --jf-h1: 48px;
+  --jf-h2: 36px;
+  --jf-h3: 28px;
+  --jf-h4: 22px;
+  --jf-h5: 18px;
+  --jf-h6: 15px;
+
+  /* ---- Body / UI scale ---- */
+  --jf-text-xl: 20px;
+  --jf-text-lg: 18px;
+  --jf-text-md: 16px;
+  --jf-text-base: 15px;   /* default product body */
+  --jf-text-sm: 14px;
+  --jf-text-xs: 13px;
+  --jf-text-2xs: 11px;    /* labels, overlines */
+
+  /* Line-heights (verbatim from book: 0.91 display, 1.01/1.05 head, 1.5 body) */
+  --jf-leading-display: 0.91;
+  --jf-leading-tight: 1.05;
+  --jf-leading-snug: 1.2;
+  --jf-leading-normal: 1.5;
+
+  /* Letter-spacing */
+  --jf-tracking-tight: -0.02em;   /* large display */
+  --jf-tracking-normal: 0;
+  --jf-tracking-wide: 0.04em;
+  --jf-tracking-caps: 0.08em;     /* overlines / eyebrows */
+}
+
+/* ------------------------------------------------------------
+   Optional helper classes — semantic, ready to drop into HTML.
+   Product components reference the tokens directly; these are a
+   convenience for specimen cards, slides and docs.
+   ------------------------------------------------------------ */
+.jf-display-1 { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-bold); font-size: var(--jf-display-1); line-height: var(--jf-leading-display); letter-spacing: var(--jf-tracking-tight); color: var(--jf-ink); }
+.jf-display-2 { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-bold); font-size: var(--jf-display-2); line-height: var(--jf-leading-display); letter-spacing: var(--jf-tracking-tight); color: var(--jf-ink); }
+.jf-h1 { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-bold); font-size: var(--jf-h1); line-height: var(--jf-leading-tight); color: var(--jf-text-heading); }
+.jf-h2 { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-bold); font-size: var(--jf-h2); line-height: var(--jf-leading-tight); color: var(--jf-text-heading); }
+.jf-h3 { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-bold); font-size: var(--jf-h3); line-height: var(--jf-leading-snug); color: var(--jf-text-heading); }
+.jf-h4 { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-bold); font-size: var(--jf-h4); line-height: var(--jf-leading-snug); color: var(--jf-text-heading); }
+.jf-eyebrow { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-bold); font-size: var(--jf-text-sm); letter-spacing: var(--jf-tracking-caps); text-transform: uppercase; color: var(--jf-blue); }
+.jf-body { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-regular); font-size: var(--jf-text-base); line-height: var(--jf-leading-normal); color: var(--jf-text); }
+.jf-body-lg { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-regular); font-size: var(--jf-text-lg); line-height: var(--jf-leading-normal); color: var(--jf-text); }
+.jf-caption { font-family: var(--jf-font-sans); font-weight: var(--jf-weight-regular); font-size: var(--jf-text-xs); color: var(--jf-text-muted); }

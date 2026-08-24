@@ -1,0 +1,42 @@
+/* ============================================================
+   Journeyfront — Effects: radii, shadows, borders, motion
+   The brand is flat & clean. Cards use the signature 20px radius
+   with soft, cool-tinted shadows (Dark Blue #11465B base).
+   ============================================================ */
+
+:root {
+  /* ---- Corner radii ---- */
+  --jf-radius-xs: 4px;
+  --jf-radius-sm: 6px;
+  --jf-radius-md: 10px;
+  --jf-radius-lg: 20px;    /* signature brand radius (cards, pills, swatches) */
+  --jf-radius-xl: 28px;
+  --jf-radius-pill: 999px;
+  --jf-radius-full: 50%;
+
+  /* ---- Shadows (cool, tinted with Dark Blue) ---- */
+  --jf-shadow-xs: 0 1px 2px rgba(17, 70, 91, 0.06);
+  --jf-shadow-sm: 0 2px 6px rgba(17, 70, 91, 0.07);
+  --jf-shadow-md: 0 6px 18px rgba(17, 70, 91, 0.09);
+  --jf-shadow-lg: 0 14px 36px rgba(17, 70, 91, 0.12);
+  --jf-shadow-xl: 0 28px 60px rgba(17, 70, 91, 0.16);
+
+  /* Tinted glow under primary CTAs */
+  --jf-shadow-primary: 0 8px 22px rgba(60, 177, 229, 0.32);
+
+  /* Focus ring */
+  --jf-ring: 0 0 0 3px var(--jf-focus-ring);
+
+  /* ---- Border widths ---- */
+  --jf-border-width: 1px;
+  --jf-border-width-strong: 2px;
+  --jf-border-width-brand: 3px;   /* logo clear-space / brand outlines */
+
+  /* ---- Motion ---- */
+  --jf-ease: cubic-bezier(0.33, 1, 0.68, 1); /* @kind other */
+  --jf-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --jf-duration-fast: 120ms; /* @kind other */
+  --jf-duration-base: 200ms; /* @kind other */
+  --jf-duration-slow: 320ms; /* @kind other */
+  --jf-transition: all var(--jf-duration-base) var(--jf-ease);
+}
