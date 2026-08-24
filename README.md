@@ -224,9 +224,12 @@ journeyfront.com (HubSpot CDN) and need internet; `assets/screens/` holds the
 offline-safe set, and every remote asset is swappable from its library.
 
 ## Product-specimen findings worth a decision
-- Score badges map to the green ramp (deep green / mint / pale mint). The live app
-  also uses a true red for `KO` and `Rejected`; the palette sheet has no red, so the
-  specimens use magenta `#D62CFF` instead. Confirm or add a red.
+- Score badges map to the green ramp (deep green / mint / pale mint). **Decided
+  2026-08-24:** `KO` and `Rejected` stay on caution magenta `--t-caution-500`
+  (`#D62CFF`) — no red is being added to the palette. The live app's true red is a
+  known divergence, and the app should move to magenta rather than the system
+  growing a red. `--t-caution-500` is marked `approved` in `tokens.json`; it is the
+  first token to leave `open`.
 
 ## Not in this stub yet
 Exported PDF and PPTX samples, and photo-real swag mockups (the t-shirt, mug and
