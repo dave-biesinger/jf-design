@@ -1,7 +1,7 @@
 # Getting set up
 
-Start to finish for someone who has never opened this repo. Steps 1 and 2 need
-Dave; the rest they do themselves.
+Start to finish for someone who has never opened this repo. Step 1 is Dave's;
+everything from step 2 on is yours.
 
 ## 1. Access (repo owner does this)
 The repo is **private**. Invite them at
@@ -151,10 +151,16 @@ fetches `raw.githubusercontent.com`, which is unauthenticated and returns 404
 for a private repo. It falls back to your local file and tells you to git pull.
 That's why `./serve.sh` pulls for you; git is the only real sync path.
 
-**Never open `Token Workbench.dc.html` by double-clicking it.** Over `file://`
-the browser blocks the `tokens.json` read and the workbench falls back to
-built-in defaults — you'd be editing values that aren't the committed baseline.
-The header names its source; it should say *committed tokens/tokens.json*.
+**A "Guard main failed" email means one of two things**, and the run's output
+says which on its first lines:
+
+- `FAIL: <sha> has no associated PR` — a real direct push. An issue is opened
+  naming the commit and author.
+- `Could not determine…` — the guard itself broke. Explicitly *not* a finding
+  about the commit, and no issue is opened.
+
+A failure on a `workflow_dispatch` run is someone testing the guard, not a
+policy event.
 
 **`assets/ds/` is the live copy.** `_ds/` is a byte-identical duplicate that
 Claude Design maintains; the workbench only ever reads `assets/ds/`.
