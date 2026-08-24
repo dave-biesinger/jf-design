@@ -2777,8 +2777,9 @@ class Component extends DCLogic {
     };
 
     const match = t => !q || (t.i + ' ' + t.n + ' ' + t.m + ' ' + String(vals[t.i])).toLowerCase().indexOf(q) >= 0;
-    const groups = this.GROUPS
-      .filter(g => st.group === 'all' || st.group === g[0])
+    const qHitsInGroup = st.group === 'all' || this.T.some(t => t.g === st.group && match(t));
+      const groups = this.GROUPS
+        .filter(g => !qHitsInGroup || st.group === 'all' || st.group === g[0])
       .map(g => { const list = this.T.filter(t => t.g === g[0] && match(t)); const gid = g[0];
         const gd = (st.guides && st.guides[gid] !== undefined) ? st.guides[gid] : (this.GUIDE[gid] || '');
         const ed = st.gedit === gid;

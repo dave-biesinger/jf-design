@@ -98,6 +98,14 @@ Two ways that goes wrong silently, both of which the script rules out:
 
 ## Known quirks
 
+**Do not use the "Push update" button.** It exports `tokens.json` and opens
+GitHub's web upload page pointed at `tokens/` on `main`. That page defaults to
+*"Commit directly to the main branch"* — which bypasses the PR review, and the
+pre-push hook cannot stop it, because the commit happens on GitHub, not from your
+clone. Use `./propose-tokens.sh` instead. If you do click it, change the option at
+the bottom of the upload page to *"Create a new branch for this commit and start a
+pull request"*.
+
 **"Pull latest" in the workbench does not work here — this is expected.** It
 fetches `raw.githubusercontent.com`, which is unauthenticated and returns 404
 for a private repo. It falls back to your local file and tells you to git pull.
