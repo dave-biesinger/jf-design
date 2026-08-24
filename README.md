@@ -71,6 +71,8 @@ command above — it stops accidents, not intent.
   `./propose-tokens.sh "warm the neutrals"`. Use it instead of copying files out
   of `~/Downloads` by hand.
 - `.github/pull_request_template.md` — the one-decision-per-PR checklist.
+- `verify-workbench.sh` — run after any Claude Design session: confirms the hand
+  edits inside the generated `.dc.html` survived the re-export.
 
 ## Specimens (28), grouped by type
 - **Web** — landing hero, full marketing page, pricing page, article/resource page,
