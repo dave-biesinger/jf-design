@@ -17,6 +17,10 @@ cd jf-design
 ./serve.sh          # http://localhost:8080/Token%20Workbench.dc.html
 ```
 
+**The loop:** `./serve.sh` (pulls, serves) → edit → export both token files →
+`./propose-tokens.sh "the decision"` (branches, commits, opens the PR) → merge →
+everyone gets it on their next `./serve.sh`.
+
 1. **Pull.** The workbench reads `tokens/tokens.json` on load and uses it as the
    baseline. The header shows which source it got: *committed tokens/tokens.json* or
    *built-in defaults*. (Opening the file straight off disk with `file://` blocks the
@@ -61,8 +65,11 @@ command above — it stops accidents, not intent.
   workbench's **tokens.css** button.
 - `tokens/tokens.json` — same values with intent, usage, review status and
   baseline/changed flags. This is the review artifact.
-- `serve.sh` — one-line static server (`python3 -m http.server`), because `file://`
-  blocks the `tokens.json` read. Takes an optional port: `./serve.sh 9000`.
+- `serve.sh` — pulls the latest merged tokens, then serves the folder over http
+  (`file://` blocks the `tokens.json` read). Optional port: `./serve.sh 9000`.
+- `propose-tokens.sh` — turns a workbench export into a pull request:
+  `./propose-tokens.sh "warm the neutrals"`. Use it instead of copying files out
+  of `~/Downloads` by hand.
 - `.github/pull_request_template.md` — the one-decision-per-PR checklist.
 
 ## Specimens (28), grouped by type

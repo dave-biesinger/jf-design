@@ -62,21 +62,54 @@ Internet is also needed: about 20 client logos and product screens load from
 ## 6. Make a change
 
 ```bash
-git switch -c warm-the-neutrals        # name it after the decision
-./serve.sh
+./serve.sh                                  # pulls latest, then serves
 ```
 
-Edit tokens in the workbench, then **re-export both files** over
-`tokens/tokens.css` and `tokens/tokens.json`, run **Compare to baseline**, and set
-each touched token's review status.
+Edit tokens in the workbench. When you're happy, click **tokens.json** *and*
+**tokens.css** in the toolbar — both download to `~/Downloads`. Then:
 
 ```bash
-git add -A && git commit -m "Warm the neutrals"
-git push -u origin warm-the-neutrals
-gh pr create --fill
+./propose-tokens.sh "warm the neutrals"     # name it after the decision
 ```
 
-The PR template's checklist is the review contract. Fill it honestly.
+That script does the whole hand-off: picks up the export, checks it's a real
+workbench file, shows you exactly which tokens changed, makes a branch, commits,
+pushes, and opens the PR. It prints the PR link when it's done.
+
+Review the PR, merge it, and everyone else picks it up on their next `./serve.sh`.
+
+Useful flags:
+
+```bash
+./propose-tokens.sh "..." --dry-run         # show the changes, write nothing
+./propose-tokens.sh "..." --from ~/Desktop  # if your browser saves elsewhere
+```
+
+### Why not just copy the files over by hand
+Two ways that goes wrong silently, both of which the script rules out:
+
+- **The browser numbers repeat downloads.** Your second export is
+  `tokens (1).json`, your third is `tokens (2).json`. Copying `tokens.json`
+  after a few rounds quietly commits your *first* attempt and throws away the
+  rest. The script always takes the newest file.
+- **`generated` changes on every export**, so a file with no real edits still
+  looks changed in `git diff`. The script ignores that field and refuses to
+  open an empty PR.
+
+## Known quirks
+
+**"Pull latest" in the workbench does not work here — this is expected.** It
+fetches `raw.githubusercontent.com`, which is unauthenticated and returns 404
+for a private repo. It falls back to your local file and tells you to git pull.
+That's why `./serve.sh` pulls for you; git is the only real sync path.
+
+**Never open `Token Workbench.dc.html` by double-clicking it.** Over `file://`
+the browser blocks the `tokens.json` read and the workbench falls back to
+built-in defaults — you'd be editing values that aren't the committed baseline.
+The header names its source; it should say *committed tokens/tokens.json*.
+
+**`assets/ds/` is the live copy.** `_ds/` is a byte-identical duplicate that
+Claude Design maintains; the workbench only ever reads `assets/ds/`.
 
 ## The one rule
 **One decision per PR** — "warm the neutrals", not a whole colour pass. Different
