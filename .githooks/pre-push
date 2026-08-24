@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Client-side stand-in for branch protection.
 #
-# GitHub Free gives private repos no server-side protection, so this refuses a
-# direct push to main from this clone. It is a guard rail, not a guarantee:
-# it only runs where core.hooksPath is set (see the "Contributing" section of
-# README.md), and --no-verify bypasses it.
+# main is protected on GitHub, so a direct push is refused server-side anyway.
+# This just fails faster and with a friendlier message than the server's reject.
+# It only runs where core.hooksPath is set (see README.md), and --no-verify
+# bypasses it — the server rule is the one that actually counts.
 #
 # Deliberate exception: the very first push of an empty repo, and any push that
 # would delete a branch, are left to git itself.

@@ -5,8 +5,9 @@
 # Two things this handles that opening the file directly does not:
 #   1. file:// blocks the tokens/tokens.json read, so the workbench silently
 #      falls back to built-in defaults — you would be reviewing the wrong values.
-#   2. the workbench's "Pull latest" button hits raw.githubusercontent.com, which
-#      404s on a private repo. Git is the only real sync path, so we pull here.
+#   2. it keeps you on the latest approved tokens. The workbench's own "Pull
+#      latest" button also works now the repo is public, but pulling here means
+#      you start current without having to remember to click it.
 #
 #   ./serve.sh              # pull, then serve on 8080
 #   ./serve.sh 9000         # ... on 9000

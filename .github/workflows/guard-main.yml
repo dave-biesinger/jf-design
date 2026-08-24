@@ -2,13 +2,14 @@ name: Guard main
 
 # Server-side backstop for the one-decision-per-PR rule.
 #
-# main has no branch protection: GitHub Free does not offer it on private repos
-# (classic protection and rulesets both 403 with "Upgrade to GitHub Pro"), and
-# rulesets are scoped to Team/Enterprise, so a free org would not help either.
+# main IS protected on GitHub now (PR required, force-push and deletion blocked),
+# which became available when the repo went public. This workflow covers the two
+# gaps that branch protection deliberately leaves:
 #
-# .githooks/pre-push is client-side only — a fresh clone lacks it and
-# --no-verify walks past it. This runs on GitHub, so nothing local can avoid it.
-# It cannot BLOCK a push, but it will not miss one.
+#   1. repo admins are exempt from the branch rules
+#   2. required_approving_review_count is 0, so a PR can be self-merged unreviewed
+#
+# So a commit can still reach main without review. This notices and says so.
 #
 # Alert-only by design: it never reverts or rewrites anyone's work.
 
@@ -96,7 +97,7 @@ jobs:
 
           EXISTING=$(gh issue list --repo "$REPO" --state open --search "\"$SHORT\" in:title" --json number --jq 'length' 2>/dev/null || echo 0)
           if [ "$EXISTING" = "0" ]; then
-            BODY=$(printf '`%s` landed on `main` without a pull request.\n\n> %s\n\nPushed by @%s.\n\n**Why this matters** — `main` has no branch protection (GitHub Free does not offer it on private repos), so the PR rule is otherwise enforced only by a local hook that a fresh clone lacks and `--no-verify` bypasses.\n\n**If the change is fine**, just close this. **If it should have been reviewed**, open a retrospective PR or revert it.\n\nNext time:\n\n    git config core.hooksPath .githooks\n    ./propose-tokens.sh "the decision"\n' "$SHA" "$SUBJECT" "$ACTOR")
+            BODY=$(printf '`%s` landed on `main` without a pull request.\n\n> %s\n\nPushed by @%s.\n\n**Why this matters** — `main` requires a pull request, but repo admins are exempt from that rule, so an admin can still land a commit directly. This is the backstop for that case.\n\n**If the change is fine**, just close this. **If it should have been reviewed**, open a retrospective PR or revert it.\n\nNext time:\n\n    git config core.hooksPath .githooks\n    ./propose-tokens.sh "the decision"\n' "$SHA" "$SUBJECT" "$ACTOR")
             gh issue create --repo "$REPO" --title "Direct push to main: $SHORT" --body "$BODY" && echo "opened an issue"
           else
             echo "issue already open for $SHORT"
