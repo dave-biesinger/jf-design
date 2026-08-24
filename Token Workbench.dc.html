@@ -23,7 +23,9 @@
   input, select, button { font-family: var(--jf-font-sans); }
   .tw-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
   .tw-scroll::-webkit-scrollbar-thumb { background: #D8DDE1; border-radius: 99px; border: 3px solid #fff; }
-  [data-spec] { cursor: zoom-in; }
+  @keyframes jf-motion-travel { from { transform: translateX(0); } to { transform: translateX(var(--jf-travel, 176px)); } }
+      @keyframes jf-motion-sheet { from { transform: translateY(0); opacity: .4; } to { transform: translateY(-14px); opacity: 1; } }
+      [data-spec] { cursor: zoom-in; }
   [data-spec]:hover { box-shadow: 0 0 0 3px rgba(60,177,229,.45); }
   [data-spec][data-zoom="1"] { position: relative; z-index: 60; cursor: zoom-out; border-radius: 10px; box-shadow: 0 30px 90px rgba(17,70,91,.42); }
   .tw-backdrop { position: fixed; inset: 0; z-index: 55; background: rgba(17,70,91,.5); pointer-events: none; }
@@ -1914,7 +1916,74 @@
           </div>
         </div>
 
-        
+        <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Motion &amp; density</div><div style="font-size:11px;color:var(--jf-text-subtle)">1200&times;620 &middot; the only surface where motion and the two smallest spacing steps are visible</div></div>
+          <div style="display:flex;gap:14px">
+            <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
+                <div style="{{ pane.vars }}">
+                  <div data-spec="1" style="--w:1200px;--h:620px;--s:.335;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;gap:30px;padding:34px">
+                      <div style="flex:1;display:flex;flex-direction:column;gap:var(--t-space-lg);min-width:0">
+                        <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t-text-muted)">Motion</div>
+                        <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);line-height:1.15;color:var(--t-text-heading)">Every bar runs on <span style="color:var(--t-primary)">--t-ease</span>. Only the duration differs.</div>
+                        <div style="display:flex;flex-direction:column;gap:var(--t-space-md)">
+                          <div style="display:flex;flex-direction:column;gap:var(--t-space-xs)">
+                            <div style="display:flex;align-items:center;gap:var(--t-space-sm)"><div style="width:9px;height:9px;border-radius:99px;background:var(--t-primary);flex:none"></div><div style="font-size:var(--t-size-small);font-weight:700;color:var(--t-text)">Hover &amp; press feedback</div><div style="font-size:var(--t-size-small);color:var(--t-text-subtle)">--t-motion-fast</div></div>
+                            <div style="height:34px;border-radius:var(--t-radius-pill);background:var(--t-surface-sunken);position:relative;overflow:hidden"><div style="--jf-travel:176px;position:absolute;top:5px;left:5px;width:24px;height:24px;border-radius:99px;background:var(--t-primary);animation:jf-motion-travel var(--t-motion-fast) var(--t-ease) infinite alternate"></div></div>
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:var(--t-space-xs)">
+                            <div style="display:flex;align-items:center;gap:var(--t-space-sm)"><div style="width:9px;height:9px;border-radius:99px;background:var(--t-positive-500);flex:none"></div><div style="font-size:var(--t-size-small);font-weight:700;color:var(--t-text)">Default transition</div><div style="font-size:var(--t-size-small);color:var(--t-text-subtle)">--t-motion-base</div></div>
+                            <div style="height:34px;border-radius:var(--t-radius-pill);background:var(--t-surface-sunken);position:relative;overflow:hidden"><div style="--jf-travel:176px;position:absolute;top:5px;left:5px;width:24px;height:24px;border-radius:99px;background:var(--t-positive-500);animation:jf-motion-travel var(--t-motion-base) var(--t-ease) infinite alternate"></div></div>
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:var(--t-space-xs)">
+                            <div style="display:flex;align-items:center;gap:var(--t-space-sm)"><div style="width:9px;height:9px;border-radius:99px;background:var(--t-caution-500);flex:none"></div><div style="font-size:var(--t-size-small);font-weight:700;color:var(--t-text)">Panel &amp; sheet entrance</div><div style="font-size:var(--t-size-small);color:var(--t-text-subtle)">--t-motion-slow</div></div>
+                            <div style="height:34px;border-radius:var(--t-radius-pill);background:var(--t-surface-sunken);position:relative;overflow:hidden"><div style="--jf-travel:176px;position:absolute;top:5px;left:5px;width:24px;height:24px;border-radius:99px;background:var(--t-caution-500);animation:jf-motion-travel var(--t-motion-slow) var(--t-ease) infinite alternate"></div></div>
+                          </div>
+                        </div>
+                        <div style="margin-top:auto;background:var(--t-surface-tint);border-radius:var(--t-radius-md);padding:var(--t-space-md);display:flex;align-items:center;gap:var(--t-space-sm)">
+                          <div style="width:26px;height:26px;flex:none;border-radius:var(--t-radius-sm);background:var(--t-surface);display:flex;align-items:center;justify-content:center;box-shadow:var(--t-shadow-sm);animation:jf-motion-sheet var(--t-motion-slow) var(--t-ease) infinite alternate"><i class="fa-solid fa-arrow-up" style="font-size:12px;color:var(--t-primary)"></i></div>
+                          <div style="font-size:var(--t-size-small);color:var(--t-text-muted)">A slower curve reads as heavier. If a bar snaps or overshoots, the ease is wrong &mdash; not the duration.</div>
+                        </div>
+                      </div>
+                      <div style="width:1px;background:var(--t-border);flex:none"></div>
+                      <div style="flex:1;display:flex;flex-direction:column;gap:var(--t-space-lg);min-width:0">
+                        <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t-text-muted)">Density</div>
+                        <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);line-height:1.15;color:var(--t-text-heading)">The two smallest steps, in the roles they are specified for.</div>
+                        <div style="display:flex;flex-direction:column;gap:var(--t-space-xs)">
+                          <div style="font-size:var(--t-size-small);font-weight:700;color:var(--t-text)">Icon-to-label &amp; tight stacks <span style="color:var(--t-text-subtle);font-weight:400">&mdash; --t-space-xs</span></div>
+                          <div style="background:var(--t-module-surface);border:var(--t-module-border-w) solid var(--t-border);border-radius:var(--t-module-radius);padding:var(--t-module-pad);display:flex;flex-direction:column;gap:var(--t-space-md)">
+                            <div style="display:flex;align-items:center;gap:var(--t-space-xs)"><i class="fa-solid fa-circle-check" style="font-size:13px;color:var(--t-positive-500)"></i><div style="font-size:var(--t-size-body);color:var(--t-text)">Structured interview complete</div></div>
+                            <div style="display:flex;align-items:center;gap:var(--t-space-xs)"><i class="fa-solid fa-chart-simple" style="font-size:13px;color:var(--t-primary)"></i><div style="font-size:var(--t-size-body);color:var(--t-text)">Scorecard submitted</div></div>
+                            <div style="display:flex;flex-direction:column;gap:var(--t-space-xs)"><div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--t-text-muted)">Predicted fit</div><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;color:var(--t-primary)">92</div></div>
+                          </div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:var(--t-space-xs)">
+                          <div style="font-size:var(--t-size-small);font-weight:700;color:var(--t-text)">Button groups &amp; chip rows <span style="color:var(--t-text-subtle);font-weight:400">&mdash; --t-space-sm</span></div>
+                          <div style="background:var(--t-module-surface);border:var(--t-module-border-w) solid var(--t-border);border-radius:var(--t-module-radius);padding:var(--t-module-pad);display:flex;flex-direction:column;gap:var(--t-space-md)">
+                            <div style="display:flex;gap:var(--t-space-sm)">
+                              <div style="padding:9px 15px;border-radius:var(--t-radius-sm);background:var(--t-primary);color:var(--t-on-primary);font-size:var(--t-size-small);font-weight:700">Advance</div>
+                              <div style="padding:9px 15px;border-radius:var(--t-radius-sm);background:var(--t-surface);border:1px solid var(--t-border-strong);color:var(--t-text);font-size:var(--t-size-small);font-weight:700">Message</div>
+                              <div style="padding:9px 15px;border-radius:var(--t-radius-sm);background:var(--t-surface);border:1px solid var(--t-border-strong);color:var(--t-text);font-size:var(--t-size-small);font-weight:700">Reject</div>
+                            </div>
+                            <div style="display:flex;flex-wrap:wrap;gap:var(--t-space-sm)">
+                              <div style="padding:5px 11px;border-radius:var(--t-radius-pill);background:var(--t-surface-tint);color:var(--t-primary);font-size:var(--t-size-small);font-weight:700">Bilingual</div>
+                              <div style="padding:5px 11px;border-radius:var(--t-radius-pill);background:var(--t-surface-tint);color:var(--t-primary);font-size:var(--t-size-small);font-weight:700">Night shift</div>
+                              <div style="padding:5px 11px;border-radius:var(--t-radius-pill);background:var(--t-surface-tint);color:var(--t-primary);font-size:var(--t-size-small);font-weight:700">Tenured</div>
+                              <div style="padding:5px 11px;border-radius:var(--t-radius-pill);background:var(--t-surface-tint);color:var(--t-primary);font-size:var(--t-size-small);font-weight:700">Referral</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div style="margin-top:auto;font-size:var(--t-size-small);color:var(--t-text-subtle)">Drop either step to 0 and the groups collapse into one mass &mdash; that is the read these two tokens control.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
 
         <div data-section="Photography" style="flex-basis:100%;display:flex;align-items:center;gap:12px;margin:2px 0 -2px 0"><div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:0.1em;text-transform:uppercase;color:var(--jf-blue-dark)">Photography</div><div style="font-size:11px;color:var(--jf-text-subtle)">the stock-photo library — every asset from the 2025 Brand Guide; add or remove in the Photography token group</div><div style="flex:1;height:1px;background:var(--jf-border)"></div></div>
 
@@ -2168,7 +2237,7 @@
 class Component extends DCLogic {
   GROUPS = [['raw','Color — ramps'],['sem','Color — semantic'],['fam','Type — families'],['scale','Type — scale'],['space','Spacing'],['radius','Radii'],['shadow','Shadows'],['motion','Motion'],['border','Borders'],['layout','Layout'],['module','Modules'],['logo','Logo & brand'],['grad','Gradients'],['icon','Iconography']];
   _addGroups = this.GROUPS.push(['photo','Photography — people'],['bg','Photography — backgrounds'],['graphic','Design elements'],['product','Product images'],['comp','Compositions']);
-  SECTIONS = [['Web',7],['Product',3],['Presentations',5],['Collateral',3],['Social',2],['Assets',4],['Photography',2],['Product images',1],['Compositions',2],['Swag',4]];
+  SECTIONS = [['Web',7],['Product',3],['Presentations',5],['Collateral',3],['Social',2],['Assets',5],['Photography',2],['Product images',1],['Compositions',2],['Swag',4]];
 
   ICONKEYS = ['automation','assessments','sourcing','interviews','analytics','dashboard','search','settings','help','quote','check','performance','savings','closedloop'];
 
@@ -2235,8 +2304,8 @@ class Component extends DCLogic {
     {i:'tracking-display',g:'scale',k:'dim',d:-0.02,unit:'em',mn:-0.06,mx:0.04,st:0.005,n:'Display tracking — tight by default',m:'Type/Tracking-tight → --jf-tracking-tight',u:'Landing, Slide, PDF, Email, Social',c:11},
     {i:'leading-body',g:'scale',k:'dim',d:1.5,unit:'',mn:1.1,mx:2,st:0.05,n:'Body line height',m:'Type/Leading-body → --jf-leading-normal',u:'All 12 surfaces',c:14},
 
-    {i:'space-xs',g:'space',k:'dim',d:4,unit:'px',mn:0,mx:16,st:1,n:'Icon-to-label, tight stacks',m:'Space/1 → --jf-space-1',u:'All 12 surfaces',c:18},
-    {i:'space-sm',g:'space',k:'dim',d:8,unit:'px',mn:2,mx:24,st:1,n:'Button groups, chip rows',m:'Space/2 → --jf-space-2',u:'All 12 surfaces',c:21},
+    {i:'space-xs',g:'space',k:'dim',d:4,unit:'px',mn:0,mx:16,st:1,n:'Icon-to-label, tight stacks',m:'Space/1 → --jf-space-1',u:'Motion & density board',c:6},
+    {i:'space-sm',g:'space',k:'dim',d:8,unit:'px',mn:2,mx:24,st:1,n:'Button groups, chip rows',m:'Space/2 → --jf-space-2',u:'Motion & density board',c:5},
     {i:'space-md',g:'space',k:'dim',d:16,unit:'px',mn:4,mx:40,st:1,n:'Card gaps, form rows',m:'Space/4 → --jf-space-4',u:'All 12 surfaces',c:24},
     {i:'space-lg',g:'space',k:'dim',d:24,unit:'px',mn:8,mx:56,st:1,n:'Section blocks inside a panel',m:'Space/6 → --jf-space-6',u:'Product, PDF, Email',c:11},
     {i:'space-xl',g:'space',k:'dim',d:40,unit:'px',mn:16,mx:96,st:2,n:'Screen padding',m:'Space/8 → --jf-space-8 (40px)',u:'Product, PDF, Signage',c:8},
@@ -2251,10 +2320,10 @@ class Component extends DCLogic {
     {i:'shadow-md',g:'shadow',k:'shadow',d:'medium',n:'Raised CTA, hovered card',m:'Elevation/2 → --jf-shadow-md',u:'Landing, Product',c:6},
     {i:'shadow-lg',g:'shadow',k:'shadow',d:'lifted',n:'Floating panels, hero cards',m:'Elevation/3 → --jf-shadow-lg',u:'Landing, Social',c:4},
 
-    {i:'motion-fast',g:'motion',k:'dim',d:120,unit:'ms',mn:60,mx:300,st:10,n:'Hover and press feedback',m:'Motion/fast → --jf-duration-fast',u:'Product, Mobile, Landing',c:7},
-    {i:'motion-base',g:'motion',k:'dim',d:200,unit:'ms',mn:80,mx:500,st:10,n:'Default transition',m:'Motion/base → --jf-duration-base',u:'All interactive surfaces',c:9},
-    {i:'motion-slow',g:'motion',k:'dim',d:320,unit:'ms',mn:150,mx:800,st:10,n:'Panel and sheet entrances',m:'Motion/slow → --jf-duration-slow',u:'Product, Mobile',c:3},
-    {i:'ease',g:'motion',k:'ease',d:'cubic-bezier(.33,1,.68,1)',n:'Standard settle curve — no bounce',m:'Motion/ease → --jf-ease',u:'All interactive surfaces',c:9},
+    {i:'motion-fast',g:'motion',k:'dim',d:120,unit:'ms',mn:60,mx:300,st:10,n:'Hover and press feedback',m:'Motion/fast → --jf-duration-fast',u:'Motion & density board',c:1},
+    {i:'motion-base',g:'motion',k:'dim',d:200,unit:'ms',mn:80,mx:500,st:10,n:'Default transition',m:'Motion/base → --jf-duration-base',u:'Motion & density board',c:3},
+    {i:'motion-slow',g:'motion',k:'dim',d:320,unit:'ms',mn:150,mx:800,st:10,n:'Panel and sheet entrances',m:'Motion/slow → --jf-duration-slow',u:'Motion & density board',c:1},
+    {i:'ease',g:'motion',k:'ease',d:'cubic-bezier(.33,1,.68,1)',n:'Standard settle curve — no bounce',m:'Motion/ease → --jf-ease',u:'Motion & density board',c:3},
 
     {i:'border-hairline',g:'border',k:'dim',d:1,unit:'px',mn:0,mx:4,st:0.5,n:'Default border width',m:'Border/hairline → 1px',u:'All 12 surfaces',c:37},
     {i:'border-strong-w',g:'border',k:'dim',d:3,unit:'px',mn:1,mx:8,st:0.5,n:'Structural rules, selected states',m:'Border/strong → 3px',u:'PDF, Product, Mobile',c:6},
