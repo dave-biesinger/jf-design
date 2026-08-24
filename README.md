@@ -33,6 +33,8 @@ cd jf-design
 
 Keep PRs to one decision each ("warm the neutrals"), not a whole colour pass.
 
+New to the repo? **[CONTRIBUTING.md](CONTRIBUTING.md)** is the full setup walkthrough.
+
 ### Enabling the guard rail
 `main` has no server-side protection (GitHub Free gives private repos none), so the
 PR rule is enforced client-side by a hook. Run this once per clone:
