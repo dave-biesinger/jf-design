@@ -4,9 +4,9 @@ Start to finish for someone who has never opened this repo. Step 1 is Dave's;
 everything from step 2 on is yours.
 
 ## 1. Access (repo owner does this)
-The repo is **private**. Invite them at
-**Settings → Collaborators → Add people** — GitHub Free allows unlimited
-collaborators on private repos, so this costs nothing. They accept by email.
+The repo is **public**, so anyone can read it and run the workbench. To let
+someone propose changes, invite them at **Settings → Collaborators → Add people**
+with **Write** access. They accept by email.
 
 ## 2. Tools
 macOS, via [Homebrew](https://brew.sh):
@@ -37,17 +37,18 @@ needs to be pasted anywhere and future clones just work.
 git config core.hooksPath .githooks
 ```
 
-`main` has **no branch protection** — GitHub Free doesn't offer it on private
-repos, and rulesets need Team or Enterprise, so a free org would not help either.
-The one-decision-per-PR rule is enforced by a local pre-push hook, and that hook
-does nothing until this command is run.
+`main` is **protected on GitHub**: a pull request is required, and force-pushes
+and branch deletion are blocked. GitHub refuses a direct push outright, so this is
+the real enforcement — it became available when the repo went public.
 
-A clone that skips it can push straight to `main`. That no longer goes unnoticed —
-the **Guard main** workflow (`.github/workflows/guard-main.yml`) runs on GitHub
-after every push to `main`, and opens an issue naming the commit and author if it
-did not come from a PR. It cannot block the push, but unlike the hook it cannot be
-bypassed by `--no-verify` or by not having run the command above. It never reverts
-anyone's work.
+The hook is now just a courtesy: it fails fast on your machine instead of letting
+you write a commit that the server will reject. Worth running anyway.
+
+Two gaps the server rules leave, which is why the **Guard main** workflow
+(`.github/workflows/guard-main.yml`) still runs: **repo admins are exempt** from
+branch protection, and no approving review is required, so a PR can be self-merged
+unreviewed. The workflow opens an issue if a commit reaches `main` without a PR.
+It never reverts anyone's work.
 
 ## 5. Run it
 
@@ -138,18 +139,19 @@ git checkout pre-design-sync -- 'Token Workbench.dc.html'  # take the good copy 
 
 ## Known quirks
 
-**Do not use the "Push update" button.** It exports `tokens.json` and opens
-GitHub's web upload page pointed at `tokens/` on `main`. That page defaults to
-*"Commit directly to the main branch"* — which bypasses the PR review, and the
-pre-push hook cannot stop it, because the commit happens on GitHub, not from your
-clone. Use `./propose-tokens.sh` instead. If you do click it, change the option at
-the bottom of the upload page to *"Create a new branch for this commit and start a
-pull request"*.
+**"Push update" is safe to use now.** It exports `tokens.json` and opens GitHub's
+web upload page. That page still *offers* "Commit directly to the main branch", but
+branch protection refuses it — GitHub will make you create a branch and open a pull
+request. That is the whole point, so take the offer.
 
-**"Pull latest" in the workbench does not work here — this is expected.** It
-fetches `raw.githubusercontent.com`, which is unauthenticated and returns 404
-for a private repo. It falls back to your local file and tells you to git pull.
-That's why `./serve.sh` pulls for you; git is the only real sync path.
+From a terminal, `./propose-tokens.sh` does the same thing in one command and
+writes the before/after table into the PR for you.
+
+**"Pull latest" works.** It fetches the committed `tokens.json` straight from
+GitHub, so you can refresh to the latest approved values without touching git.
+(It was dead while the repo was private — unauthenticated `raw.githubusercontent.com`
+404s on private repos. Going public fixed it.) `./serve.sh` also pulls on start,
+so either route gets you current.
 
 **A "Guard main failed" email means one of two things**, and the run's output
 says which on its first lines:

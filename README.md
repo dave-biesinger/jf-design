@@ -40,8 +40,9 @@ Keep PRs to one decision each ("warm the neutrals"), not a whole colour pass.
 New to the repo? **[CONTRIBUTING.md](CONTRIBUTING.md)** is the full setup walkthrough.
 
 ### Enabling the guard rail
-`main` has no server-side protection (GitHub Free gives private repos none), so the
-PR rule is enforced client-side by a hook. Run this once per clone:
+`main` is protected on GitHub — a pull request is required and force-pushes are
+blocked, so a direct push is refused at the server. The local hook just fails
+faster. Run this once per clone:
 
 ```bash
 git config core.hooksPath .githooks
