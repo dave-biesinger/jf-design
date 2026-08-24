@@ -88,7 +88,10 @@ command above — it stops accidents, not intent.
 - **Social** — 1080 square post, LinkedIn feed post (neutral feed chrome on purpose;
   only the avatar and the card image carry tokens)
 - **Assets** — QA boards at readable scale: photo & screen treatments, icon
-  treatments, dot-field tuning, and the hero composition recipe
+  treatments, dot-field tuning, the hero composition recipe, and a **motion &
+  density** board — the only surface where `--t-ease`, the three `--t-motion-*`
+  durations, the two smallest spacing steps, `--t-focus` and `--t-font-mono`
+  are actually visible
 - **Swag** — booth panel, t-shirt, mug, tote
 
 A row of section buttons at the top of the canvas jumps to Web, Product,
