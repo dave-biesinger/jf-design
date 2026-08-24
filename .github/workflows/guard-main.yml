@@ -1,0 +1,82 @@
+name: Guard main
+
+# Server-side backstop for the one-decision-per-PR rule.
+#
+# main has no branch protection: GitHub Free does not offer it on private repos
+# (both classic protection and rulesets return 403 "Upgrade to GitHub Pro"), and
+# rulesets need Team or Enterprise, so a free org would not help either.
+#
+# The .githooks/pre-push hook is client-side only — a fresh clone does not have
+# it and --no-verify walks past it. This runs on GitHub instead, so nothing done
+# locally can avoid it. It cannot BLOCK a push, but it will not miss one.
+#
+# Alert-only by design: it never rewrites history or reverts anyone's work.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: 'Commit SHA to test the detection against (reports only, opens no issue)'
+        required: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Was this commit reviewed in a PR?
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          DISPATCH_SHA: ${{ inputs.sha }}
+          PUSH_SHA: ${{ github.sha }}
+          ACTOR: ${{ github.actor }}
+          DRY: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          set -euo pipefail
+          SHA="${DISPATCH_SHA:-$PUSH_SHA}"
+          echo "Checking $SHA (dry-run=$DRY)"
+
+          # GitHub can take a moment to associate a just-merged commit with its PR.
+          for i in 1 2 3; do
+            COUNT=$(gh api "repos/$REPO/commits/$SHA/pulls" --jq 'length' 2>/dev/null || echo 0)
+            [ "$COUNT" != "0" ] && break
+            [ "$DRY" = "true" ] && break      # no race in a manual test
+            echo "no PR association yet (attempt $i) — waiting"
+            sleep 5
+          done
+
+          SUBJECT=$(gh api "repos/$REPO/commits/$SHA" --jq '.commit.message' | head -1)
+          SHORT="${SHA:0:7}"
+
+          if [ "$COUNT" != "0" ]; then
+            PR=$(gh api "repos/$REPO/commits/$SHA/pulls" --jq '.[0].number')
+            echo "✓ $SHORT came from PR #$PR — reviewed" | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          echo "✗ $SHORT has no associated PR — it went straight to main" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "   \"$SUBJECT\" by $ACTOR" | tee -a "$GITHUB_STEP_SUMMARY"
+
+          if [ "$DRY" = "true" ]; then
+            echo "(dry run — no issue opened)" | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+          # One issue per offending commit, not one per re-run.
+          TITLE="Direct push to main: $SHORT"
+          EXISTING=$(gh issue list --repo "$REPO" --state open --search "\"$SHORT\" in:title" --json number --jq 'length')
+          if [ "$EXISTING" = "0" ]; then
+            gh issue create --repo "$REPO" \
+              --title "$TITLE" \
+              --body "$(printf '`%s` landed on `main` without a pull request.\n\n> %s\n\nPushed by @%s.\n\n**Why this matters** — `main` has no branch protection (GitHub Free does not offer it on private repos), so the PR rule is only enforced by a local hook that a fresh clone does not have and `--no-verify` bypasses. This workflow is the backstop.\n\n**If the change is fine**, no action needed beyond closing this. **If it should have been reviewed**, open a retrospective PR or revert it.\n\nTo avoid this next time:\n```bash\ngit config core.hooksPath .githooks\n./propose-tokens.sh "the decision"\n```\n' "$SHA" "$SUBJECT" "$ACTOR")"
+            echo "opened an issue" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "issue already open for $SHORT" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+          exit 1

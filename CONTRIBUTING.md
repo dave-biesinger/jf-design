@@ -37,10 +37,17 @@ needs to be pasted anywhere and future clones just work.
 git config core.hooksPath .githooks
 ```
 
-`main` has **no server-side protection** — GitHub Free doesn't offer it on private
-repos. The one-decision-per-PR rule is enforced only by a local pre-push hook, and
-that hook does nothing until this command is run. A clone that skips it can push
-straight to `main` with no warning.
+`main` has **no branch protection** — GitHub Free doesn't offer it on private
+repos, and rulesets need Team or Enterprise, so a free org would not help either.
+The one-decision-per-PR rule is enforced by a local pre-push hook, and that hook
+does nothing until this command is run.
+
+A clone that skips it can push straight to `main`. That no longer goes unnoticed —
+the **Guard main** workflow (`.github/workflows/guard-main.yml`) runs on GitHub
+after every push to `main`, and opens an issue naming the commit and author if it
+did not come from a PR. It cannot block the push, but unlike the hook it cannot be
+bypassed by `--no-verify` or by not having run the command above. It never reverts
+anyone's work.
 
 ## 5. Run it
 
