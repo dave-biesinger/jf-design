@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Client-side stand-in for branch protection.
+#
+# GitHub Free gives private repos no server-side protection, so this refuses a
+# direct push to main from this clone. It is a guard rail, not a guarantee:
+# it only runs where core.hooksPath is set (see the "Contributing" section of
+# README.md), and --no-verify bypasses it.
+#
+# Deliberate exception: the very first push of an empty repo, and any push that
+# would delete a branch, are left to git itself.
+
+protected="main"
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ "$remote_ref" = "refs/heads/$protected" ] || continue
+
+  # Branch deletion — let git handle it.
+  if [ "$local_sha" = "0000000000000000000000000000000000000000" ]; then
+    continue
+  fi
+
+  echo "blocked: direct push to '$protected'." >&2
+  echo "" >&2
+  echo "Token changes go through a PR — one decision per PR. Try:" >&2
+  echo "" >&2
+  echo "  git switch -c <decision-name>" >&2
+  echo "  git push -u origin <decision-name>" >&2
+  echo "  gh pr create --fill" >&2
+  echo "" >&2
+  echo "If you really mean it: git push --no-verify" >&2
+  exit 1
+done
+exit 0

@@ -33,6 +33,19 @@ cd jf-design
 
 Keep PRs to one decision each ("warm the neutrals"), not a whole colour pass.
 
+### Enabling the guard rail
+`main` has no server-side protection (GitHub Free gives private repos none), so the
+PR rule is enforced client-side by a hook. Run this once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+It refuses a direct push to `main` and points you at the branch-and-PR flow.
+`--no-verify` bypasses it, and it does nothing in a clone that hasn't run the
+command above — it stops accidents, not intent.
+
+
 ## Files
 - `Token Workbench.dc.html` — the workbench. Open it in a browser. Left: the token
   list. Right: 12 sample surfaces that re-render from those tokens.
