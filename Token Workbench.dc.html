@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="assets/ds/tokens/effects.css">
 <link rel="stylesheet" href="assets/ds/styles.css">
 <script src="assets/ds/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
 <style>
   html, body { margin: 0; padding: 0; background: #F7F8F9; }
   a { color: var(--jf-blue); text-decoration: none; }
@@ -102,7 +103,7 @@
                 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px">
                   <sc-for list="{{ g.libItems }}" as="a" hint-placeholder-count="8">
                     <div style="position:relative">
-                      <div title="{{ a.label }}" style="height:42px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border);background:var(--jf-gray-pastel);overflow:hidden;display:flex;align-items:center;justify-content:center">
+                      <div title="{{ a.label }}" style="{{ g.libThumbStyle }}">
                         <img src="assets/graphics/dot-arch-blue.svg" data-src="{{ a.path }}" alt="{{ a.label }}" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
                       </div>
                       <div onClick="{{ a.remove }}" title="Remove from the library" style="{{ a.xStyle }}"><i class="fa-solid fa-xmark" style="font-size:8px;color:var(--jf-pink-deep)"></i></div>
@@ -110,9 +111,11 @@
                   </sc-for>
                 </div>
                 <div style="display:flex;gap:6px">
-                  <input type="text" placeholder="{{ g.libPlaceholder }}" onBlur="{{ g.onLibDraft }}" style="flex:1;min-width:0;height:28px;padding:0 8px;border:1px solid var(--jf-border-strong);border-radius:var(--jf-radius-sm);font-size:11.5px;background:var(--jf-white);outline:none" style-focus="border-color:var(--jf-blue)">
+                  <input type="text" placeholder="{{ g.libPlaceholder }}" onChange="{{ g.onLibDraft }}" onInput="{{ g.onLibDraft }}" style="flex:1;min-width:0;height:28px;padding:0 8px;border:1px solid var(--jf-border-strong);border-radius:var(--jf-radius-sm);font-size:11.5px;background:var(--jf-white);outline:none" style-focus="border-color:var(--jf-blue)">
                   <div onClick="{{ g.addLib }}" style="height:28px;padding:0 11px;display:inline-flex;align-items:center;gap:5px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-blue);background:var(--jf-blue-pastel);font:700 11.5px/1 var(--jf-font-sans);color:var(--jf-blue-deep);cursor:pointer;white-space:nowrap" style-hover="background:var(--jf-blue-light)"><i class="fa-solid fa-plus" style="font-size:9px"></i>Add</div>
                 </div>
+                <label style="height:28px;padding:0 11px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--jf-radius-sm);border:1px dashed var(--jf-border-strong);background:var(--jf-white);font:700 11.5px/1 var(--jf-font-sans);color:var(--jf-blue-deep);cursor:pointer" style-hover="border-color:var(--jf-blue);background:var(--jf-blue-pastel)"><i class="fa-solid fa-arrow-up-from-bracket" style="font-size:9px"></i>Upload from this computer<input type="file" accept="image/*,.svg" multiple onChange="{{ g.onLibFile }}" style="display:none"></label>
+                <sc-if value="{{ g.hasLibNote }}"><div style="font-size:10.5px;line-height:1.35;color:var(--jf-pink-deep)">{{ g.libNote }}</div></sc-if>
               </div>
             </sc-if>
             <sc-for list="{{ g.tokens }}" as="row" hint-placeholder-count="5">
@@ -173,7 +176,7 @@
 
                     <div style="display:grid;grid-template-columns:84px 1fr;gap:6px 10px;font-size:11.5px;line-height:1.45">
                       <div style="color:var(--jf-text-subtle);font-weight:700">Resolves</div>
-                      <div style="color:var(--jf-ink)"><code style="font-size:11px">{{ row.chain }}</code></div>
+                      <div title="{{ row.chain }}" style="color:var(--jf-ink);min-width:0;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2"><code style="font-size:11px;overflow-wrap:anywhere">{{ row.chain }}</code></div>
                       <div style="color:var(--jf-text-subtle);font-weight:700">Used in</div>
                       <div style="color:var(--jf-ink)">{{ row.usage }}</div>
                       <div style="color:var(--jf-text-subtle);font-weight:700">Contrast</div>
@@ -214,21 +217,21 @@
           <div onClick="{{ s.go }}" style="height:30px;padding:0 12px;display:inline-flex;align-items:center;gap:7px;border-radius:var(--jf-radius-pill);border:1px solid var(--jf-border-strong);background:var(--jf-white);font:700 12px/1 var(--jf-font-sans);color:var(--jf-blue-deep);cursor:pointer;user-select:none;white-space:nowrap" style-hover="border-color:var(--jf-blue);background:var(--jf-blue-pastel)">{{ s.label }}<span style="font-size:10.5px;font-weight:700;color:var(--jf-text-subtle)">{{ s.count }}</span></div>
         </sc-for>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;padding-top:14px">
+      <div style="display:flex;flex-direction:column;gap:20px;align-items:stretch;padding-top:14px">
 
         <div data-section="Web" style="flex-basis:100%;display:flex;align-items:center;gap:12px;margin:2px 0 -2px 0"><div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:0.1em;text-transform:uppercase;color:var(--jf-blue-dark)">Web</div><div style="font-size:11px;color:var(--jf-text-subtle)">7 specimens · layout &amp; module tokens live here</div><div style="flex:1;height:1px;background:var(--jf-border)"></div></div>
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Marketing landing page</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×800</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:800px;--s:.395;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column;overflow:hidden">
+                  <div data-spec="1" style="--w:1280px;--h:800px;--s:.395;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column;overflow:hidden">
                       <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:142px;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:auto;max-width:142px;object-fit:contain;display:block">
                         <div style="display:flex;gap:26px;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
                         <div style="flex:1"></div>
                         <div style="height:40px;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
@@ -277,15 +280,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Full marketing page</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×2100</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:2100px;--s:.19;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden">
+                  <div data-spec="1" style="--w:1280px;--h:2100px;--s:.19;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden">
                       <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:142px;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:auto;max-width:142px;object-fit:contain;display:block">
                         <div style="display:flex;gap:26px;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
                         <div style="flex:1"></div>
                         <div style="height:40px;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
@@ -417,15 +420,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Pricing page</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×2130</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:2130px;--s:.34;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:block;overflow:hidden">
+                  <div data-spec="1" style="--w:1280px;--h:2130px;--s:.34;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:block;overflow:hidden">
                       <div style="height:76px;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:142px;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:auto;max-width:142px;object-fit:contain;display:block">
                         <div style="display:flex;gap:26px;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
                         <div style="flex:1"></div>
                         <div style="height:40px;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
@@ -492,7 +495,7 @@
                       <div style="border-top:var(--t-border-hairline) solid var(--t-border);background:var(--t-surface);padding:34px var(--t-layout-gutter) 0 var(--t-layout-gutter);display:flex;flex-direction:column;gap:26px">
                         <div style="display:flex;gap:56px;align-items:flex-start">
                           <div style="width:210px;flex-shrink:0;display:flex;flex-direction:column;gap:12px">
-                            <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:flex-start;flex:none;height:26px;width:132px;display:block">
+                            <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:flex-start;flex:none;height:26px;width:auto;max-width:132px;object-fit:contain;display:block">
                             <div style="font-size:var(--t-size-small);line-height:var(--t-leading-body);color:var(--t-text-muted)">The intelligent ATS for high volume hiring.</div>
                             <div style="display:flex;gap:10px;color:var(--t-primary);font-size:15px"><i class="fa-brands fa-linkedin"></i><i class="fa-brands fa-facebook"></i></div>
                           </div>
@@ -530,15 +533,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Article / resource page</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×660</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:660px;--s:.34;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
+                  <div data-spec="1" style="--w:1280px;--h:660px;--s:.34;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
                       <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-space-2xl);border-bottom:var(--t-border-hairline) solid var(--t-border)">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:28px;width:auto;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:28px;width:auto;display:block;object-fit:contain">
                         <div style="display:flex;gap:26px;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span style="color:var(--t-primary);font-weight:700">Resources</span></div>
                         <div style="flex:1"></div>
                         <div style="height:42px;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
@@ -571,15 +574,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Platform page — lazy river</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×3200 · alternating modules</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:3260px;--s:.17;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:block;overflow:hidden">
+                  <div data-spec="1" style="--w:1280px;--h:3260px;--s:.17;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:block;overflow:hidden">
                       <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:142px;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:auto;max-width:142px;object-fit:contain;display:block">
                         <div style="display:flex;gap:26px;font-size:var(--t-size-body);color:var(--t-text-muted)"><span style="color:var(--t-primary);font-weight:700">Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
                         <div style="flex:1"></div>
                         <div style="height:40px;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
@@ -720,15 +723,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Solutions page — BPO</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×2400 · grid modules</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:2880px;--s:.19;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:block;overflow:hidden">
+                  <div data-spec="1" style="--w:1280px;--h:2880px;--s:.19;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:block;overflow:hidden">
                       <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:142px;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:28px;width:auto;max-width:142px;object-fit:contain;display:block">
                         <div style="display:flex;gap:26px;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span style="color:var(--t-primary);font-weight:700">For BPOs</span><span>Resources</span></div>
                         <div style="flex:1"></div>
                         <div style="height:40px;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
@@ -910,16 +913,16 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Web modules — detail</div><div style="font-size:11px;color:var(--jf-text-subtle)">every module at readable scale</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:1900px;--s:.34;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
+                  <div data-spec="1" style="--w:1280px;--h:1900px;--s:.34;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
                       <div style="padding:18px var(--t-layout-gutter) 6px var(--t-layout-gutter);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--t-text-subtle)">Module · nav</div>
                       <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-top:var(--t-border-hairline) solid var(--t-border);border-bottom:var(--t-border-hairline) solid var(--t-border)">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:28px;width:auto;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:28px;width:auto;display:block;object-fit:contain">
                         <div style="display:flex;gap:26px;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
                         <div style="flex:1"></div>
                         <div style="height:42px;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
@@ -974,7 +977,7 @@
                       <div style="border-top:var(--t-border-hairline) solid var(--t-border);background:var(--t-surface);padding:34px var(--t-layout-gutter) 0 var(--t-layout-gutter);display:flex;flex-direction:column;gap:26px">
                         <div style="display:flex;gap:56px;align-items:flex-start">
                           <div style="width:210px;flex-shrink:0;display:flex;flex-direction:column;gap:12px">
-                            <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:flex-start;flex:none;height:26px;width:132px;display:block">
+                            <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:flex-start;flex:none;height:26px;width:auto;max-width:132px;object-fit:contain;display:block">
                             <div style="font-size:var(--t-size-small);line-height:var(--t-leading-body);color:var(--t-text-muted)">The intelligent ATS for high volume hiring. 50+ countries since 2017.</div>
                             <div style="display:flex;gap:10px;color:var(--t-primary);font-size:15px"><i class="fa-brands fa-linkedin"></i><i class="fa-brands fa-facebook"></i></div>
                           </div>
@@ -1031,15 +1034,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Product screen — recruiter dashboard</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×800</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:800px;--s:.395;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
+                  <div data-spec="1" style="--w:1280px;--h:800px;--s:.395;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
                       <div style="height:56px;flex-shrink:0;background:var(--t-surface-topbar);display:flex;align-items:center;gap:24px;padding:0 20px">
-                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:24px;width:auto;display:block">
+                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:24px;width:auto;display:block;object-fit:contain">
                         <div style="display:flex;gap:18px;font-size:12px;font-weight:700;letter-spacing:0.06em;color:rgba(255,255,255,.82)"><span style="color:var(--t-primary)">DASHBOARD</span><span>EMPLOYEES</span><span>PROFILES</span><span>JOB REQS</span><span>CANDIDATES</span><span>CLASSES</span><span>INTERVIEWS</span></div>
                         <div style="flex:1"></div>
                         <i class="{{ pane.ic.help }}" style="font-size:15px;color:rgba(255,255,255,.8)"></i>
@@ -1084,15 +1087,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Product screen — candidate list</div><div style="font-size:11px;color:var(--jf-text-subtle)">1440×880</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1440px;--h:880px;--s:.42;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
+                  <div data-spec="1" style="--w:1440px;--h:880px;--s:.42;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
                       <div style="height:54px;flex-shrink:0;background:var(--t-surface-topbar);display:flex;align-items:center;gap:22px;padding:0 18px">
-                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:22px;width:auto;display:block">
+                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:22px;width:auto;display:block;object-fit:contain">
                         <div style="display:flex;gap:16px;font-size:11.5px;font-weight:700;letter-spacing:0.06em;color:rgba(255,255,255,.82)"><span>DASHBOARD</span><span>EMPLOYEES</span><span>PROFILES</span><span>JOB REQS</span><span style="color:var(--t-primary)">CANDIDATES</span><span>CLASSES</span><span>INTERVIEWS</span><span>REFERRALS</span></div>
                         <div style="flex:1"></div>
                         <i class="{{ pane.ic.help }}" style="font-size:14px;color:rgba(255,255,255,.8)"></i>
@@ -1157,15 +1160,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Product screen — screening plan setup</div><div style="font-size:11px;color:var(--jf-text-subtle)">1440×880</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1440px;--h:880px;--s:.42;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
+                  <div data-spec="1" style="--w:1440px;--h:880px;--s:.42;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column">
                       <div style="height:54px;flex-shrink:0;background:var(--t-surface-topbar);display:flex;align-items:center;gap:22px;padding:0 18px">
-                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:22px;width:auto;display:block">
+                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:22px;width:auto;display:block;object-fit:contain">
                         <div style="display:flex;gap:16px;font-size:11.5px;font-weight:700;letter-spacing:0.06em;color:rgba(255,255,255,.82)"><span>DASHBOARD</span><span>EMPLOYEES</span><span>PROFILES</span><span style="color:var(--t-primary)">JOB REQS</span><span>CANDIDATES</span><span>CLASSES</span><span>INTERVIEWS</span></div>
                         <div style="flex:1"></div>
                         <div style="height:28px;padding:0 14px;display:flex;align-items:center;border:var(--t-border-hairline) solid rgba(255,255,255,.55);border-radius:var(--t-radius-sm);color:var(--t-text-inverse);font-size:12px;font-weight:700">Start</div>
@@ -1230,17 +1233,17 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Slide — PowerPoint title</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×720</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:720px;--s:.395;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);position:relative;overflow:hidden">
+                  <div data-spec="1" style="--w:1280px;--h:720px;--s:.395;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);position:relative;overflow:hidden">
                       <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotDark }}" alt="" style="position:absolute;right:-80px;bottom:-140px;width:620px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
                       <div style="position:relative;height:100%;padding:84px 92px;display:flex;flex-direction:column">
                         <div style="display:flex;align-items:center;gap:10px">
-                          <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:34px;width:auto;display:block">
+                          <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:34px;width:auto;display:block;object-fit:contain">
                         </div>
                         <div style="flex:1"></div>
                         <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--t-primary);margin-bottom:20px">Q3 hiring review</div>
@@ -1260,16 +1263,16 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Slide — PowerPoint title (real deck)</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×720 · matches the production title slide</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="4" style="--w:1280px;--h:720px;--s:.395;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-primary);font-family:var(--t-font-body);position:relative;overflow:hidden">
+                  <div data-spec="4" style="--w:1280px;--h:720px;--s:.395;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-primary);font-family:var(--t-font-body);position:relative;overflow:hidden">
                       <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotDark }}" alt="" style="position:absolute;right:0;top:0;width:520px;height:290px;object-fit:cover;object-position:right top;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:linear-gradient(to bottom left,#000 30%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(to bottom left,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
                       <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotDark }}" alt="" style="position:absolute;left:0;bottom:0;width:300px;height:320px;object-fit:cover;object-position:left bottom;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:linear-gradient(to top right,#000 30%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(to top right,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
-                      <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="position:absolute;left:58px;top:44px;height:58px;width:294px;display:block">
+                      <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="position:absolute;left:58px;top:44px;height:58px;width:auto;max-width:294px;object-fit:contain;display:block">
                       <div style="position:absolute;left:0;right:0;top:158px;display:flex;flex-direction:column;align-items:center;gap:6px">
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:52px;line-height:1.06;letter-spacing:var(--t-tracking-display);color:var(--t-neutral-900);text-align:center">An Intelligent Hiring Platform</div>
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:72px;line-height:1.02;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse);text-align:center">Built for BPOs</div>
@@ -1370,15 +1373,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Slide — three-column content (real deck)</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×720 · header band, blue column bars, result stack</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="5" style="--w:1280px;--h:720px;--s:.395;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column;overflow:hidden">
+                  <div data-spec="5" style="--w:1280px;--h:720px;--s:.395;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column;overflow:hidden">
                       <div style="height:56px;flex-shrink:0;background:var(--t-surface-subtle);display:flex;align-items:center;padding:0 26px">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:26px;width:132px;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="align-self:center;flex:none;height:26px;width:auto;max-width:132px;object-fit:contain;display:block">
                       </div>
                       <div style="flex-shrink:0;padding:26px 0 22px 0;text-align:center;font-family:var(--t-font-display);font-weight:700;font-size:52px;line-height:1.05;letter-spacing:var(--t-tracking-display);color:var(--t-neutral-900)">BPO Experience &amp; Expertise</div>
                       <div style="flex:1;display:flex;gap:32px;padding:0 58px 40px 58px;min-height:0">
@@ -1426,13 +1429,13 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Slide — data</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×720</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:720px;--s:.395;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);padding:64px 72px;display:flex;flex-direction:column;gap:26px">
+                  <div data-spec="1" style="--w:1280px;--h:720px;--s:.395;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);padding:64px 72px;display:flex;flex-direction:column;gap:26px">
                       <div style="display:flex;align-items:baseline;gap:16px">
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h1);letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">Validity by screening method</div>
                         <div style="flex:1"></div>
@@ -1465,18 +1468,18 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Slide — product demo</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×720</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:720px;--s:.395;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);padding:56px 64px;display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden">
+                  <div data-spec="1" style="--w:1280px;--h:720px;--s:.395;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);padding:56px 64px;display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden">
                       <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotDark }}" alt="" style="position:absolute;left:-90px;bottom:-150px;width:calc(var(--t-graphic-dots-size) * 1.4);opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);transform:scaleX(-1);pointer-events:none">
                       <div style="position:relative;display:flex;align-items:baseline;gap:16px">
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h1);letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse)">One screening plan, every client recipe</div>
                         <div style="flex:1"></div>
-                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:22px;width:auto;display:block;opacity:.9">
+                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:22px;width:auto;display:block;opacity:.9;object-fit:contain">
                       </div>
                       <div style="position:relative;flex:1;display:flex;gap:30px">
                         <div style="flex:2.1;border-radius:var(--t-radius-md);background:var(--t-surface);box-shadow:var(--t-shadow-lg);overflow:hidden;display:flex;flex-direction:column">
@@ -1511,16 +1514,16 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">PDF — guide page</div><div style="font-size:11px;color:var(--jf-text-subtle)">Letter 8.5×11</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:816px;--h:1056px;--s:.30;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:6px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);padding:64px;display:flex;flex-direction:column;gap:22px">
+                  <div data-spec="1" style="--w:816px;--h:1056px;--s:.30;width:100%;height:auto;overflow:hidden;border-radius:6px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);color:var(--t-text);padding:64px;display:flex;flex-direction:column;gap:22px">
                       <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:var(--t-border-strong-w) solid var(--t-primary)">
                         <div style="display:flex;align-items:center;gap:8px">
-                          <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:20px;width:auto;display:block">
+                          <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:20px;width:auto;display:block;object-fit:contain">
                         </div>
                         <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--t-text-muted)">BPO hiring guide</div>
                       </div>
@@ -1552,15 +1555,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Email</div><div style="font-size:11px;color:var(--jf-text-subtle)">600px</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:600px;--h:1830px;--s:.42;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:6px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column;overflow:hidden">
+                  <div data-spec="1" style="--w:600px;--h:1830px;--s:.42;width:100%;height:auto;overflow:hidden;border-radius:6px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);display:flex;flex-direction:column;overflow:hidden">
                       <div style="background:var(--t-surface-dark);padding:28px 40px 26px 40px;display:flex;flex-direction:column;gap:14px">
-                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="align-self:flex-start;flex:none;height:34px;width:172px;display:block">
+                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="align-self:flex-start;flex:none;height:34px;width:auto;max-width:172px;object-fit:contain;display:block">
                         <div style="align-self:flex-start;padding:7px 16px;border:1px solid var(--t-primary);border-radius:var(--t-radius-pill);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--t-primary);line-height:1">Partner update &middot; August 2026</div>
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:32px;line-height:1.15;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse)">Intelligent Hiring Platform</div>
                         <div style="font-size:17px;line-height:1.5;color:var(--t-brand-100)">Everything we shipped in 2026: new sourcing channels, deeper screening automation, offers that go out for a whole hiring class at once.</div>
@@ -1579,15 +1582,15 @@
                           <div style="height:1px;background:var(--t-brand-100);margin:18px 0"></div>
                           <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--t-brand-700);padding-bottom:14px">What the 60 minutes covers</div>
                           <div style="display:flex;flex-direction:column;gap:12px">
-                            <div style="display:flex;gap:14px">
+                            <div style="display:flex;gap:14px;align-items:flex-start">
                               <div style="width:52px;flex-shrink:0;font-weight:700;font-size:14px;line-height:1.5;color:var(--t-primary)">10 min</div>
                               <div style="font-size:15px;line-height:1.5;color:var(--t-text)"><strong>Daniel Ash</strong> frames where automation, AI, and human judgment each belong</div>
                             </div>
-                            <div style="display:flex;gap:14px">
+                            <div style="display:flex;gap:14px;align-items:flex-start">
                               <div style="width:52px;flex-shrink:0;font-weight:700;font-size:14px;line-height:1.5;color:var(--t-primary)">25 min</div>
                               <div style="font-size:15px;line-height:1.5;color:var(--t-text)"><strong>Cody Jolley</strong> walks a real BPO req through the funnel, live in the product</div>
                             </div>
-                            <div style="display:flex;gap:14px">
+                            <div style="display:flex;gap:14px;align-items:flex-start">
                               <div style="width:52px;flex-shrink:0;font-weight:700;font-size:14px;line-height:1.5;color:var(--t-primary)">20 min</div>
                               <div style="font-size:15px;line-height:1.5;color:var(--t-text)"><strong>Emmalyn Foerster</strong> takes questions and the failure modes teams actually hit</div>
                             </div>
@@ -1623,7 +1626,7 @@
                         <div style="align-self:flex-start;padding:12px 26px;border-radius:var(--t-radius-pill);border:2px solid var(--t-primary);color:var(--t-brand-700);font-family:var(--t-font-display);font-weight:700;font-size:15px;white-space:nowrap;margin-bottom:26px">Download the 2026 release guide (PDF)</div>
                       </div>
                       <div style="background:var(--t-primary);padding:22px 24px;display:flex;justify-content:center">
-                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="flex:none;height:32px;width:162px;display:block">
+                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="flex:none;height:32px;width:auto;max-width:162px;object-fit:contain;display:block">
                       </div>
                       <div style="flex:1;background:var(--t-surface-subtle);padding:18px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center">
                         <div style="font-size:13px;line-height:1.7;color:var(--t-text-muted)">Hire faster. Hire smarter. Get results.</div>
@@ -1641,16 +1644,16 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Business card</div><div style="font-size:11px;color:var(--jf-text-subtle)">3.5×2 in</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:700px;--h:866px;--s:.46;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:6px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);padding:22px;display:flex;flex-direction:column;gap:22px">
+                  <div data-spec="1" style="--w:700px;--h:866px;--s:.46;width:100%;height:auto;overflow:hidden;border-radius:6px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-subtle);font-family:var(--t-font-body);color:var(--t-text);padding:22px;display:flex;flex-direction:column;gap:22px">
                       <div style="height:400px;flex-shrink:0;position:relative;overflow:hidden;border-radius:var(--t-radius-md);background:var(--t-surface-dark);box-shadow:var(--t-shadow-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px">
                         <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotDark }}" alt="" style="position:absolute;right:-90px;bottom:-120px;width:calc(var(--t-graphic-dots-size) * 0.85);opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 25%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 25%,rgba(0,0,0,0) 100%);pointer-events:none">
-                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="position:relative;flex:none;height:52px;width:264px;display:block">
+                        <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="position:relative;flex:none;height:52px;width:auto;max-width:264px;object-fit:contain;display:block">
                         <div style="position:relative;font-size:14px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--t-primary);text-align:center">Hire faster &middot; Hire smarter &middot; Get results</div>
                         <div style="position:absolute;left:0;bottom:0;width:100%;height:12px;background:var(--t-gradient-primary)"></div>
                       </div>
@@ -1663,7 +1666,7 @@
                               <div style="font-family:var(--t-font-display);font-weight:700;font-size:30px;line-height:1.1;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">Alexis Rivera</div>
                               <div style="font-size:15px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t-primary)">VP, Talent Operations</div>
                             </div>
-                            <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="flex:none;height:26px;width:132px;display:block">
+                            <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="flex:none;height:26px;width:auto;max-width:132px;object-fit:contain;display:block">
                           </div>
                           <div style="height:1px;background:var(--t-border);margin:22px 0"></div>
                           <div style="display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--t-text-muted)">
@@ -1687,17 +1690,17 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Social post</div><div style="font-size:11px;color:var(--jf-text-subtle)">1080×1080</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1080px;--h:1080px;--s:.30;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);position:relative;overflow:hidden">
+                  <div data-spec="1" style="--w:1080px;--h:1080px;--s:.30;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);position:relative;overflow:hidden">
                       <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotDark }}" alt="" style="position:absolute;left:-120px;top:-100px;width:calc(var(--t-graphic-dots-size) * 1.6);opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);transform:scaleX(-1);pointer-events:none">
                       <div style="position:relative;height:100%;padding:80px;display:flex;flex-direction:column">
                         <div style="display:flex;align-items:center;gap:12px">
-                          <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:48px;width:auto;display:block">
+                          <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:48px;width:auto;display:block;object-fit:contain">
                         </div>
                         <div style="flex:1"></div>
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:84px;line-height:1.02;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse)">The best time to predict a bad hire is before it happens.</div>
@@ -1717,16 +1720,16 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">LinkedIn post</div><div style="font-size:11px;color:var(--jf-text-subtle)">feed card + square image</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:620px;--h:880px;--s:.46;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:#EDEDE7;font-family:var(--t-font-body);box-sizing:border-box;padding:20px;display:flex;flex-direction:column">
+                  <div data-spec="1" style="--w:620px;--h:880px;--s:.46;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:#EDEDE7;font-family:var(--t-font-body);box-sizing:border-box;padding:20px;display:flex;flex-direction:column">
                       <div style="background:#FFFFFF;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.12);overflow:hidden;display:flex;flex-direction:column">
                         <div style="padding:16px 16px 12px 16px;display:flex;gap:12px;align-items:flex-start">
-                          <img src="assets/logos/favicon.svg" data-src="{{ pane.logoMark }}" alt="{{ pane.brand }}" style="width:52px;height:52px;border-radius:8px;display:block;flex-shrink:0">
+                          <img src="assets/logos/favicon.svg" data-src="{{ pane.logoMark }}" alt="{{ pane.brand }}" style="width:52px;height:52px;border-radius:8px;display:block;flex-shrink:0;object-fit:contain">
                           <div style="flex:1;min-width:0">
                             <div style="font-size:15px;font-weight:700;color:#191919">{{ pane.brand }}</div>
                             <div style="font-size:12.5px;color:#666;padding-top:1px">3,531 followers</div>
@@ -1738,7 +1741,7 @@
                         <div style="padding:0 16px 14px 16px;font-size:14px;line-height:1.45;color:#191919">Live webinar, September 16: How Automation Can Improve Hiring Speed and Quality for BPOs. <span style="color:#666;white-space:nowrap">…more</span></div>
                         <div style="height:520px;flex-shrink:0;background:var(--t-surface-tint);position:relative;overflow:hidden;display:flex;flex-direction:column;padding:34px 38px 36px 38px">
                           <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotLight }}" alt="" style="position:absolute;right:0;top:0;height:100%;width:300px;object-fit:cover;object-position:right center;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:linear-gradient(to left,#000 35%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(to left,#000 35%,rgba(0,0,0,0) 100%);pointer-events:none">
-                          <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="position:relative;align-self:flex-start;flex:none;height:36px;width:182px;display:block">
+                          <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="position:relative;align-self:flex-start;flex:none;height:36px;width:auto;max-width:182px;object-fit:contain;display:block">
                           <div style="position:relative;display:flex;align-items:center;gap:9px;align-self:flex-start;margin-top:30px;padding:9px 20px 9px 15px;border:1px solid var(--t-brand-100);border-radius:var(--t-radius-pill);background:var(--t-surface)">
                             <span style="width:9px;height:9px;border-radius:var(--t-radius-pill);background:var(--t-brand-300);display:block"></span>
                             <span style="font-size:13px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--t-text-heading)">Live webinar</span>
@@ -1777,13 +1780,13 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Photography — treatments</div><div style="font-size:11px;color:var(--jf-text-subtle)">1200×620</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1200px;--h:620px;--s:.335;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;gap:22px;padding:30px;box-sizing:border-box">
+                  <div data-spec="1" style="--w:1200px;--h:620px;--s:.335;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;gap:22px;padding:30px;box-sizing:border-box">
                       <div style="flex:1;border-radius:var(--t-radius-lg);overflow:hidden;position:relative;background:var(--t-surface-dark);box-shadow:var(--t-module-shadow)">
                         <img src="assets/photography/workplace-01.jpg" data-src="{{ pane.photoHero }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.14);filter:{{ pane.photoFilter }}">
                         <div style="position:absolute;inset:0;background:var(--t-primary);mix-blend-mode:multiply;opacity:.85"></div>
@@ -1817,13 +1820,13 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Photography — library sheet</div><div style="font-size:11px;color:var(--jf-text-subtle)">900×620</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:900px;--h:620px;--s:.335;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);padding:28px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+                  <div data-spec="1" style="--w:900px;--h:620px;--s:.335;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);padding:28px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
                       <div style="display:flex;align-items:baseline;gap:10px">
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">People library</div>
                         <div style="font-size:var(--t-size-small);color:var(--t-text-muted)">{{ photoLibNote }}</div>
@@ -1848,13 +1851,13 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Design elements — the dot field</div><div style="font-size:11px;color:var(--jf-text-subtle)">1200×460</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1200px;--h:460px;--s:.335;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);padding:28px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+                  <div data-spec="1" style="--w:1200px;--h:460px;--s:.335;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);padding:28px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
                       <div style="flex:1;display:flex;gap:18px;min-height:0">
                         <div style="flex:1;position:relative;overflow:hidden;border-radius:var(--t-radius-lg);background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border)">
                           <img src="assets/graphics/dot-arch.svg" data-src="{{ pane.dotLight }}" alt="" style="position:absolute;left:50%;bottom:-150px;transform:translateX(-50%);width:calc(var(--t-graphic-dots-size) * 1.25);opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
@@ -1887,13 +1890,13 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Composition — background · person · product</div><div style="font-size:11px;color:var(--jf-text-subtle)">1200×620</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1200px;--h:620px;--s:.335;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-primary);font-family:var(--t-font-body);position:relative;overflow:hidden">
+                  <div data-spec="1" style="--w:1200px;--h:620px;--s:.335;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-primary);font-family:var(--t-font-body);position:relative;overflow:hidden">
                       <img src="assets/graphics/dot-arch-white.svg" data-src="{{ pane.dotDark }}" alt="" style="position:absolute;left:36%;bottom:-190px;width:calc(var(--t-graphic-dots-size) * 1.5);opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
                       <div style="position:relative;height:100%;display:flex;flex-direction:{{ pane.compDir }};align-items:center;gap:var(--t-layout-gutter);padding:0 var(--t-layout-gutter);box-sizing:border-box">
                         <div style="width:var(--t-content-measure);flex-shrink:0;display:flex;flex-direction:column;gap:var(--t-space-md)">
@@ -1918,13 +1921,13 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Motion &amp; density</div><div style="font-size:11px;color:var(--jf-text-subtle)">1200&times;620 &middot; the only surface where motion and the two smallest spacing steps are visible</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1200px;--h:620px;--s:.335;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;gap:30px;padding:34px">
+                  <div data-spec="1" style="--w:1200px;--h:620px;--s:.335;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;gap:30px;padding:34px">
                       <div style="flex:1;display:flex;flex-direction:column;gap:var(--t-space-lg);min-width:0">
                         <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t-text-muted)">Motion</div>
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);line-height:1.15;color:var(--t-text-heading)">Every bar runs on <span style="font-family:var(--t-font-mono);color:var(--t-primary)">--t-ease</span>. Only the duration differs.</div>
@@ -2058,13 +2061,13 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Treatment recipes — 2026 brand guide</div><div style="font-size:11px;color:var(--jf-text-subtle)">1280×620 · tint + dot element + person + product, recreated live from tokens</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1280px;--h:620px;--s:.55;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:16px;padding:18px">
+                  <div data-spec="1" style="--w:1280px;--h:620px;--s:.55;width:100%;height:auto;overflow:hidden;border-radius:10px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:16px;padding:18px">
                       <div style="position:relative;overflow:hidden;background:var(--t-brand-100);border-radius:var(--t-radius-md);display:flex;align-items:center;justify-content:center">
                         <div style="position:absolute;left:-40px;top:-30px;width:230px;height:226px;background:var(--t-on-primary);opacity:0.95;-webkit-mask-image:url(assets/graphics/dot-drift-square.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-image:url(assets/graphics/dot-drift-square.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;pointer-events:none"></div>
                         <div style="position:absolute;right:-50px;bottom:-60px;transform:rotate(180deg);width:230px;height:226px;background:var(--t-on-primary);opacity:0.9;-webkit-mask-image:url(assets/graphics/dot-drift-square.svg);-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-image:url(assets/graphics/dot-drift-square.svg);mask-size:contain;mask-repeat:no-repeat;mask-position:center;pointer-events:none"></div>
@@ -2134,21 +2137,74 @@
           </div>
         </div>
 
-        <div data-section="Swag" style="flex-basis:100%;display:flex;align-items:center;gap:12px;margin:2px 0 -2px 0"><div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:0.1em;text-transform:uppercase;color:var(--jf-blue-dark)">Swag</div><div style="font-size:11px;color:var(--jf-text-subtle)">4 specimens · flat mockups</div><div style="flex:1;height:1px;background:var(--jf-border)"></div></div>
+        <div data-section="Swag" style="flex-basis:100%;display:flex;align-items:center;gap:12px;margin:2px 0 -2px 0"><div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:0.1em;text-transform:uppercase;color:var(--jf-blue-dark)">Swag</div><div style="font-size:11px;color:var(--jf-text-subtle)">5 specimens · flat mockups + photo mockups</div><div style="flex:1;height:1px;background:var(--jf-border)"></div></div>
+
+        <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Merch photography — t-shirt, hat, backpack</div><div style="font-size:11px;color:var(--jf-text-subtle)">1200×660 · drop your own product photos onto the frames</div></div>
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+                <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
+                <div style="{{ pane.vars }}">
+                  <div data-spec="1" style="--w:1200px;--h:660px;--s:.335;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);padding:36px 40px;display:flex;flex-direction:column;gap:26px">
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:20px">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:30px;width:auto;display:block;object-fit:contain">
+                        <div style="font-size:var(--t-size-small);color:var(--t-text-muted)">Logo placement on merch — the lockup scales with the print area, never below 24mm wide</div>
+                      </div>
+                      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+                        <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+                          <div id="frame-tshirt" style="position:relative;width:100%;min-width:0;box-sizing:border-box;height:400px;border-radius:var(--t-radius-lg);overflow:hidden;background:var(--t-surface-subtle)">
+                            <image-slot id="swag-tshirt" shape="rect" fit="cover" style="position:absolute;inset:0;width:100%;height:100%;min-width:0" placeholder="Drop a t-shirt photo"></image-slot>
+                            <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="" style="position:absolute;left:50%;top:35%;transform:translate(-50%,-50%);width:26%;height:auto;object-fit:contain;pointer-events:none;opacity:.96;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))">
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:3px">
+                            <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">T-shirt</div>
+                            <div style="font-size:var(--t-size-small);color:var(--t-text-muted)">Left chest or centred front · white lockup on a dark tee</div>
+                          </div>
+                        </div>
+                        <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+                          <div id="frame-hat" style="position:relative;width:100%;min-width:0;box-sizing:border-box;height:400px;border-radius:var(--t-radius-lg);overflow:hidden;background:var(--t-surface-subtle)">
+                            <image-slot id="swag-hat" shape="rect" fit="cover" style="position:absolute;inset:0;width:100%;height:100%;min-width:0" placeholder="Drop a hat photo"></image-slot>
+                            <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="" style="position:absolute;left:44%;top:43%;transform:translate(-50%,-50%) rotate(-2deg);width:23%;height:auto;object-fit:contain;pointer-events:none;opacity:.96;filter:drop-shadow(0 1px 1px rgba(0,0,0,.18))">
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:3px">
+                            <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">Hat</div>
+                            <div style="font-size:var(--t-size-small);color:var(--t-text-muted)">Front panel, embroidered · single-colour lockup only</div>
+                          </div>
+                        </div>
+                        <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+                          <div id="frame-backpack" style="position:relative;width:100%;min-width:0;box-sizing:border-box;height:400px;border-radius:var(--t-radius-lg);overflow:hidden;background:var(--t-surface-subtle)">
+                            <image-slot id="swag-backpack" shape="rect" fit="cover" style="position:absolute;inset:0;width:100%;height:100%;min-width:0" placeholder="Drop a backpack photo"></image-slot>
+                            <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="" style="position:absolute;left:48%;top:41%;transform:translate(-50%,-50%);width:28%;height:auto;object-fit:contain;pointer-events:none;opacity:.92;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))">
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:3px">
+                            <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">Backpack</div>
+                            <div style="font-size:var(--t-size-small);color:var(--t-text-muted)">White lockup on the front pocket · square mark for anything narrower</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Signage — booth panel</div><div style="font-size:11px;color:var(--jf-text-subtle)">1200×700</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:1200px;--h:700px;--s:.335;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-tint);font-family:var(--t-font-body);position:relative;overflow:hidden;display:flex">
+                  <div data-spec="1" style="--w:1200px;--h:700px;--s:.335;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-tint);font-family:var(--t-font-body);position:relative;overflow:hidden;display:flex">
                       <img src="assets/graphics/dot-arch-blue.svg" data-src="{{ pane.dotTint }}" alt="" style="position:absolute;right:-60px;bottom:-160px;width:600px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
                       <div style="position:relative;flex:1;padding:var(--t-space-2xl);display:flex;flex-direction:column;justify-content:center;gap:var(--t-space-lg)">
                         <div style="display:flex;align-items:center;gap:11px">
-                          <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:40px;width:auto;display:block">
+                          <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:40px;width:auto;display:block;object-fit:contain">
                         </div>
                         <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-display);line-height:1.04;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading);max-width:640px">Hire faster. Hire smarter. Get results.</div>
                         <div style="font-size:24px;line-height:var(--t-leading-body);color:var(--t-text-muted);max-width:520px">Booth 214 — see a live scoring run on your own hiring data.</div>
@@ -2164,16 +2220,16 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">T-shirt</div><div style="font-size:11px;color:var(--jf-text-subtle)">flat mockup</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:520px;--h:560px;--s:.50;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-subtle);position:relative;display:flex;align-items:center;justify-content:center">
+                  <div data-spec="1" style="--w:520px;--h:560px;--s:.50;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-subtle);position:relative;display:flex;align-items:center;justify-content:center">
                       <div style="width:440px;height:470px;position:relative;background:var(--t-surface-dark);clip-path:polygon(31% 2%, 40% 7%, 60% 7%, 69% 2%, 100% 15%, 87% 37%, 80% 32%, 80% 100%, 20% 100%, 20% 32%, 13% 37%, 0% 15%)">
                         <div style="position:absolute;left:0;right:0;top:150px;display:flex;flex-direction:column;align-items:center;gap:14px">
-                          <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:44px;width:auto;display:block">
+                          <img src="assets/logos/logo-white.svg" data-src="{{ pane.logoDark }}" alt="{{ pane.brand }}" style="height:44px;width:auto;display:block;object-fit:contain">
                           <span style="font-size:15px;letter-spacing:0.22em;text-transform:uppercase;color:var(--t-primary);font-weight:700">Stop guessing</span>
                         </div>
                       </div>
@@ -2187,15 +2243,15 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Mug</div><div style="font-size:11px;color:var(--jf-text-subtle)">flat mockup</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:520px;--h:420px;--s:.50;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-subtle);position:relative;display:flex;align-items:center;justify-content:center;gap:0">
+                  <div data-spec="1" style="--w:520px;--h:420px;--s:.50;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-subtle);position:relative;display:flex;align-items:center;justify-content:center;gap:0">
                       <div style="width:250px;height:250px;background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);border-radius:18px 18px 26px 26px;box-shadow:var(--t-shadow-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;z-index:2">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:32px;width:auto;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="height:32px;width:auto;display:block;object-fit:contain">
                         <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--t-primary);font-weight:700">Predict, don't guess</span>
                       </div>
                       <div style="width:96px;height:118px;border:22px solid var(--t-primary);border-left-color:transparent;border-radius:0 60px 60px 0;margin-left:-14px;position:relative;z-index:1"></div>
@@ -2209,20 +2265,20 @@
 
         <div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:14px;display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;align-items:baseline;gap:8px"><div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Tote bag</div><div style="font-size:11px;color:var(--jf-text-subtle)">flat mockup</div></div>
-          <div style="display:flex;gap:14px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
             <sc-for list="{{ panes }}" as="pane" hint-placeholder-count="1">
-              <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
                 <sc-if value="{{ pane.showLabel }}"><div style="{{ pane.labelStyle }}">{{ pane.label }}</div></sc-if>
                 <div style="{{ pane.vars }}">
-                  <div data-spec="1" style="--w:460px;--h:540px;--s:.50;width:calc(var(--w)*var(--s)*var(--cmp));height:calc(var(--h)*var(--s)*var(--cmp));overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
-                    <div style="width:var(--w);height:var(--h);transform:scale(calc(var(--s)*var(--cmp)));transform-origin:top left;box-sizing:border-box;background:var(--t-surface-subtle);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:40px">
+                  <div data-spec="1" style="--w:460px;--h:540px;--s:.50;width:100%;height:auto;overflow:hidden;border-radius:8px;border:1px solid var(--jf-border)">
+                    <div style="width:var(--w);zoom:calc(var(--fit, var(--s)) * var(--zf, 1));min-height:var(--h);box-sizing:border-box;background:var(--t-surface-subtle);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:40px">
                       <div style="position:absolute;top:56px;left:50%;transform:translateX(-50%);display:flex;gap:112px">
                         <div style="width:56px;height:96px;border:14px solid var(--t-brand-300);border-bottom:none;border-radius:40px 40px 0 0"></div>
                         <div style="width:56px;height:96px;border:14px solid var(--t-brand-300);border-bottom:none;border-radius:40px 40px 0 0"></div>
                       </div>
                       <div style="width:340px;height:340px;background:var(--t-surface-tint);border-radius:6px 6px var(--t-radius-md) var(--t-radius-md);box-shadow:var(--t-shadow-sm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;z-index:2;overflow:hidden">
                         <img src="assets/graphics/dot-arch-blue.svg" data-src="{{ pane.dotTint }}" alt="" style="position:absolute;left:-60px;bottom:-80px;width:340px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
-                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="position:relative;height:40px;width:auto;display:block">
+                        <img src="assets/logos/logo-color.svg" data-src="{{ pane.logoLight }}" alt="{{ pane.brand }}" style="position:relative;height:40px;width:auto;display:block;object-fit:contain">
                       </div>
                     </div>
                   </div>
@@ -2242,7 +2298,7 @@
 class Component extends DCLogic {
   GROUPS = [['raw','Color — ramps'],['sem','Color — semantic'],['fam','Type — families'],['scale','Type — scale'],['space','Spacing'],['radius','Radii'],['shadow','Shadows'],['motion','Motion'],['border','Borders'],['layout','Layout'],['module','Modules'],['logo','Logo & brand'],['grad','Gradients'],['icon','Iconography']];
   _addGroups = this.GROUPS.push(['photo','Photography — people'],['bg','Photography — backgrounds'],['graphic','Design elements'],['product','Product images'],['comp','Compositions']);
-  SECTIONS = [['Web',7],['Product',3],['Presentations',5],['Collateral',3],['Social',2],['Assets',5],['Photography',2],['Product images',1],['Compositions',2],['Swag',4]];
+  SECTIONS = [['Web',7],['Product',3],['Presentations',5],['Collateral',3],['Social',2],['Assets',5],['Photography',2],['Product images',1],['Compositions',2],['Swag',5]];
 
   ICONKEYS = ['automation','assessments','sourcing','interviews','analytics','dashboard','search','settings','help','quote','check','performance','savings','closedloop'];
 
@@ -2349,9 +2405,11 @@ class Component extends DCLogic {
     {i:'eyebrow-case',g:'module',k:'sel',opts:['uppercase','none'],d:'uppercase',n:'Eyebrow casing',m:'Module/Eyebrow',u:'Web specimens',c:9},
 
     {i:'brand-name',g:'logo',k:'str',d:'Journeyfront',n:'Wordmark text — for places the lockup cannot go (alt text, footers)',m:'Brand/Wordmark',u:'PDF footer, Card',c:3},
-    {i:'logo-on-light',g:'logo',k:'sel',opts:['assets/logos/logo-color.svg','assets/logos/logo-white.svg','assets/logos/favicon.svg'],d:'assets/logos/logo-color.svg',n:'Lockup for white and light surfaces',m:'Brand/Logo-color',u:'Landing, PDF, Signage, Card, Mug, Tote',c:6},
-    {i:'logo-on-dark',g:'logo',k:'sel',opts:['assets/logos/logo-white.svg','assets/logos/logo-color.svg','assets/logos/favicon.svg'],d:'assets/logos/logo-white.svg',n:'Lockup for dark, brand and photographic surfaces',m:'Brand/Logo-white',u:'Product, Slide, Email, Mobile, Social, T-shirt',c:6},
-    {i:'logo-favicon',g:'logo',k:'sel',opts:['assets/logos/favicon.svg','assets/logos/logo-color.svg','assets/logos/logo-white.svg'],d:'assets/logos/favicon.svg',n:'Square mark — favicon, app icon, avatar',m:'Brand/Favicon',u:'unused so far',c:0},
+    {i:'logo-on-light',g:'logo',k:'sel',lib:'logo',opts:['assets/logos/logo-color.svg','assets/logos/logo-white.svg','assets/logos/favicon.svg'],d:'assets/logos/logo-color.svg',n:'Lockup for white and light surfaces',m:'Brand/Logo-color',u:'Landing, PDF, Signage, Card, Mug, Tote',c:6},
+    {i:'logo-on-dark',g:'logo',k:'sel',lib:'logo',opts:['assets/logos/logo-color.svg','assets/logos/logo-white.svg','assets/logos/favicon.svg'],d:'assets/logos/logo-white.svg',n:'Lockup for dark, brand and photographic surfaces',m:'Brand/Logo-white',u:'Product, Slide, Email, Mobile, Social, T-shirt',c:6},
+    {i:'logo-favicon',g:'logo',k:'sel',lib:'logo',opts:['assets/logos/logo-color.svg','assets/logos/logo-white.svg','assets/logos/favicon.svg'],d:'assets/logos/favicon.svg',n:'Square mark — favicon, app icon, avatar',m:'Brand/Favicon',u:'unused so far',c:0},
+    {i:'logo-stacked-light',g:'logo',k:'sel',lib:'logo',opts:['assets/logos/logo-color.svg','assets/logos/logo-white.svg','assets/logos/favicon.svg'],d:'assets/logos/logo-color.svg',n:'Stacked lockup for light surfaces — mark above the wordmark, for square and centred placements',m:'Brand/Logo',u:'unused so far',c:0},
+    {i:'logo-stacked-dark',g:'logo',k:'sel',lib:'logo',opts:['assets/logos/logo-color.svg','assets/logos/logo-white.svg','assets/logos/favicon.svg'],d:'assets/logos/logo-white.svg',n:'Stacked lockup reversed out for brand-900 and photography',m:'Brand/Logo',u:'unused so far',c:0},
 
     {i:'gradient-primary',g:'grad',k:'grad',d:'secondary',n:'Accent rules and meters — blue to green',m:'Gradients/Secondary → --jf-gradient-secondary',u:'Landing, Slide, Social, Card',c:5},
     {i:'gradient-ai',g:'grad',k:'grad',d:'ai',n:'AI and accent moments — magenta to blue',m:'Gradients/AI → --jf-gradient-ai',u:'unused so far',c:0,dep:true,flag:'not behind type'},
@@ -2409,6 +2467,26 @@ class Component extends DCLogic {
     document.addEventListener('keydown', this._key);
     this.syncLogos();
     this.loadCommitted();
+    this.startFit();
+  }
+
+  startFit() {
+    const fit = () => {
+      document.querySelectorAll('[data-spec]').forEach(el => {
+        const w = parseFloat(getComputedStyle(el).getPropertyValue('--w')) || 1280;
+        const avail = el.clientWidth;
+        if (avail > 0) el.style.setProperty('--fit', (avail / w).toFixed(4));
+      });
+    };
+    this._fit = fit;
+    fit();
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(() => fit());
+      const canvas = document.querySelector('.tw-scroll');
+      if (canvas) this._ro.observe(canvas);
+    }
+    window.addEventListener('resize', fit);
+    setTimeout(fit, 60);
   }
 
   loadCommitted() {
@@ -2423,9 +2501,14 @@ class Component extends DCLogic {
       }));
   }
 
-  componentDidUpdate() { this.syncLogos(); }
+  componentDidUpdate() { this.syncLogos(); if (this._fit) this._fit(); }
 
   LIB = {
+    logo: [
+      ['assets/logos/logo-color.svg','Lockup — colour'],
+      ['assets/logos/logo-white.svg','Lockup — white'],
+      ['assets/logos/favicon.svg','Mark — favicon']
+    ],
     people: [
       ['assets/photography/cutout-woman-laptop.png','Cut-out — woman with laptop'],
       ['assets/photography/cutout-woman-glasses-laptop.png','Woman, glasses — has a grey backdrop'],
@@ -2575,12 +2658,57 @@ class Component extends DCLogic {
     {i:'comp-person-scale',g:'comp',k:'dim',d:80,unit:'%',mn:50,mx:100,st:2,n:'How tall the cut-out person stands in the frame',m:'Composition/Person',u:'Landing, CTA band, Social',c:4}
   );
 
+  _libBase = (() => { const o = {}; Object.keys(this.LIB).forEach(k => { o[k] = this.LIB[k].map(a => a[0]); }); return o; })();
+
+  _restoredLibs = (() => {
+    let added = null;
+    try { added = JSON.parse(localStorage.getItem('tw-libraries-v1') || 'null'); } catch (e) {}
+    if (added) Object.keys(added).forEach(k => {
+      if (!this.LIB[k] || !Array.isArray(added[k])) return;
+      added[k].forEach(a => { if (Array.isArray(a) && a[0] && !this.LIB[k].some(x => x[0] === a[0])) this.LIB[k].push(a); });
+    });
+    this.T.forEach(t => { if (t.lib && this.LIB[t.lib]) t.opts = this.LIB[t.lib].map(x => x[0]); });
+    return added;
+  })();
+
   libOf(kind) { const st = this.state || {}; return (st.lib && st.lib[kind]) ? st.lib[kind] : this.LIB[kind]; }
+
+  LIBKEY = 'tw-libraries-v1';
 
   setLib(kind, arr) {
     const lib = Object.assign({}, this.state.lib || {});
     lib[kind] = arr;
     this.T.forEach(t => { if (t.lib === kind) t.opts = arr.map(a => a[0]); });
+    this.setState({ lib: lib, libNote: this.saveLibs(lib) });
+  }
+
+  saveLibs(lib) {
+    try {
+      const added = {};
+      Object.keys(lib).forEach(k => {
+        const base = this._libBase[k] || [];
+        const extra = lib[k].filter(a => base.indexOf(a[0]) < 0);
+        if (extra.length) added[k] = extra;
+      });
+      if (Object.keys(added).length) localStorage.setItem(this.LIBKEY, JSON.stringify(added));
+      else localStorage.removeItem(this.LIBKEY);
+      return '';
+    } catch (e) {
+      return 'Too large to keep in this browser — the upload works for this session only. Commit the file to assets/logos/ in the repo for anything permanent.';
+    }
+  }
+
+  restoreLibs() {
+    let added = null;
+    try { added = JSON.parse(localStorage.getItem(this.LIBKEY) || 'null'); } catch (e) {}
+    if (!added) return;
+    const lib = Object.assign({}, this.state.lib || {});
+    Object.keys(added).forEach(k => {
+      const cur = (lib[k] || this.LIB[k] || []).slice();
+      added[k].forEach(a => { if (Array.isArray(a) && a[0] && !cur.some(x => x[0] === a[0])) cur.push(a); });
+      lib[k] = cur;
+      this.T.forEach(t => { if (t.lib === k) t.opts = cur.map(x => x[0]); });
+    });
     this.setState({ lib: lib });
   }
 
@@ -2592,6 +2720,30 @@ class Component extends DCLogic {
     const label = v.split('/').pop().replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ');
     this._draft = '';
     this.setLib(kind, cur.concat([[v, label]]));
+  }
+
+  shortLabel(v) {
+    const s = String(v);
+    if (/^data:/.test(s)) return 'uploaded file (' + (s.split(';')[0].split('/')[1] || 'image') + ')';
+    let name = s.split('?')[0].split('/').pop() || s;
+    try { name = decodeURIComponent(name); } catch (e) {}
+    return name.length > 44 ? name.slice(0, 41) + '…' : name;
+  }
+
+  uploadAssets(kind, files, input) {
+    if (!kind || !files || !files.length) return;
+    const list = Array.prototype.slice.call(files);
+    Promise.all(list.map(f => new Promise(res => {
+      const r = new FileReader();
+      r.onload = () => res([r.result, f.name.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ')]);
+      r.onerror = () => res(null);
+      r.readAsDataURL(f);
+    }))).then(items => {
+      const cur = this.libOf(kind);
+      const add = items.filter(Boolean).filter(it => !cur.some(a => a[0] === it[0]));
+      if (add.length) this.setLib(kind, cur.concat(add));
+      if (input) input.value = '';
+    });
   }
 
   applyDoc(doc, label) {
@@ -2609,6 +2761,18 @@ class Component extends DCLogic {
       if (e.review === 'rejected') status[t.i] = 'no';
     });
     if (!hits) throw 'empty';
+    if (doc.libraries) {
+      const lib = Object.assign({}, this.state.lib || {});
+      Object.keys(doc.libraries).forEach(key => {
+        const k = key === 'photo' ? 'people' : key;
+        if (!Array.isArray(doc.libraries[key]) || !this.LIB[k]) return;
+        const cur = (lib[k] || this.LIB[k] || []).slice();
+        doc.libraries[key].forEach(a => { if (Array.isArray(a) && a[0] && !cur.some(x => x[0] === a[0])) cur.push(a); });
+        lib[k] = cur;
+        this.T.forEach(t => { if (t.lib === k) t.opts = cur.map(x => x[0]); });
+      });
+      this.setState({ lib: lib });
+    }
     this.setState({
       baseline: base, vals: Object.assign({}, base), status: status, preset: 'Baseline',
       source: 'baseline: ' + label + ' (' + hits + ' of ' + this.T.length + ')'
@@ -2675,16 +2839,11 @@ class Component extends DCLogic {
 
   zoomIn(f) {
     const cs = getComputedStyle(f);
-    const w = parseFloat(cs.getPropertyValue('--w')) || 1280;
-    const s = parseFloat(cs.getPropertyValue('--s')) || 0.4;
+    const fitNow = parseFloat(cs.getPropertyValue('--fit')) || parseFloat(cs.getPropertyValue('--s')) || 0.4;
     const canvas = f.closest('.tw-scroll');
-    const row = canvas ? canvas.lastElementChild : null;
-    let card = f;
-    while (card.parentElement && card.parentElement !== row) card = card.parentElement;
-    if (row && card.parentElement === row) { card.style.flexBasis = '100%'; this._card = card; }
-    const availW = Math.max(420, (canvas ? canvas.clientWidth : window.innerWidth) - 90);
     f.dataset.zoom = '1';
-    f.style.setProperty('--cmp', Math.max(1, Math.min(availW / (w * s), 1 / s)));
+    f.style.overflow = 'visible';
+    f.style.setProperty('--zf', Math.max(1, 1 / fitNow).toFixed(4));
     const b = document.createElement('div'); b.className = 'tw-backdrop';
     const c = document.createElement('div'); c.className = 'tw-esc';
     c.textContent = 'Editing tokens still cascades live · click the specimen or press Esc to close';
@@ -2702,8 +2861,8 @@ class Component extends DCLogic {
   unzoom() {
     if (!this._z) return;
     delete this._z.dataset.zoom;
-    this._z.style.removeProperty('--cmp');
-    if (this._card) { this._card.style.removeProperty('flex-basis'); this._card = null; }
+    this._z.style.removeProperty('--zf');
+    this._z.style.removeProperty('overflow');
     (this._bd || []).forEach(n => n.parentNode && n.parentNode.removeChild(n));
     this._z = null; this._bd = null;
   }
@@ -2806,7 +2965,11 @@ class Component extends DCLogic {
       if (t.k === 'shadow') opts = Object.keys(this.SHADOWS).map(k => ({ v: k, label: k }));
       if (t.k === 'grad') opts = Object.keys(this.GRADS).map(k => ({ v: k, label: k }));
       if (t.k === 'ease') opts = this.EASES.map(e => ({ v: e, label: e }));
-      if (t.k === 'sel') opts = (t.opts || []).map(o => ({ v: o, label: o }));
+      if (t.k === 'sel') {
+        const names = {};
+        if (t.lib) this.libOf(t.lib).forEach(a => { names[a[0]] = a[1]; });
+        opts = (t.opts || []).map(o => ({ v: o, label: names[o] || this.shortLabel(o) }));
+      }
 
       let chain = '--t-' + t.i;
       if (t.k === 'alias') chain += ' → --t-' + v + ' → ' + hex;
@@ -2857,7 +3020,7 @@ class Component extends DCLogic {
       .map(g => { const list = this.T.filter(t => t.g === g[0] && match(t)); const gid = g[0];
         const gd = (st.guides && st.guides[gid] !== undefined) ? st.guides[gid] : (this.GUIDE[gid] || '');
         const ed = st.gedit === gid;
-        const libKind = gid === 'photo' ? 'people' : gid === 'bg' ? 'background' : gid === 'graphic' ? 'graphic' : gid === 'product' ? 'screen' : gid === 'comp' ? 'composition' : null;
+        const libKind = gid === 'logo' ? 'logo' : gid === 'photo' ? 'people' : gid === 'bg' ? 'background' : gid === 'graphic' ? 'graphic' : gid === 'product' ? 'screen' : gid === 'comp' ? 'composition' : null;
         const lib = libKind ? this.libOf(libKind) : [];
         const used = {};
         if (libKind) this.T.forEach(t => { if (t.lib === libKind) used[vals[t.i]] = true; });
@@ -2867,12 +3030,16 @@ class Component extends DCLogic {
           toggleEdit: () => this.setState({ gedit: ed ? null : gid }),
           onGuide: e => { const gs = Object.assign({}, st.guides || {}); gs[gid] = e.target.value; this.setState({ guides: gs, gedit: null }); },
           hasLib: !!libKind,
-          libLabel: (libKind === 'photo' ? 'Photo library' : (libKind === 'screen' ? 'Product-screen library' : 'Element library')) + ' — ' + lib.length + ' assets',
-          libPlaceholder: libKind === 'photo' ? 'assets/photography/… or an https:// URL' : (libKind === 'screen' ? 'assets/screens/… or an https:// URL' : 'assets/graphics/… or an https:// URL'),
+          libLabel: (libKind === 'logo' ? 'Logo library' : libKind === 'photo' ? 'Photo library' : (libKind === 'screen' ? 'Product-screen library' : 'Element library')) + ' — ' + lib.length + ' assets',
+          libPlaceholder: libKind === 'logo' ? 'assets/logos/… or an https:// URL' : libKind === 'photo' ? 'assets/photography/… or an https:// URL' : (libKind === 'screen' ? 'assets/screens/… or an https:// URL' : 'assets/graphics/… or an https:// URL'),
+          libThumbStyle: 'height:42px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:4px;background:' + (libKind === 'logo' ? 'linear-gradient(135deg,var(--jf-white) 0 50%,var(--jf-blue-dark) 50% 100%)' : 'var(--jf-gray-pastel)'),
+          onLibFile: e => this.uploadAssets(libKind, e.target.files, e.target),
           libItems: lib.map(a => ({ path: a[0], label: used[a[0]] ? a[1] + ' — in use by a token' : a[1],
             xStyle: xLive + (used[a[0]] || lib.length < 2 ? ';opacity:.35;cursor:not-allowed' : ''),
             remove: () => { if (used[a[0]] || lib.length < 2) return; this.setLib(libKind, lib.filter(x => x[0] !== a[0])); } })),
           onLibDraft: e => { this._draft = e.target.value; },
+          libNote: st.libNote || '',
+          hasLibNote: !!st.libNote,
           addLib: () => this.addAsset(libKind) }; })
       .filter(g => g.count > 0);
 
@@ -2930,7 +3097,7 @@ class Component extends DCLogic {
         this.download('tokens.css', out + '}\n', 'text/css');
       },
       exportJson: this._exportJson = () => {
-        const o = { name: vals['brand-name'], generated: new Date().toISOString(), tokenCount: this.T.length, guidelines: {}, libraries: { people: this.libOf('people'), background: this.libOf('background'), screen: this.libOf('screen'), composition: this.libOf('composition'), graphic: this.libOf('graphic') }, tokens: {} };
+        const o = { name: vals['brand-name'], generated: new Date().toISOString(), tokenCount: this.T.length, guidelines: {}, libraries: { logo: this.libOf('logo'), people: this.libOf('people'), background: this.libOf('background'), screen: this.libOf('screen'), composition: this.libOf('composition'), graphic: this.libOf('graphic') }, tokens: {} };
         this.GROUPS.forEach(g => { const gd = (this.state.guides && this.state.guides[g[0]] !== undefined) ? this.state.guides[g[0]] : (this.GUIDE[g[0]] || ''); if (gd) o.guidelines[g[0]] = gd; });
         this.T.forEach(t => {
           const g = this.GROUPS.filter(x => x[0] === t.g)[0];

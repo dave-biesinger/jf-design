@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="assets/ds/tokens/fonts.css">
+<link rel="stylesheet" href="assets/ds/tokens/colors.css">
+<link rel="stylesheet" href="assets/ds/tokens/typography.css">
+<link rel="stylesheet" href="assets/ds/tokens/effects.css">
+<link rel="stylesheet" href="tokens/tokens.css">
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  a { color: var(--jf-blue); text-decoration: none; }
+  [data-jf-nav] a:hover { background:var(--jf-blue-pastel) !important; color:var(--jf-blue) !important; }
+  a:hover { color: var(--jf-blue-hover); }
+  input, button, select { font-family: var(--jf-font-sans); }
+  .l26-scroll::-webkit-scrollbar { width: 10px; }
+  .l26-scroll::-webkit-scrollbar-thumb { background: #D8DDE1; border-radius: 99px; border: 3px solid #FFFFFF; }
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;font-family:var(--jf-font-sans);color:var(--jf-ink)">
+  <div data-jf-nav="1" style="flex:none;display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:9px 22px;background:var(--jf-white);border-bottom:1px solid var(--jf-border)">
+    <a href="Overview.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Overview</a>
+    <a href="Logo%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:var(--jf-ink);color:var(--jf-white);">Logo</a>
+    <a href="Colors%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Colors</a>
+    <a href="Typography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Typography</a>
+    <a href="Icons.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Icons</a>
+    <a href="Dot%20Patterns.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Dot patterns</a>
+    <a href="Photography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Photography</a>
+    <a href="Screens.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Screens</a>
+    <a href="Layout.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Layout</a>
+  </div>
+
+
+  <div style="flex:none;display:flex;align-items:center;gap:14px;padding:12px 22px;background:var(--jf-white);border-bottom:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm);overflow-x:auto">
+    <div style="flex:none;font:700 13px/1.3 var(--jf-font-sans);letter-spacing:.02em;color:var(--jf-blue-dark);padding-right:6px">Logo 2026</div>
+    <div style="flex:none;width:1px;height:30px;background:var(--jf-border)"></div>
+    <sc-for list="{{ primaryTabs }}" as="ptab" hint-placeholder-count="3">
+      <div onClick="{{ ptab.onPick }}" style="{{ ptab.style }}">{{ ptab.label }}</div>
+    </sc-for>
+    <sc-if value="{{ showHistoryTabs }}"><div style="flex:none;width:1px;height:30px;background:var(--jf-border)"></div></sc-if>
+    <sc-for list="{{ historyTabs }}" as="tab" hint-placeholder-count="0">
+      <div onClick="{{ tab.onPick }}" title="{{ tab.label }}" style="{{ tab.style }}">
+        <sc-if value="{{ tab.notGoalsTab }}"><div style="{{ tab.thumbStyle }}"><img src="assets/logos/2026/lockup.svg" data-src="{{ tab.thumb }}" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block"></div></sc-if>
+        <sc-if value="{{ tab.isGoalsTab }}"><div style="width:52px;height:30px;flex:none;border-radius:4px;background:var(--jf-blue-deep);display:flex;align-items:center;justify-content:center;font:700 13px/1 var(--jf-font-sans);color:#fff">4</div></sc-if>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="{{ tab.labelStyle }}">{{ tab.label }}</div>
+          <div style="{{ tab.countStyle }}">{{ tab.count }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="flex:1;min-height:0;display:flex;overflow:hidden">
+
+  <div style="width:344px;flex:none;display:flex;flex-direction:column;background:var(--jf-white);border-right:1px solid var(--jf-border);overflow-y:auto" class="l26-scroll">
+    <div style="padding:20px 20px 14px 20px;display:flex;flex-direction:column;gap:4px;border-bottom:1px solid var(--jf-border)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <sc-if value="{{ readOnly }}"><div style="font:700 17px/1.2 var(--jf-font-display);color:var(--jf-blue-dark)">{{ activeLabel }}</div></sc-if>
+        <sc-if value="{{ editable }}"><input type="text" value="{{ activeName }}" placeholder="{{ namePlaceholder }}" onChange="{{ onRename }}" title="Name this option" style="flex:1;min-width:0;height:30px;padding:0 8px;border-radius:var(--jf-radius-sm);border:1px solid transparent;background:transparent;font:700 17px/1.2 var(--jf-font-display);color:var(--jf-blue-dark);box-sizing:border-box" style-hover="border-color:var(--jf-border);background:var(--jf-white)" style-focus="border-color:var(--jf-blue);background:var(--jf-white);outline:none"></sc-if>
+        <sc-if value="{{ editable }}"><div onClick="{{ onClearOpt }}" title="Clear this option" style="font:700 10.5px/1 var(--jf-font-sans);color:var(--jf-text-subtle);cursor:pointer;padding:5px 8px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border)" style-hover="color:var(--jf-blue-deep);border-color:var(--jf-border-strong)">Clear all</div></sc-if>
+      </div>
+      <div style="font-size:11.5px;line-height:1.45;color:var(--jf-text-subtle)">{{ panelHint }}</div>
+    </div>
+
+    <sc-if value="{{ isNew }}">
+      <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid var(--jf-border)">
+        <div style="font:700 10px/1 var(--jf-font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--jf-text-subtle)">Settings</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font:700 11px/1.3 var(--jf-font-sans);color:var(--jf-ink)">Brand name</div>
+          <input type="text" value="{{ brand }}" placeholder="Journeyfront" onChange="{{ onBrand }}" style="height:30px;padding:0 9px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border);background:var(--jf-white);font:400 12px/1 var(--jf-font-sans);color:var(--jf-ink);width:100%;box-sizing:border-box" style-focus="border-color:var(--jf-blue);outline:none">
+          <div style="font-size:10px;line-height:1.4;color:var(--jf-text-subtle)">Used in the placements below — nav bars, browser tabs, footers.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font:700 11px/1.3 var(--jf-font-sans);color:var(--jf-ink)">Lockup height <span style="font-weight:400;color:var(--jf-text-subtle)">{{ lockupLabel }}</span></div>
+          <input type="range" min="18" max="46" step="1" value="{{ lockupHeight }}" onChange="{{ onLockup }}" style="width:100%">
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="padding:16px 20px 24px 20px;display:flex;flex-direction:column;gap:18px">
+      <sc-if value="{{ showPreviews }}"><sc-for list="{{ slots }}" as="slot" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+            <div style="font:700 12px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">{{ slot.label }}</div>
+            <div style="font-size:10px;line-height:1.3;color:var(--jf-text-subtle)">{{ slot.hint }}</div>
+          </div>
+
+          <div style="{{ slot.wellStyle }}">
+            <img src="assets/logos/2026/lockup.svg" data-src="{{ slot.value }}" alt="{{ slot.label }}" style="max-width:78%;max-height:52px;width:auto;height:auto;object-fit:contain;display:block">
+          </div>
+
+          <div onClick="{{ slot.onDownload }}" title="Download this file" style="height:28px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border-strong);background:var(--jf-white);font:700 11px/1 var(--jf-font-sans);color:var(--jf-blue-deep);cursor:pointer" style-hover="border-color:var(--jf-blue);background:var(--jf-blue-pastel)">Download SVG</div>
+
+          <sc-if value="{{ editable }}"><div style="display:flex;gap:6px">
+            <label style="flex:1;height:28px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--jf-radius-sm);border:1px dashed var(--jf-border-strong);background:var(--jf-white);font:700 11px/1 var(--jf-font-sans);color:var(--jf-blue-deep);cursor:pointer" style-hover="border-color:var(--jf-blue);background:var(--jf-blue-pastel)">Upload<input type="file" accept="image/*,.svg" onChange="{{ slot.onFile }}" style="display:none"></label>
+            <div onClick="{{ slot.onReset }}" title="Remove the uploaded file and go back to the committed artwork" style="height:28px;padding:0 11px;display:inline-flex;align-items:center;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border);background:var(--jf-white);font:700 11px/1 var(--jf-font-sans);color:var(--jf-text-subtle);cursor:pointer" style-hover="color:var(--jf-blue-deep);border-color:var(--jf-border-strong)">Reset artwork</div>
+          </div></sc-if>
+
+          <sc-if value="{{ slot.hasSwatches }}">
+            <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+              <div style="font-size:10px;line-height:1.3;color:var(--jf-text-subtle)">Colours</div>
+              <sc-for list="{{ slot.swatches }}" as="sw" hint-placeholder-count="2">
+                <input type="color" value="{{ sw.value }}" onChange="{{ sw.onChange }}" title="{{ sw.from }}" style="{{ sw.style }}">
+              </sc-for>
+              <sc-if value="{{ slot.recolored }}"><div onClick="{{ slot.onResetColors }}" title="Back to the palette default" style="font:700 10px/1 var(--jf-font-sans);color:var(--jf-text-subtle);cursor:pointer;padding:5px 7px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border)" style-hover="color:var(--jf-blue-deep);border-color:var(--jf-border-strong)">Reset colours</div></sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ editable }}"><input type="text" value="{{ slot.path }}" placeholder="assets/logos/… or an https:// URL" onChange="{{ slot.onPath }}" style="height:28px;padding:0 9px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border);background:var(--jf-white);font:400 11px/1 var(--jf-font-mono, ui-monospace);color:var(--jf-ink);width:100%;box-sizing:border-box"></sc-if>
+        </div>
+      </sc-for></sc-if>
+
+      <sc-if value="{{ hasNote }}"><div style="font-size:10.5px;line-height:1.4;color:var(--jf-pink-deep)">{{ note }}</div></sc-if>
+    </div>
+  </div>
+
+  <div class="l26-scroll" style="flex:1;min-width:0;overflow-y:auto;padding:26px 30px 60px 30px;display:flex;flex-direction:column;gap:26px">
+
+    <sc-if value="{{ isGoals }}">
+      <div style="max-width:860px;display:flex;flex-direction:column;gap:26px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Goals for the 2026 mark</div>
+          <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h1);line-height:1.12;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">Four things the new logo has to do</div>
+          <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text-muted);max-width:62ch">Each option in the tabs above gets judged against these, in the same placements: web header, title slide, printed collateral, mobile chrome, browser tab.</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ goals }}" as="goal" hint-placeholder-count="4">
+            <div style="display:flex;gap:20px;align-items:flex-start;background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);border-radius:var(--t-radius-lg);box-shadow:var(--jf-shadow-sm);padding:24px 26px">
+              <div style="width:44px;height:44px;flex:none;border-radius:var(--t-radius-md);background:var(--t-brand-50);display:flex;align-items:center;justify-content:center;font-family:var(--t-font-display);font-weight:700;font-size:20px;color:var(--t-primary)">{{ goal.n }}</div>
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:7px">
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);line-height:1.25;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">{{ goal.title }}</div>
+                <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text-muted)">{{ goal.body }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:var(--t-radius-md);background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)">
+          <div style="width:120px;height:5px;flex:none;border-radius:99px;background:var(--t-gradient-primary)"></div>
+          <div style="font-size:var(--t-size-small);line-height:1.5;color:var(--t-text-muted)">Pick any option tab to load candidate files and see them in every placement.</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showPreviews }}">
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Lockup in place</div>
+
+      <div data-spec="1" style="--w:1200px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg)"><div style="width:var(--w);zoom:var(--fit,1)"><div style="background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);overflow:hidden">
+        <div style="height:76px;padding:0 28px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--t-surface);border-bottom:1px solid var(--t-border)">
+          <img src="assets/logos/2026/lockup.svg" data-src="{{ light }}" alt="{{ brand }}" style="flex:none;height:{{ lockupHeight }}px;width:auto;object-fit:contain;display:block">
+          <div style="display:flex;align-items:center;gap:26px;white-space:nowrap;font-size:var(--t-size-body);color:var(--t-text-muted)">
+            <div>Product</div><div>Customers</div><div>Resources</div>
+            <div style="height:38px;flex:none;white-space:nowrap;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-pill);background:var(--t-primary);color:var(--t-on-primary);font-weight:700;font-size:var(--t-size-small)">Book a demo</div>
+          </div>
+        </div>
+        <div style="padding:34px 28px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-family:var(--t-font-display);font-weight:800;font-size:var(--t-size-h1);letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">Light navigation bar</div>
+          <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text-muted);max-width:60ch">The light lockup carries the brand on white and near-white surfaces. Check the wordmark stays legible at {{ lockupHeight }}px and that the mark keeps clear space equal to its own height.</div>
+        </div>
+      </div></div></div>
+
+      <div data-spec="1" style="--w:1200px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg)"><div style="width:var(--w);zoom:var(--fit,1)"><div style="background:var(--t-surface-dark);border-radius:var(--jf-radius-lg);overflow:hidden">
+        <div style="height:76px;padding:0 28px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid rgba(255,255,255,.14)">
+          <img src="assets/logos/2026/lockup.svg" data-src="{{ dark }}" alt="{{ brand }}" style="flex:none;height:{{ lockupHeight }}px;width:auto;object-fit:contain;display:block">
+          <div style="display:flex;align-items:center;gap:26px;white-space:nowrap;font-size:var(--t-size-body);color:rgba(255,255,255,.72)">
+            <div>Product</div><div>Customers</div><div>Resources</div>
+            <div style="height:38px;flex:none;white-space:nowrap;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-pill);background:var(--t-neutral-0);color:var(--t-brand-900);font-weight:700;font-size:var(--t-size-small)">Book a demo</div>
+          </div>
+        </div>
+        <div style="padding:34px 28px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-family:var(--t-font-display);font-weight:800;font-size:var(--t-size-h1);letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse)">Dark navigation bar</div>
+          <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:rgba(255,255,255,.7);max-width:60ch">The dark-surface lockup runs on Slate 950 and photography. Watch for thin strokes disappearing and for any white halo left in the artwork.</div>
+        </div>
+      </div></div></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Icon at size</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+
+        <div style="min-width:0;background:var(--jf-white);border:1px solid var(--jf-border);border-radius:var(--jf-radius-lg);box-shadow:var(--jf-shadow-sm);padding:20px;display:flex;flex-direction:column;gap:16px">
+          <div style="font:700 13px/1 var(--jf-font-sans);color:var(--jf-blue-dark)">Icon — dark artwork on light</div>
+          <div style="display:flex;align-items:flex-end;gap:20px">
+            <sc-for list="{{ sizes }}" as="sz" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                <div style="{{ sz.lightTile }}"><img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+                <div style="font-size:10px;line-height:1.3;color:var(--jf-text-subtle)">{{ sz.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:var(--jf-radius-md);background:var(--t-surface-subtle);border:1px solid var(--t-border)">
+            <img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:16px;height:16px;object-fit:contain;display:block">
+            <div style="font-size:12px;color:var(--t-text-muted)">{{ brand }} — browser tab</div>
+          </div>
+        </div>
+
+        <div style="min-width:0;background:var(--t-surface-dark);border-radius:var(--jf-radius-lg);padding:20px;display:flex;flex-direction:column;gap:16px">
+          <div style="font:700 13px/1 var(--jf-font-sans);color:var(--t-text-inverse)">Icon — light artwork on dark</div>
+          <div style="display:flex;align-items:flex-end;gap:20px">
+            <sc-for list="{{ sizes }}" as="sz" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                <div style="{{ sz.darkTile }}"><img src="assets/logos/2026/icon.svg" data-src="{{ iconLight }}" alt="" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+                <div style="font-size:10px;color:rgba(255,255,255,.6)">{{ sz.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:var(--jf-radius-md);background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)">
+            <img src="assets/logos/2026/icon.svg" data-src="{{ iconLight }}" alt="" style="width:16px;height:16px;object-fit:contain;display:block">
+            <div style="font-size:12px;color:rgba(255,255,255,.75)">{{ brand }} — dark UI chrome</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Stacked lockup</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+        <div style="min-width:0;border-radius:var(--jf-radius-lg);border:1px solid var(--t-border);background:var(--t-surface);box-shadow:var(--jf-shadow-sm);padding:26px;display:flex;flex-direction:column;gap:20px;align-items:center">
+          <img src="assets/logos/2026/lockup.svg" data-src="{{ stackedLight }}" alt="{{ brand }}" style="max-width:58%;max-height:120px;width:auto;height:auto;object-fit:contain;display:block">
+          <div style="width:100%;display:flex;flex-direction:column;gap:5px;align-items:center;text-align:center">
+            <div style="font:700 13px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Stacked — light</div>
+            <div style="font-size:var(--t-size-small);line-height:1.45;color:var(--t-text-muted);max-width:34ch">For square and centred placements: app splash, booth panel, merch print. Mark sits above the wordmark.</div>
+          </div>
+        </div>
+        <div style="min-width:0;border-radius:var(--jf-radius-lg);background:var(--t-surface-dark);padding:26px;display:flex;flex-direction:column;gap:20px;align-items:center">
+          <img src="assets/logos/2026/lockup.svg" data-src="{{ stackedDark }}" alt="{{ brand }}" style="max-width:58%;max-height:120px;width:auto;height:auto;object-fit:contain;display:block">
+          <div style="width:100%;display:flex;flex-direction:column;gap:5px;align-items:center;text-align:center">
+            <div style="font:700 13px/1.3 var(--jf-font-sans);color:var(--t-text-inverse)">Stacked — dark</div>
+            <div style="font-size:var(--t-size-small);line-height:1.45;color:rgba(255,255,255,.7);max-width:34ch">The same stack reversed out. Check the wordmark holds weight at small sizes against Slate 950.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Side by side</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+        <div style="min-width:0;height:210px;border-radius:var(--jf-radius-lg);border:1px solid var(--t-border);background:var(--t-surface);display:flex;align-items:center;justify-content:center;padding:30px">
+          <img src="assets/logos/2026/lockup.svg" data-src="{{ light }}" alt="" style="max-width:72%;max-height:96px;width:auto;height:auto;object-fit:contain;display:block">
+        </div>
+        <div style="min-width:0;height:210px;border-radius:var(--jf-radius-lg);background:var(--t-surface-dark);display:flex;align-items:center;justify-content:center;padding:30px">
+          <img src="assets/logos/2026/lockup.svg" data-src="{{ dark }}" alt="" style="max-width:72%;max-height:96px;width:auto;height:auto;object-fit:contain;display:block">
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Sample placements — web</div>
+        <div style="font-size:11px;color:var(--jf-text-subtle)">1280×800 · forked from the workbench landing-page specimen</div>
+      </div>
+      <div data-spec="1" style="--w:1280px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg);border:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm)">
+        <div style="width:var(--w);zoom:var(--fit,1)">
+          <div style="min-height:800px;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column">
+            <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
+              <img src="assets/logos/2026/lockup.svg" data-src="{{ light }}" alt="{{ brand }}" style="flex:none;height:{{ lockupHeight }}px;width:auto;object-fit:contain;display:block">
+              <div style="display:flex;gap:26px;white-space:nowrap;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
+              <div style="flex:1"></div>
+              <div style="height:40px;flex:none;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
+            </div>
+            <div style="flex:1;display:flex;align-items:center;gap:40px;padding:56px var(--t-layout-gutter);min-height:0">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px">
+                <div style="font-size:var(--t-size-body);font-weight:700;color:var(--t-primary)">The Intelligent ATS for</div>
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-display);line-height:1.04;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">High Volume Hiring</div>
+                <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text-muted);max-width:var(--t-content-measure)">Everything you need in one place for a more intelligent, high volume hiring process. Hire faster. Hire smarter. Get results.</div>
+                <div style="display:flex;gap:12px;padding-top:8px">
+                  <div style="height:48px;flex:none;padding:0 24px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body);box-shadow:var(--t-shadow-md);white-space:nowrap">Get a Demo</div>
+                  <div style="height:48px;flex:none;padding:0 24px;display:flex;align-items:center;border-radius:var(--t-radius-md);border:var(--t-border-hairline) solid var(--t-primary);color:var(--t-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body);white-space:nowrap">See How It Works</div>
+                </div>
+              </div>
+              <div style="width:430px;height:330px;flex-shrink:0;position:relative">
+                <img src="assets/graphics/dot-arch-blue.svg" alt="" style="position:absolute;right:-30px;top:10px;width:calc(var(--t-graphic-dots-size) * 0.68);opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 25%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 25%,rgba(0,0,0,0) 100%);pointer-events:none">
+                <img src="assets/photography/cutout-woman-laptop.png" alt="" style="position:absolute;right:0;bottom:0;height:98%;width:auto;object-fit:contain;object-position:bottom right;display:block">
+              </div>
+            </div>
+            <div style="flex-shrink:0;display:flex;padding:0 var(--t-layout-gutter) 34px var(--t-layout-gutter)">
+              <div style="flex:1;padding:0 20px;display:flex;flex-direction:column;gap:6px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary)">68%</div><div style="font-size:var(--t-size-small);line-height:1.35;color:var(--t-text-muted)">Time-to-Hire<br>Reduction</div></div>
+              <div style="flex:1;padding:0 20px;border-left:var(--t-border-hairline) solid var(--t-border);display:flex;flex-direction:column;gap:6px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary)">71%</div><div style="font-size:var(--t-size-small);line-height:1.35;color:var(--t-text-muted)">Hiring Efficiency<br>Improvement</div></div>
+              <div style="flex:1;padding:0 20px;border-left:var(--t-border-hairline) solid var(--t-border);display:flex;flex-direction:column;gap:6px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary)">29%</div><div style="font-size:var(--t-size-small);line-height:1.35;color:var(--t-text-muted)">New Hire Turnover<br>Improvement</div></div>
+            </div>
+            <div style="flex-shrink:0;padding:40px var(--t-layout-gutter);background:var(--t-surface-dark);display:flex;justify-content:space-between;gap:40px">
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ dark }}" alt="{{ brand }}" style="height:26px;width:auto;object-fit:contain;display:block">
+                <div style="font-size:var(--t-size-small);color:rgba(255,255,255,.6)">© 2026 {{ brand }}</div>
+              </div>
+              <div style="display:flex;gap:56px;font-size:var(--t-size-small);color:rgba(255,255,255,.72)">
+                <div style="display:flex;flex-direction:column;gap:9px"><div style="font-weight:700;color:var(--t-text-inverse)">Platform</div><div>Assessments</div><div>For BPOs</div></div>
+                <div style="display:flex;flex-direction:column;gap:9px"><div style="font-weight:700;color:var(--t-text-inverse)">Company</div><div>Resources</div><div>Sign In</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Sample placements — presentation</div>
+        <div style="font-size:11px;color:var(--jf-text-subtle)">1280×720 · forked from the production title slide</div>
+      </div>
+      <div data-spec="1" style="--w:1280px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-md);border:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm)">
+        <div style="width:var(--w);zoom:var(--fit,1)">
+          <div style="min-height:720px;box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);position:relative;overflow:hidden">
+            <img src="assets/graphics/dot-arch-white.svg" alt="" style="position:absolute;right:-80px;bottom:-140px;width:620px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
+            <div style="position:relative;min-height:720px;box-sizing:border-box;padding:84px 92px;display:flex;flex-direction:column">
+              <img src="assets/logos/2026/lockup.svg" data-src="{{ dark }}" alt="{{ brand }}" style="height:34px;width:auto;object-fit:contain;object-position:left center;display:block;align-self:flex-start;margin-right:auto">
+              <div style="flex:1"></div>
+              <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--t-primary);margin-bottom:20px">Q3 hiring review</div>
+              <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-display);line-height:1.0;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse);max-width:820px">Hire faster. Hire smarter. Get results.</div>
+              <div style="width:120px;height:5px;border-radius:99px;background:var(--t-gradient-primary);margin:32px 0 22px 0"></div>
+              <div style="font-size:21px;line-height:var(--t-leading-body);color:var(--t-text-inverse);opacity:.78;max-width:640px">What the closed loop learned from 12 hiring classes.</div>
+              <div style="flex:1"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:var(--t-size-small);color:var(--t-text-inverse);opacity:.6"><span>Talent Operations</span><span style="color:var(--t-primary);font-weight:700;opacity:1">01</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-spec="1" style="--w:1280px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-md);border:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm)">
+        <div style="width:var(--w);zoom:var(--fit,1)">
+          <div style="min-height:720px;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);padding:72px 92px 44px 92px;display:flex;flex-direction:column;gap:40px">
+            <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h1);letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">What the platform moved</div>
+            <div style="flex:1;display:flex">
+              <div style="flex:1;padding:0 28px;display:flex;flex-direction:column;gap:10px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:76px;line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary)">68%</div><div style="font-size:22px;line-height:1.35;color:var(--t-text-muted)">Time-to-Hire Reduction</div></div>
+              <div style="flex:1;padding:0 28px;border-left:var(--t-border-hairline) solid var(--t-border);display:flex;flex-direction:column;gap:10px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:76px;line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary)">71%</div><div style="font-size:22px;line-height:1.35;color:var(--t-text-muted)">Hiring Efficiency Improvement</div></div>
+              <div style="flex:1;padding:0 28px;border-left:var(--t-border-hairline) solid var(--t-border);display:flex;flex-direction:column;gap:10px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:76px;line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary)">29%</div><div style="font-size:22px;line-height:1.35;color:var(--t-text-muted)">New Hire Turnover Improvement</div></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:var(--t-border-hairline) solid var(--t-border);padding-top:22px">
+              <img src="assets/logos/2026/lockup.svg" data-src="{{ light }}" alt="{{ brand }}" style="height:24px;width:auto;object-fit:contain;display:block">
+              <div style="font-size:var(--t-size-body);font-weight:700;color:var(--t-primary)">04</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Sample placements — collateral</div>
+        <div style="font-size:11px;color:var(--jf-text-subtle)">business card, letterhead, event panel</div>
+      </div>
+      <div data-spec="1" style="--w:1200px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg)">
+        <div style="width:var(--w);zoom:var(--fit,1)">
+          <div style="font-family:var(--t-font-body);display:flex;flex-direction:column;gap:26px">
+            <div style="display:flex;gap:26px">
+              <div style="width:520px;height:300px;flex:none;box-sizing:border-box;border-radius:14px;background:var(--t-surface-dark);box-shadow:var(--t-shadow-lg);display:flex;align-items:center;justify-content:center;padding:40px">
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ stackedDark }}" alt="{{ brand }}" style="max-width:62%;max-height:150px;width:auto;height:auto;object-fit:contain;display:block">
+              </div>
+              <div style="width:520px;height:300px;flex:none;box-sizing:border-box;border-radius:14px;background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);box-shadow:var(--t-shadow-md);padding:40px;display:flex;flex-direction:column;justify-content:space-between">
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ light }}" alt="{{ brand }}" style="height:30px;width:auto;object-fit:contain;display:block;align-self:flex-start">
+                <div style="display:flex;flex-direction:column;gap:7px;color:var(--t-text-subtle)">
+                  <div style="height:13px;width:58%;border-radius:99px;background:var(--t-surface-sunken)"></div>
+                  <div style="height:11px;width:44%;border-radius:99px;background:var(--t-surface-subtle)"></div>
+                  <div style="height:11px;width:66%;border-radius:99px;background:var(--t-surface-subtle);margin-top:10px"></div>
+                  <div style="font-size:15px;padding-top:14px">Card back — name and contact block</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:26px;align-items:flex-start">
+              <div style="width:520px;flex:none;box-sizing:border-box;min-height:672px;background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);box-shadow:var(--t-shadow-md);padding:56px;display:flex;flex-direction:column;gap:24px">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:var(--t-border-strong-w) solid var(--t-primary)">
+                  <img src="assets/logos/2026/lockup.svg" data-src="{{ light }}" alt="{{ brand }}" style="height:20px;width:auto;object-fit:contain;display:block">
+                  <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--t-text-muted)">BPO hiring guide</div>
+                </div>
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h1);line-height:1.1;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">Screening methods, compared</div>
+                <div style="font-size:14px;line-height:var(--t-leading-body);color:var(--t-text)">Resumes tell you what candidates have done. Predictive assessments tell you what they will do in your role.</div>
+                <div style="display:flex;flex-direction:column;gap:9px;padding-top:4px">
+                  <div style="height:11px;width:100%;border-radius:99px;background:var(--t-surface-subtle)"></div>
+                  <div style="height:11px;width:94%;border-radius:99px;background:var(--t-surface-subtle)"></div>
+                  <div style="height:11px;width:88%;border-radius:99px;background:var(--t-surface-subtle)"></div>
+                  <div style="height:11px;width:70%;border-radius:99px;background:var(--t-surface-subtle)"></div>
+                </div>
+                <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:14px;color:var(--t-text-subtle)">
+                  <div>journeyfront.com</div>
+                  <img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:22px;height:22px;object-fit:contain;display:block">
+                </div>
+              </div>
+
+              <div style="width:654px;flex:none;display:flex;flex-direction:column;gap:26px">
+                <div style="box-sizing:border-box;background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);border-radius:var(--t-radius-md);padding:34px;display:flex;gap:26px;align-items:center">
+                  <img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:76px;height:76px;flex:none;object-fit:contain;display:block">
+                  <div style="width:1px;height:82px;background:var(--t-border);flex:none"></div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:9px">
+                    <div style="height:13px;width:46%;border-radius:99px;background:var(--t-surface-sunken)"></div>
+                    <div style="height:11px;width:70%;border-radius:99px;background:var(--t-surface-subtle)"></div>
+                    <div style="font-size:15px;color:var(--t-text-subtle);padding-top:6px">Email signature — mark at 76px beside the contact block</div>
+                  </div>
+                </div>
+                <div style="box-sizing:border-box;background:var(--t-surface-dark);border-radius:var(--t-radius-md);padding:44px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:22px;min-height:424px">
+                  <img src="assets/graphics/dot-arch-white.svg" alt="" style="position:absolute;right:-70px;bottom:-110px;width:420px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
+                  <img src="assets/logos/2026/lockup.svg" data-src="{{ dark }}" alt="{{ brand }}" style="position:relative;height:28px;width:auto;object-fit:contain;display:block;align-self:flex-start">
+                  <div style="position:relative;font-family:var(--t-font-display);font-weight:700;font-size:38px;line-height:1.1;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse);max-width:22ch">Hire faster. Hire smarter. Get results.</div>
+                  <div style="position:relative;width:120px;height:5px;border-radius:99px;background:var(--t-gradient-primary)"></div>
+                  <div style="position:relative;font-size:18px;line-height:var(--t-leading-body);color:var(--t-text-inverse);opacity:.78">Event panel and one-pager cover use the reversed lockup on Slate 950.</div>
+                  <div style="position:relative;margin-top:auto;align-self:flex-start;height:44px;padding:0 24px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-neutral-0);color:var(--t-brand-900);font-family:var(--t-font-display);font-weight:700;font-size:17px">Get a Demo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Sample placements — mobile</div>
+        <div style="font-size:11px;color:var(--jf-text-subtle)">390×844 · mark alone in the top-left corner</div>
+      </div>
+      <div data-spec="1" style="--w:900px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg)">
+        <div style="width:var(--w);zoom:var(--fit,1)">
+          <div style="font-family:var(--t-font-body);display:flex;gap:40px;justify-content:center;padding:8px 0">
+
+            <div style="width:390px;flex:none;box-sizing:border-box;border-radius:44px;background:var(--t-surface);border:10px solid var(--t-neutral-900);box-shadow:var(--t-shadow-lg);overflow:hidden;display:flex;flex-direction:column;height:844px">
+              <div style="height:52px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:13px;font-weight:700;color:var(--t-text)"><span>9:41</span><span style="letter-spacing:.12em">▮▮▮</span></div>
+              <div style="height:60px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:var(--t-border-hairline) solid var(--t-border)">
+                <img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="{{ brand }}" style="width:30px;height:30px;flex:none;object-fit:contain;object-position:left center;display:block">
+                <div style="flex:1"></div>
+                <div style="width:22px;height:2px;background:var(--t-text-muted);box-shadow:0 6px 0 var(--t-text-muted),0 -6px 0 var(--t-text-muted)"></div>
+              </div>
+              <div style="flex:1;padding:26px 20px;display:flex;flex-direction:column;gap:18px;background:var(--t-surface)">
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:26px;line-height:1.15;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">High Volume Hiring</div>
+                <div style="font-size:15px;line-height:var(--t-leading-body);color:var(--t-text-muted)">Everything you need in one place for a more intelligent, high volume hiring process.</div>
+                <div style="height:46px;align-self:flex-start;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:15px">Get a Demo</div>
+                <div style="display:flex;flex-direction:column;gap:12px;padding-top:6px">
+                  <div style="height:74px;border-radius:var(--t-radius-md);background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)"></div>
+                  <div style="height:74px;border-radius:var(--t-radius-md);background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)"></div>
+                  <div style="height:74px;border-radius:var(--t-radius-md);background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)"></div>
+                </div>
+              </div>
+              <div style="height:26px;flex:none;display:flex;align-items:center;justify-content:center"><div style="width:130px;height:5px;border-radius:99px;background:var(--t-surface-sunken)"></div></div>
+            </div>
+
+            <div style="width:390px;flex:none;box-sizing:border-box;border-radius:44px;background:var(--t-surface-dark);border:10px solid var(--t-neutral-900);box-shadow:var(--t-shadow-lg);overflow:hidden;display:flex;flex-direction:column;height:844px">
+              <div style="height:52px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:13px;font-weight:700;color:var(--t-text-inverse)"><span>9:41</span><span style="letter-spacing:.12em">▮▮▮</span></div>
+              <div style="height:60px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;border-bottom:1px solid rgba(255,255,255,.16)">
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ iconLight }}" alt="{{ brand }}" style="width:30px;height:30px;flex:none;object-fit:contain;object-position:left center;display:block">
+                <div style="flex:1"></div>
+                <div style="width:22px;height:2px;background:rgba(255,255,255,.7);box-shadow:0 6px 0 rgba(255,255,255,.7),0 -6px 0 rgba(255,255,255,.7)"></div>
+              </div>
+              <div style="flex:1;padding:26px 20px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden">
+                <img src="assets/graphics/dot-arch-white.svg" alt="" style="position:absolute;right:-90px;bottom:-90px;width:320px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
+                <div style="position:relative;font-family:var(--t-font-display);font-weight:700;font-size:26px;line-height:1.15;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse)">Hire faster. Hire smarter.</div>
+                <div style="position:relative;width:96px;height:5px;border-radius:99px;background:var(--t-gradient-primary)"></div>
+                <div style="position:relative;font-size:15px;line-height:var(--t-leading-body);color:var(--t-text-inverse);opacity:.78">The mark alone carries the brand in app chrome — the wordmark is too wide at 390px.</div>
+                <div style="position:relative;display:flex;flex-direction:column;gap:12px;padding-top:6px">
+                  <div style="height:74px;border-radius:var(--t-radius-md);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)"></div>
+                  <div style="height:74px;border-radius:var(--t-radius-md);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)"></div>
+                  <div style="height:74px;border-radius:var(--t-radius-md);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)"></div>
+                </div>
+              </div>
+              <div style="height:26px;flex:none;display:flex;align-items:center;justify-content:center"><div style="width:130px;height:5px;border-radius:99px;background:rgba(255,255,255,.35)"></div></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Sample placements — browser tab</div>
+        <div style="font-size:11px;color:var(--jf-text-subtle)">favicon at 16px, active and inactive tabs</div>
+      </div>
+      <div data-spec="1" style="--w:1000px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg)">
+        <div style="width:var(--w);zoom:var(--fit,1)">
+          <div style="font-family:var(--t-font-body);display:flex;flex-direction:column;gap:22px">
+
+            <div style="border-radius:12px 12px var(--t-radius-md) var(--t-radius-md);overflow:hidden;border:var(--t-border-hairline) solid var(--t-border);box-shadow:var(--t-shadow-md);background:var(--t-surface)">
+              <div style="height:44px;display:flex;align-items:flex-end;gap:2px;padding:0 12px;background:var(--t-surface-sunken)">
+                <div style="display:flex;align-items:center;gap:8px;padding-right:16px;padding-bottom:12px">
+                  <div style="width:11px;height:11px;border-radius:99px;background:#FF5F57"></div>
+                  <div style="width:11px;height:11px;border-radius:99px;background:#FEBC2E"></div>
+                  <div style="width:11px;height:11px;border-radius:99px;background:#28C840"></div>
+                </div>
+                <div style="width:230px;height:34px;flex:none;box-sizing:border-box;border-radius:9px 9px 0 0;background:var(--t-surface);display:flex;align-items:center;gap:9px;padding:0 12px">
+                  <img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:16px;height:16px;flex:none;object-fit:contain;display:block">
+                  <div style="flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--t-text)">{{ brand }} — High Volume Hiring</div>
+                  <div style="font-size:13px;color:var(--t-text-subtle);flex:none">×</div>
+                </div>
+                <div style="width:196px;height:34px;flex:none;box-sizing:border-box;border-radius:9px 9px 0 0;display:flex;align-items:center;gap:9px;padding:0 12px;opacity:.62">
+                  <img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:16px;height:16px;flex:none;object-fit:contain;display:block">
+                  <div style="flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--t-text-muted)">Scorecards</div>
+                </div>
+                <div style="width:196px;height:34px;flex:none;box-sizing:border-box;border-radius:9px 9px 0 0;display:flex;align-items:center;gap:9px;padding:0 12px;opacity:.62">
+                  <div style="width:16px;height:16px;flex:none;border-radius:3px;background:var(--t-surface-subtle)"></div>
+                  <div style="flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--t-text-muted)">Another site</div>
+                </div>
+              </div>
+              <div style="height:46px;display:flex;align-items:center;gap:14px;padding:0 16px;border-bottom:var(--t-border-hairline) solid var(--t-border)">
+                <div style="display:flex;gap:12px;color:var(--t-text-subtle);font-size:15px">←&nbsp;&nbsp;→&nbsp;&nbsp;⟳</div>
+                <div style="flex:1;height:30px;border-radius:99px;background:var(--t-surface-subtle);display:flex;align-items:center;gap:9px;padding:0 14px">
+                  <img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:14px;height:14px;flex:none;object-fit:contain;display:block">
+                  <div style="font-size:13px;color:var(--t-text-muted)">journeyfront.com</div>
+                </div>
+              </div>
+              <div style="height:58px;display:flex;align-items:center;gap:26px;padding:0 24px">
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ light }}" alt="{{ brand }}" style="height:24px;width:auto;object-fit:contain;display:block">
+                <div style="display:flex;gap:22px;font-size:14px;color:var(--t-text-muted);white-space:nowrap"><span>Platform</span><span>Assessments</span><span>Resources</span></div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:26px;align-items:flex-start">
+              <div style="flex:none;display:flex;gap:20px;align-items:flex-end">
+                <sc-for list="{{ sizes }}" as="sz" hint-placeholder-count="4">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                    <div style="{{ sz.lightTile }}"><img src="assets/logos/2026/icon.svg" data-src="{{ iconDark }}" alt="" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+                    <div style="font-size:11px;line-height:1.3;color:var(--jf-text-subtle)">{{ sz.label }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="flex:1;min-width:0;font-size:14px;line-height:var(--t-leading-body);color:var(--t-text-muted)">At 16px the mark is roughly 11px of visible artwork once the tab padding is accounted for. Anything with an interior counter or a hairline stroke closes up here — check the favicon slot reads as a single silhouette before checking anything else.</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Sample placements — swag</div>
+        <div style="font-size:11px;color:var(--jf-text-subtle)">drop a product photo onto any frame · the active option composites on top</div>
+      </div>
+      <div data-spec="1" style="--w:1200px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg)">
+        <div style="width:var(--w);zoom:var(--fit,1)">
+          <div style="font-family:var(--t-font-body);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px">
+
+            <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+              <div style="position:relative;width:100%;min-width:0;box-sizing:border-box;height:340px;border-radius:var(--t-radius-lg);overflow:hidden;background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)">
+                <image-slot id="logo26-tee-lockup" shape="rect" fit="cover" placeholder="Drop a t-shirt photo" style="position:absolute;inset:0;width:100%;height:100%;min-width:0"></image-slot>
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ dark }}" alt="" style="position:absolute;left:50%;top:35%;transform:translate(-50%,-50%);width:44%;height:auto;object-fit:contain;pointer-events:none;opacity:.96;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">T-shirt — lockup</div>
+                <div style="font-size:var(--t-size-small);line-height:1.45;color:var(--t-text-muted)">Centred front, dark lockup slot. Widest the wordmark ever prints.</div>
+              </div>
+            </div>
+
+            <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+              <div style="position:relative;width:100%;min-width:0;box-sizing:border-box;height:340px;border-radius:var(--t-radius-lg);overflow:hidden;background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)">
+                <image-slot id="logo26-tee-icon" shape="rect" fit="cover" placeholder="Drop a t-shirt photo" style="position:absolute;inset:0;width:100%;height:100%;min-width:0"></image-slot>
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ iconLight }}" alt="" style="position:absolute;left:63%;top:33%;transform:translate(-50%,-50%);width:13%;height:auto;object-fit:contain;pointer-events:none;opacity:.96;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">T-shirt — icon only</div>
+                <div style="font-size:var(--t-size-small);line-height:1.45;color:var(--t-text-muted)">Left chest, mark alone at roughly 55mm. The small-scale test.</div>
+              </div>
+            </div>
+
+            <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+              <div style="position:relative;width:100%;min-width:0;box-sizing:border-box;height:340px;border-radius:var(--t-radius-lg);overflow:hidden;background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)">
+                <image-slot id="logo26-hat" shape="rect" fit="cover" placeholder="Drop a hat photo" style="position:absolute;inset:0;width:100%;height:100%;min-width:0"></image-slot>
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ dark }}" alt="" style="position:absolute;left:44%;top:43%;transform:translate(-50%,-50%) rotate(-2deg);width:34%;height:auto;object-fit:contain;pointer-events:none;opacity:.96;filter:drop-shadow(0 1px 1px rgba(0,0,0,.18))">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">Hat</div>
+                <div style="font-size:var(--t-size-small);line-height:1.45;color:var(--t-text-muted)">Front panel, embroidered. Single colour, no fine strokes.</div>
+              </div>
+            </div>
+
+            <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+              <div style="position:relative;width:100%;min-width:0;box-sizing:border-box;height:340px;border-radius:var(--t-radius-lg);overflow:hidden;background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border)">
+                <image-slot id="logo26-notebook" shape="rect" fit="cover" placeholder="Drop a notebook photo" style="position:absolute;inset:0;width:100%;height:100%;min-width:0"></image-slot>
+                <img src="assets/logos/2026/lockup.svg" data-src="{{ stackedLight }}" alt="" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:34%;height:auto;object-fit:contain;pointer-events:none;opacity:.94;filter:drop-shadow(0 1px 1px rgba(0,0,0,.14))">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">Notebook</div>
+                <div style="font-size:var(--t-size-small);line-height:1.45;color:var(--t-text-muted)">Cover centre, stacked lockup. Debossed or foil, one colour.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Logo animation</div>
+        <div style="font-size:11px;color:var(--jf-text-subtle)">upload a build or reveal to review on both surfaces</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+        <sc-for list="{{ videos }}" as="vid" hint-placeholder-count="2">
+          <div style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);border-radius:var(--t-radius-lg);box-shadow:var(--jf-shadow-sm);padding:18px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+              <div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">{{ vid.label }}</div>
+              <div style="font-size:10.5px;line-height:1.3;color:var(--jf-text-subtle)">{{ vid.hint }}</div>
+            </div>
+
+            <div style="{{ vid.stageStyle }}">
+              <sc-if value="{{ vid.has }}">
+                <video data-src="{{ vid.url }}" controls="{{ true }}" controlslist="nodownload" muted="{{ true }}" playsinline="{{ true }}" preload="auto" onEnded="{{ onVideoEnded }}" style="width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;display:block"></video>
+              </sc-if>
+              <sc-if value="{{ vid.empty }}">
+                <div style="font-size:var(--t-size-small);color:{{ vid.emptyColor }}">No animation loaded</div>
+              </sc-if>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <label style="height:30px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;border-radius:var(--jf-radius-sm);border:1px dashed var(--jf-border-strong);background:var(--jf-white);font:700 11px/1 var(--jf-font-sans);color:var(--jf-blue-deep);cursor:pointer" style-hover="border-color:var(--jf-blue);background:var(--jf-blue-pastel)">{{ vid.uploadLabel }}<input type="file" accept="video/*" onChange="{{ vid.onUpload }}" style="display:none"></label>
+              <sc-if value="{{ vid.has }}">
+                <div style="font-size:10.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--jf-text-subtle)">{{ vid.name }}</div>
+                <div onClick="{{ vid.onClear }}" style="height:30px;padding:0 11px;display:inline-flex;align-items:center;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border);font:700 11px/1 var(--jf-font-sans);color:var(--jf-text-subtle);cursor:pointer" style-hover="color:var(--jf-blue-deep);border-color:var(--jf-border-strong)">Remove</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:11px;line-height:1.45;color:var(--jf-text-subtle)">MP4 or WebM. Kept in this browser across reloads — commit the file to the repo to share it.</div>
+    </div>
+
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;Journeyfront&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;lockupHeight&quot;:{&quot;editor&quot;:null,&quot;default&quot;:30,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  KEY = 'logo2026-slots-v1';
+
+  // the committed 2026 artwork — one file per variant, recoloured per surface
+  ART = {
+    light: 'assets/logos/2026/lockup.svg',
+    dark: 'assets/logos/2026/lockup.svg',
+    iconDark: 'assets/logos/2026/icon.svg',
+    iconLight: 'assets/logos/2026/icon.svg',
+    stackedLight: 'assets/logos/2026/stacked.svg',
+    stackedDark: 'assets/logos/2026/stacked.svg'
+  };
+
+  // shape roles per artwork: 'ink' is the wordmark, 'blue' is the mark
+  ROLES = {
+    'assets/logos/2026/lockup.svg': ['ink', 'blue'],
+    'assets/logos/2026/stacked.svg': ['ink', 'blue'],
+    'assets/logos/2026/icon.svg': ['blue', 'ink']
+  };
+
+  BASE = {
+    light: 'assets/logos/logo-color.svg',
+    dark: 'assets/logos/logo-white.svg',
+    iconDark: 'assets/logos/favicon.svg',
+    iconLight: 'assets/logos/logo-white.svg',
+    stackedLight: 'assets/logos/logo-color.svg',
+    stackedDark: 'assets/logos/logo-white.svg'
+  };
+
+  SLOTS = [
+    ['light', 'Light logo', 'on white — Slate 950 + Blue 600'],
+    ['dark', 'Dark logo', 'on Slate 950 — White + Blue 400'],
+    ['iconDark', 'Icon — dark', 'on white — Slate 950 + Blue 600'],
+    ['iconLight', 'Icon — light', 'on Slate 950 — White + Blue 400'],
+    ['stackedLight', 'Stacked — light', 'on white — Slate 950 + Blue 600'],
+    ['stackedDark', 'Stacked — dark', 'on Slate 950 — White + Blue 400']
+  ];
+
+  SIZES = [['16px', 16], ['32px', 32], ['48px', 48], ['64px', 64]];
+
+  GOALS = [
+    ['Make the words easier to read', 'The wordmark has to survive a 26px header, a 16px tab and a printed footer without the letterforms closing up.'],
+    ['Distinguish between the words Journey and Front', 'One compound word reads as a single blur. The break between Journey and Front should be legible at a glance, without a space that splits the brand in two.'],
+    ['Make it easier to print and embroider at small sizes', 'Fine strokes, interior counters and tight gaps disappear in embroidery and single-colour print. The mark needs to hold as one silhouette.'],
+    ['Represent the brand well', 'Confident, structured, human. It should look like the hiring standard, not a startup badge.']
+  ];
+
+  PRIMARY = [['new', 'New Logo'], ['goals', 'Goals'], ['history', 'History']];
+
+  OPTS = [['current', 'Current'], ['A', 'Option A'], ['B', 'Option B'], ['C', 'Option C'], ['D', 'Option D'], ['E', 'Option E'], ['F', 'Option F'], ['G', 'Option G'], ['H', 'Option H']];
+
+  state = { opt: 'new', sets: {}, names: {}, note: '' };
+
+  purgeColors(colors) {
+    const out = {};
+    Object.keys(colors || {}).forEach(opt => {
+      const forOpt = {};
+      Object.keys(colors[opt] || {}).forEach(k => {
+        const slot = {};
+        Object.keys(colors[opt][k] || {}).forEach(i => {
+          const v = colors[opt][k][i];
+          if (/^\d+$/.test(i) && this.PALETTE_OK[String(v).toLowerCase()]) slot[i] = v;
+        });
+        if (Object.keys(slot).length) forOpt[k] = slot;
+      });
+      if (Object.keys(forOpt).length) out[opt] = forOpt;
+    });
+    return out;
+  }
+
+  componentDidMount() {
+    // the in-page Settings block is the single source of truth; props only seed it
+    this.setState({
+      brand: this.props.brandName ?? 'Journeyfront',
+      lockupHeight: this.props.lockupHeight ?? 30
+    });
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(this.KEY) || 'null'); } catch (e) {}
+    if (saved && typeof saved === 'object') {
+      // migrate the old single-set shape into Option A
+      const sets = saved.sets && typeof saved.sets === 'object' ? saved.sets
+        : (Object.keys(saved).some(k => this.BASE[k]) ? { A: saved } : {});
+      this.setState({
+        sets: sets,
+        _migrated: true,
+        names: saved.names && typeof saved.names === 'object' ? saved.names : {},
+        colors: this.purgeColors(saved.colors && typeof saved.colors === 'object' ? saved.colors : {}),
+        opt: saved.opt && (saved.opt === 'goals' || saved.opt === 'new' || this.OPTS.some(o => o[0] === saved.opt)) ? saved.opt : 'new'
+      });
+    } else this.syncImgs();
+    this.startFit();
+    this.loadVideos();
+  }
+
+  componentDidUpdate() {
+    this.syncImgs();
+    if (this._fit) this._fit();
+    document.querySelectorAll('video[data-src]').forEach(v => {
+      const u = v.getAttribute('data-src');
+      if (u && v.getAttribute('src') !== u) { v.setAttribute('src', u); v.load(); }
+    });
+  }
+
+  startFit() {
+    const fit = () => {
+      document.querySelectorAll('[data-spec]').forEach(el => {
+        const w = parseFloat(getComputedStyle(el).getPropertyValue('--w')) || 1200;
+        if (el.clientWidth > 0) el.style.setProperty('--fit', Math.min(1, el.clientWidth / w).toFixed(4));
+      });
+    };
+    this._fit = fit;
+    fit();
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(fit);
+      const pane = document.querySelector('.l26-scroll:last-of-type') || document.body;
+      this._ro.observe(pane);
+    }
+    window.addEventListener('resize', fit);
+    setTimeout(fit, 60);
+  }
+
+  syncImgs() {
+    document.querySelectorAll('img[data-src]').forEach(im => {
+      const v = im.getAttribute('data-src');
+      if (v && v !== 'undefined' && im.getAttribute('src') !== v) im.setAttribute('src', v);
+    });
+  }
+
+  _svg = {};
+
+  svgText(src) {
+    if (!src || !/\.svg($|\?)|^data:image\/svg\+xml/i.test(src)) return null;
+    if (Object.prototype.hasOwnProperty.call(this._svg, src)) return this._svg[src];
+    if (/^data:/i.test(src)) {
+      let t = '';
+      try {
+        const c = src.slice(src.indexOf(',') + 1);
+        t = /;base64/i.test(src.slice(0, src.indexOf(','))) ? atob(c) : decodeURIComponent(c);
+      } catch (e) { t = ''; }
+      this._svg[src] = t;
+      return t;
+    }
+    this._svg[src] = null;
+    fetch(src).then(r => r.text())
+      .then(t => { this._svg[src] = t; this.forceUpdate(); })
+      .catch(() => { this._svg[src] = ''; });
+    return null;
+  }
+
+  // every JF Blue and Slate value the mark is allowed to use
+  PALETTE_OK = {
+    '#f0f7ff': 1, '#dcecff': 1, '#bfdcff': 1, '#99c7ff': 1, '#6aaefe': 1, '#228ffe': 1,
+    '#0072d5': 1, '#005aab': 1, '#004789': 1, '#00376e': 1, '#002854': 1,
+    '#f1f6fd': 1, '#e4ebf3': 1, '#d0dae5': 1, '#b9c5d3': 1, '#8491a0': 1, '#687483': 1,
+    '#505c6b': 1, '#3e4956': 1, '#2f3945': 1, '#1f2935': 1, '#ffffff': 1
+  };
+
+  NAMED = {
+    black: '#000000', white: '#ffffff', red: '#ff0000', lime: '#00ff00', blue: '#0000ff',
+    yellow: '#ffff00', cyan: '#00ffff', aqua: '#00ffff', magenta: '#ff00ff', fuchsia: '#ff00ff',
+    silver: '#c0c0c0', gray: '#808080', grey: '#808080', maroon: '#800000', olive: '#808000',
+    green: '#008000', purple: '#800080', teal: '#008080', navy: '#000080', orange: '#ffa500',
+    pink: '#ffc0cb', brown: '#a52a2a', gold: '#ffd700', indigo: '#4b0082', violet: '#ee82ee',
+    beige: '#f5f5dc', ivory: '#fffff0', khaki: '#f0e68c', salmon: '#fa8072', tan: '#d2b48c',
+    turquoise: '#40e0d0', crimson: '#dc143c', coral: '#ff7f50', darkblue: '#00008b',
+    darkgray: '#a9a9a9', darkgrey: '#a9a9a9', lightgray: '#d3d3d3', lightgrey: '#d3d3d3',
+    slategray: '#708090', slategrey: '#708090', whitesmoke: '#f5f5f5'
+  };
+
+  toHex(c) {
+    const v = String(c || '').trim().toLowerCase();
+    if (this.NAMED[v]) return this.NAMED[v];
+    let m = v.match(/^#([0-9a-f]{3,4})$/);
+    if (m) return '#' + m[1].slice(0, 3).split('').map(x => x + x).join('');
+    m = v.match(/^#([0-9a-f]{6})[0-9a-f]{0,2}$/);
+    if (m) return '#' + m[1];
+    m = v.match(/^rgba?\(([^)]*)\)$/);
+    if (m) {
+      const p = m[1].split(/[,\s/]+/).filter(Boolean).slice(0, 3)
+        .map(x => Math.max(0, Math.min(255, Math.round(x.indexOf('%') > -1 ? parseFloat(x) * 2.55 : parseFloat(x)))));
+      if (p.length === 3 && p.every(n => !isNaN(n))) return '#' + p.map(n => n.toString(16).padStart(2, '0')).join('');
+    }
+    return '#000000';
+  }
+
+  PAINT_RE() {
+    return /(fill|stop-color|stroke)(\s*[:=]\s*["']?\s*)(#[0-9a-f]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)|[a-z]{3,20}\b)/gi;
+  }
+
+  SKIP = { none: 1, currentcolor: 1, transparent: 1, inherit: 1, initial: 1, unset: 1, context_fill: 1 };
+
+  svgColors(src, all) {
+    const t = this.svgText(src);
+    if (!t) return [];
+    const out = [];
+    const re = this.PAINT_RE();
+    let m, n = 0;
+    while ((m = re.exec(t))) {
+      const c = m[3].toLowerCase();
+      if (this.SKIP[c]) continue;
+      if (/^[a-z]+$/.test(c) && !this.NAMED[c]) continue;
+      // opacity declared on the same element dims what is actually on screen
+      const tail = t.slice(m.index, m.index + 260);
+      const om = tail.match(/(?:fill|stop)-opacity\s*[:=]\s*["']?\s*([0-9.]+)/i);
+      out.push({ i: n++, colour: c, opacity: om ? parseFloat(om[1]) : 1 });
+    }
+    return all ? out : out.slice(0, 8);
+  }
+
+  // Colors 2026 §10: the mark is always two-tone, only JF Blue and Slate.
+  // On white — Slate 950 with Blue 600. On Slate 950 — Slate 50 with Blue 400.
+  // paint order differs per file, so classify each shape instead of trusting its index
+  paletteDefaults(k, src) {
+    // "iconDark" means dark ARTWORK for a white surface, so it is not an on-dark slot
+    const ON_DARK = { dark: 1, iconLight: 1, stackedDark: 1 };
+    const onDark = !!ON_DARK[k];
+    const ink = onDark ? '#FFFFFF' : '#1F2935';
+    const blue = onDark ? '#6AAEFE' : '#0072D5';
+    const roles = this.ROLES[this.ART[k]] || ['ink', 'blue'];
+    const out = {};
+    this.svgColors(src, true).forEach((c, n) => {
+      out[c.i] = (roles[n] || 'ink') === 'blue' ? blue : ink;
+    });
+    return out;
+  }
+
+  toHex(c) {
+    if (!c) return '';
+    const v = String(c).trim().toLowerCase();
+    if (/^#[0-9a-f]{6}$/.test(v)) return v;
+    if (/^#[0-9a-f]{3}$/.test(v)) return '#' + v[1] + v[1] + v[2] + v[2] + v[3] + v[3];
+    if (this.NAMED && this.NAMED[v]) return this.NAMED[v];
+    const m = v.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/);
+    if (m) return '#' + [1, 2, 3].map(i => Number(m[i]).toString(16).padStart(2, '0')).join('');
+    return '';
+  }
+
+  // only numeric-keyed picks inside the palette count as a real override
+  overridesFor(opt, k) {
+    const raw = (((this.state.colors || {})[opt] || {})[k]) || {};
+    const set = {};
+    Object.keys(raw).forEach(i => {
+      if (/^\d+$/.test(i) && this.PALETTE_OK[String(raw[i]).toLowerCase()]) set[i] = raw[i];
+    });
+    return set;
+  }
+
+  colorsFor(opt, k, src) {
+    const base = src ? this.paletteDefaults(k, src) : {};
+    return Object.assign({}, base, this.overridesFor(opt, k));
+  }
+
+  recolored(opt, k, src) {
+    const map = this.colorsFor(opt, k, src);
+    const keys = Object.keys(map);
+    if (!keys.length) return src;
+    const t = this.svgText(src);
+    if (!t) return src;
+    let n = -1;
+    let out = t.replace(this.PAINT_RE(), (whole, prop, sep, colour) => {
+      const c = colour.toLowerCase();
+      if (this.SKIP[c]) return whole;
+      if (/^[a-z]+$/.test(c) && !this.NAMED[c]) return whole;
+      n++;
+      const to = map[n];
+      return to ? prop + sep + to : whole;
+    });
+    // an explicit pick wins outright, so drop any opacity dimming it — a second
+    // fill-opacity attribute would be invalid XML and the SVG would not parse at all
+    out = out.replace(/\s(fill|stroke)-opacity\s*=\s*"[^"]*"/gi, '')
+             .replace(/(fill|stroke)-opacity\s*:\s*[^;"']+;?/gi, '');
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(out);
+  }
+
+  setColor(opt, k, from, to) {
+    if (to && !this.PALETTE_OK[String(to).toLowerCase()]) {
+      this.setState({ note: 'The mark is JF Blue and Slate only — that colour is not in the palette.' });
+      return;
+    }
+    const colors = Object.assign({}, this.state.colors || {});
+    const forOpt = Object.assign({}, colors[opt] || {});
+    const forSlot = Object.assign({}, forOpt[k] || {});
+    if (to) forSlot[from] = to; else delete forSlot[from];
+    if (Object.keys(forSlot).length) forOpt[k] = forSlot; else delete forOpt[k];
+    if (Object.keys(forOpt).length) colors[opt] = forOpt; else delete colors[opt];
+    this.setState({ colors: colors }, () => this.save(this.state.sets, this.state.opt));
+  }
+
+  resetColors(opt, k) {
+    const colors = Object.assign({}, this.state.colors || {});
+    const forOpt = Object.assign({}, colors[opt] || {});
+    delete forOpt[k];
+    if (Object.keys(forOpt).length) colors[opt] = forOpt; else delete colors[opt];
+    this.setState({ colors: colors }, () => this.save(this.state.sets, this.state.opt));
+  }
+
+  setOf(opt) { return (this.state.sets && this.state.sets[opt]) || {}; }
+
+  valIn(opt, k) {
+    if (opt === 'new') return this.ART[k];
+    return (opt === 'current' || opt === 'goals') ? this.BASE[k] : (this.setOf(opt)[k] || this.BASE[k]);
+  }
+
+  val(k) { const o = this.state.opt; return this.recolored(o, k, this.valIn(o, k)); }
+
+  async download(src, key) {
+    if (!src) return;
+    const isSvg = /\.svg($|\?)|^data:image\/svg\+xml/i.test(src);
+    const ext = isSvg ? 'svg' : (src.match(/\.(png|jpe?g|webp)($|\?)/i) || [, 'png'])[1];
+    const name = 'journeyfront-' + String(key).replace(/[^a-z0-9]+/gi, '-').toLowerCase() + '.' + ext;
+    let href = src;
+    try {
+      if (!/^data:/.test(src)) {
+        const blob = await (await fetch(src)).blob();
+        href = URL.createObjectURL(blob);
+      }
+      const a = document.createElement('a');
+      a.href = href; a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+      if (href !== src) setTimeout(() => URL.revokeObjectURL(href), 4000);
+    } catch (e) { window.open(src, '_blank'); }
+  }
+
+  save(sets, opt, names) {
+    const nm = names || this.state.names || {};
+    let note = '';
+    try { localStorage.setItem(this.KEY, JSON.stringify({ sets: sets, opt: opt, names: nm, colors: this.state.colors || {} })); }
+    catch (e) { note = 'Too large to keep in this browser — it holds for this session only. Commit the file to assets/logos/ for anything permanent.'; }
+    this.setState({ sets: sets, opt: opt, names: nm, note: note });
+  }
+
+  nameOf(opt) {
+    if (opt === 'goals') return 'Goals';
+    if (opt === 'new') return 'New Logo';
+    if (opt === 'current') return 'Current';
+    const n = (this.state.names || {})[opt];
+    return n && n.trim() ? n.trim() : (this.OPTS.find(o => o[0] === opt) || [, opt])[1];
+  }
+
+  rename(opt, v) {
+    if (opt === 'current') return;
+    const names = Object.assign({}, this.state.names);
+    const t = String(v || '').trim();
+    if (t && t !== (this.OPTS.find(o => o[0] === opt) || [])[1]) names[opt] = t; else delete names[opt];
+    this.save(this.state.sets, this.state.opt, names);
+  }
+
+  set(k, v) {
+    const opt = this.state.opt;
+    if (opt === 'current') return;
+    const sets = Object.assign({}, this.state.sets);
+    const cur = Object.assign({}, sets[opt] || {});
+    if (v) cur[k] = v; else delete cur[k];
+    sets[opt] = cur;
+    this.save(sets, opt);
+  }
+
+  pick(opt) { this.setState({ opt: opt }, () => this.save(this.state.sets, opt)); }
+
+  clearOpt() {
+    const opt = this.state.opt;
+    if (opt === 'current') return;
+    const sets = Object.assign({}, this.state.sets);
+    delete sets[opt];
+    this.save(sets, opt);
+  }
+
+  vdb() {
+    return new Promise((res, rej) => {
+      const r = indexedDB.open('logo2026-media', 1);
+      r.onupgradeneeded = () => { if (!r.result.objectStoreNames.contains('v')) r.result.createObjectStore('v'); };
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    });
+  }
+
+  VIDS = [
+    ['light', 'On light', 'web header, slide, document'],
+    ['dark', 'On Slate 950', 'title slide, event panel']
+  ];
+
+  async putVideo(key, blob, name) {
+    const db = await this.vdb();
+    await new Promise((res, rej) => {
+      const tx = db.transaction('v', 'readwrite');
+      tx.objectStore('v').put({ blob: blob, name: name }, 'anim-' + key);
+      tx.oncomplete = res; tx.onerror = () => rej(tx.error);
+    });
+  }
+
+  async loadVideos() {
+    for (const v of this.VIDS) {
+      const key = v[0];
+      try {
+        const db = await this.vdb();
+        const rec = await new Promise((res, rej) => {
+          const tx = db.transaction('v', 'readonly');
+          const q = tx.objectStore('v').get('anim-' + key);
+          q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error);
+        });
+        if (rec && rec.blob) this.setVid(key, URL.createObjectURL(rec.blob), rec.name || '');
+      } catch (e) {}
+    }
+  }
+
+  setVid(key, url, name) {
+    const vids = Object.assign({}, this.state.vids || {});
+    if (url) vids[key] = { url: url, name: name }; else delete vids[key];
+    this.setState({ vids: vids });
+  }
+
+  async clearVideo(key) {
+    const cur = (this.state.vids || {})[key];
+    if (cur && cur.url) URL.revokeObjectURL(cur.url);
+    this.setVid(key, '', '');
+    try {
+      const db = await this.vdb();
+      const tx = db.transaction('v', 'readwrite');
+      tx.objectStore('v').delete('anim-' + key);
+    } catch (e) {}
+  }
+
+  onVideo(key, e) {
+    const f = e.target.files && e.target.files[0];
+    const input = e.target;
+    if (!f) return;
+    const cur = (this.state.vids || {})[key];
+    if (cur && cur.url) URL.revokeObjectURL(cur.url);
+    this.setVid(key, URL.createObjectURL(f), f.name);
+    this.putVideo(key, f, f.name).catch(() => {});
+    input.value = '';
+  }
+
+  onFile(k, e) {
+    const f = e.target.files && e.target.files[0];
+    const input = e.target;
+    if (!f) return;
+    const r = new FileReader();
+    r.onload = () => { this.set(k, r.result); input.value = ''; };
+    r.readAsDataURL(f);
+  }
+
+  renderVals() {
+    const p = this.props;
+    const lockupHeight = this.state.lockupHeight ?? p.lockupHeight ?? 30;
+    const brand = this.state.brand ?? p.brandName ?? 'Journeyfront';
+    const wellBg = {
+      light: 'var(--t-surface)',
+      dark: 'var(--t-surface-dark)',
+      iconDark: 'var(--t-surface)',
+      iconLight: 'var(--t-surface-dark)',
+      stackedLight: 'var(--t-surface)',
+      stackedDark: 'var(--t-surface-dark)'
+    };
+
+    const opt = this.state.opt;
+    const editable = opt !== 'current' && opt !== 'goals';
+    const isGoals = opt === 'goals';
+    const isNew = opt === 'new';
+    const inHistory = !isGoals && !isNew;
+    const activeLabel = this.nameOf(opt);
+
+    return {
+      opt: opt,
+      editable: editable && opt !== 'new',
+      readOnly: !editable,
+      isGoals: isGoals,
+      showPreviews: !isGoals,
+      showHistoryTabs: inHistory,
+      primaryTabs: this.PRIMARY.map(pt => {
+        const on = pt[0] === 'history' ? inHistory : pt[0] === opt;
+        return {
+          key: pt[0],
+          label: pt[1],
+          onPick: () => this.pick(pt[0] === 'history' ? 'current' : pt[0]),
+          style: 'flex:none;height:34px;padding:0 16px;display:flex;align-items:center;border-radius:var(--jf-radius-md);cursor:pointer;white-space:nowrap;font:700 12.5px/1 var(--jf-font-sans);border:1px solid ' + (on ? 'var(--jf-blue-deep)' : 'var(--jf-border)') + ';background:' + (on ? 'var(--jf-blue-deep)' : 'var(--jf-white)') + ';color:' + (on ? '#fff' : 'var(--jf-ink)')
+        };
+      }),
+      goals: this.GOALS.map((g, n) => ({ n: n + 1, title: g[0], body: g[1] })),
+      videos: this.VIDS.map(v => {
+        const key = v[0];
+        const rec = (this.state.vids || {})[key];
+        const dark = key === 'dark';
+        return {
+          key: key,
+          label: v[1],
+          hint: v[2],
+          has: !!rec,
+          empty: !rec,
+          url: rec ? rec.url : '',
+          name: rec ? rec.name : '',
+          uploadLabel: rec ? 'Replace' : 'Upload animation',
+          emptyColor: dark ? 'rgba(255,255,255,.66)' : 'var(--t-text-muted)',
+          stageStyle: 'min-width:0;height:280px;border-radius:var(--t-radius-md);overflow:hidden;padding:20px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;background:' + (dark ? 'var(--t-surface-dark)' : 'var(--t-surface)') + ';border:' + (dark ? 'none' : 'var(--t-border-hairline) solid var(--t-border)'),
+          onUpload: e => this.onVideo(key, e),
+          onClear: () => this.clearVideo(key)
+        };
+      }),
+      onVideoEnded: e => { const v = e.currentTarget; v.pause(); v.currentTime = 0; },
+      activeLabel: activeLabel,
+      panelHint: isGoals
+        ? 'What the 2026 mark has to solve. Every option is judged against these four.'
+        : isNew
+          ? 'The committed 2026 mark, straight from the project files. Colours follow the palette: Slate 950 + Blue 600 on light, white + Blue 400 on dark.'
+          : editable
+          ? 'Load a candidate into each slot. ' + activeLabel + ' keeps its own set of files.'
+          : 'The committed token set, straight from tokens.css. Pick an option above to try candidates.',
+      historyTabs: (inHistory ? this.OPTS : []).map(o => {
+        const on = o[0] === opt;
+        const total = this.SLOTS.length;
+        const filled = (o[0] === 'current' || o[0] === 'goals') ? total : Object.keys(this.setOf(o[0])).length;
+        return {
+          key: o[0],
+          label: this.nameOf(o[0]),
+          thumb: this.valIn(o[0], 'light'),
+        isGoalsTab: o[0] === 'goals',
+        notGoalsTab: o[0] !== 'goals',
+          count: o[0] === 'goals' ? 'what we are solving' : o[0] === 'current' ? 'committed' : (filled ? filled + ' of ' + total + ' loaded' : 'empty'),
+          onPick: () => this.pick(o[0]),
+          style: 'flex:none;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 10px;border-radius:var(--jf-radius-md);cursor:pointer;border:1px solid ' + (on ? 'var(--jf-blue)' : 'var(--jf-border)') + ';background:' + (on ? 'var(--jf-blue-pastel)' : 'var(--jf-white)') + ';box-shadow:' + (on ? '0 0 0 2px rgba(60,177,229,.22)' : 'none'),
+          thumbStyle: 'width:52px;height:30px;flex:none;border-radius:4px;border:1px solid var(--jf-border);background:var(--t-surface);display:flex;align-items:center;justify-content:center;padding:3px;box-sizing:border-box;overflow:hidden',
+          labelStyle: 'font:700 12px/1.3 var(--jf-font-sans);color:' + (on ? 'var(--jf-blue-deep)' : 'var(--jf-ink)'),
+          countStyle: 'font-size:10px;line-height:1.3;color:var(--jf-text-subtle)'
+        };
+      }),
+      onClearOpt: () => this.clearOpt(),
+      activeName: opt === 'current' ? '' : ((this.state.names || {})[opt] || ''),
+      namePlaceholder: (this.OPTS.find(o => o[0] === opt) || [, this.nameOf(opt)])[1],
+      onRename: e => this.rename(opt, e.target.value),
+      brand: brand,
+      lockupHeight: lockupHeight,
+      lockupLabel: lockupHeight + 'px',
+      isNew: opt === 'new',
+      onBrand: e => this.setState({ brand: e.target.value }),
+      onLockup: e => this.setState({ lockupHeight: Number(e.target.value) }),
+      light: this.val('light'),
+      dark: this.val('dark'),
+      iconDark: this.val('iconDark'),
+      iconLight: this.val('iconLight'),
+      stackedLight: this.val('stackedLight'),
+      stackedDark: this.val('stackedDark'),
+      note: this.state.note,
+      hasNote: !!this.state.note,
+      sizes: this.SIZES.map(s => ({
+        label: s[0],
+        lightTile: 'width:' + s[1] + 'px;height:' + s[1] + 'px;border-radius:' + (s[1] > 20 ? 6 : 3) + 'px;background:var(--t-surface);border:1px solid var(--t-border);padding:' + Math.max(1, Math.round(s[1] * 0.1)) + 'px;box-sizing:border-box',
+        darkTile: 'width:' + s[1] + 'px;height:' + s[1] + 'px;border-radius:' + (s[1] > 20 ? 6 : 3) + 'px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:' + Math.max(1, Math.round(s[1] * 0.1)) + 'px;box-sizing:border-box'
+      })),
+      slots: this.SLOTS.map(s => {
+        const k = s[0];
+        const raw = this.valIn(opt, k);
+        const v = this.recolored(opt, k, raw);
+        const map = this.colorsFor(opt, k, raw);
+        const found = this.svgColors(raw);
+        const swatches = found.map(f => {
+          const set = map[f.i];
+          const cur = this.toHex(set || f.colour);
+          const shown = set ? cur : (f.opacity < 1
+            ? 'color-mix(in srgb, ' + cur + ' ' + Math.round(f.opacity * 100) + '%, #ffffff)'
+            : cur);
+          return {
+            from: 'Side ' + (f.i + 1) + ' — ' + f.colour + (f.opacity < 1 ? ' at ' + Math.round(f.opacity * 100) + '%' : ''),
+            value: cur,
+            changed: !!set,
+            onChange: e => this.setColor(opt, k, f.i, e.target.value),
+            style: 'width:26px;height:26px;flex:none;padding:0;border-radius:6px;border:1px solid ' + (set ? 'var(--jf-blue)' : 'var(--jf-border)') + ';background:' + shown + ';cursor:pointer;appearance:none;-webkit-appearance:none'
+          };
+        });
+        return {
+          swatches: swatches,
+          hasSwatches: swatches.length > 0,
+          recolored: Object.keys(this.overridesFor(opt, k)).length > 0,
+          onResetColors: () => this.resetColors(opt, k),
+          key: k,
+          label: s[1],
+          hint: s[2],
+          value: v,
+          path: /^data:/.test(v) ? 'uploaded file' : v,
+          wellStyle: 'height:84px;border-radius:var(--jf-radius-md);border:1px solid var(--jf-border);background:' + wellBg[k] + ';display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;overflow:hidden',
+          onFile: e => this.onFile(k, e),
+          onPath: e => { const t = e.target.value.trim(); this.set(k, t && t !== 'uploaded file' ? t : ''); },
+          onReset: () => this.set(k, ''),
+          onDownload: () => this.download(v, k)
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

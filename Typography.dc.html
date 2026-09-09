@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600;700&family=Archivo:wght@400;600;700&family=Instrument+Serif&family=Instrument+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#FFFFFF; }
+  a { color:#0072D5; text-decoration:none; }
+  [data-jf-nav] a:hover { background:#F0F7FF !important; color:#0072D5 !important; }
+  a:hover { color:#005AAB; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;box-sizing:border-box;font-family:'Plus Jakarta Sans', system-ui, sans-serif;color:#1F2935;background:#FFFFFF;padding:40px 44px 80px;display:flex;flex-direction:column;gap:30px">
+  <div data-jf-nav="1" style="position:sticky;top:0;z-index:20;margin:-40px -44px 6px -44px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:9px 44px;background:#FFFFFF;border-bottom:1px solid #E4EBF3">
+    <a href="Overview.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Overview</a>
+    <a href="Logo%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Logo</a>
+    <a href="Colors%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Colors</a>
+    <a href="Typography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:#1F2935;color:#FFFFFF;">Typography</a>
+    <a href="Icons.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Icons</a>
+    <a href="Dot%20Patterns.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Dot patterns</a>
+    <a href="Photography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Photography</a>
+    <a href="Screens.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Screens</a>
+    <a href="Layout.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Layout</a>
+  </div>
+
+
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <div style="font:700 11px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">Typography</div>
+    <div style="font:600 27px/1.2 'Plus Jakarta Sans', sans-serif;color:#1F2935">Two families, one scale</div>
+    <div style="font-size:13.5px;line-height:1.55;color:#505C6B;max-width:76ch;text-wrap:pretty">Plus Jakarta Sans Bold carries every heading, eyebrow and stat figure. Lato carries every line someone actually reads. The scale, weights and spacing below are the whole system — anything not here is a decision, not a default.</div>
+    <div style="display:flex;align-items:center;gap:8px;padding-top:4px">
+      <div style="width:60px;height:5px;border-radius:99px;background:#0072D5"></div>
+      <div style="width:26px;height:5px;border-radius:99px;background:#00E4C0"></div>
+      <div style="width:12px;height:5px;border-radius:99px;background:#ED00E6"></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #E4EBF3;padding-bottom:14px">
+    <sc-for list="{{ primaryTabs }}" as="p" hint-placeholder-count="2">
+      <div onClick="{{ p.onPick }}" style="{{ p.style }}">{{ p.label }}</div>
+    </sc-for>
+    <sc-if value="{{ showSubTabs }}"><div style="flex:none;width:1px;height:28px;background:#E4EBF3;margin:0 6px"></div></sc-if>
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="0">
+      <div onClick="{{ t.onPick }}" style="{{ t.style }}">{{ t.label }}</div>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ showHistory }}">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font:600 17px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">The final two, side by side</div>
+      <div style="font:400 13px/1.6 'Lato', sans-serif;color:#505C6B;max-width:70ch;text-wrap:pretty">Same copy, same layout, same colour. Only the header face differs — Lato carries the text in both.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:24px;align-items:start">
+      <sc-for list="{{ finalists }}" as="f" hint-placeholder-count="2">
+        <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+          <div style="min-height:44px;flex:none;display:flex;align-items:flex-start;gap:10px">
+            <div style="{{ f.badgeStyle }}">{{ f.badge }}</div>
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <div style="font:700 14px/1.3 'Lato', sans-serif;color:#1F2935">{{ f.name }}</div>
+              <div style="font:400 11.5px/1.45 'Lato', sans-serif;color:#687483">{{ f.note }}</div>
+            </div>
+          </div>
+
+          <div style="border:1px solid #D0DAE5;border-radius:14px;padding:30px 32px;display:flex;flex-direction:column;gap:16px;background:#FFFFFF">
+            <div style="font:700 12px/1 'Lato', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">The intelligent ATS</div>
+            <div style="{{ f.h1Style }}">Hire the people who stay.</div>
+            <div style="font:400 16px/1.6 'Lato', sans-serif;color:#505C6B;max-width:52ch;text-wrap:pretty">Journeyfront scores every candidate against the outcomes your team actually cares about, then closes the loop with what happened after the hire.</div>
+            <div style="display:flex;gap:10px;padding-top:2px">
+              <div style="height:46px;padding:0 22px;display:flex;align-items:center;border-radius:10px;background:#0072D5;color:#FFFFFF;font:700 14px/1 'Lato', sans-serif">Book a demo</div>
+              <div style="height:46px;padding:0 22px;display:flex;align-items:center;border-radius:10px;border:1.5px solid #B9C5D3;color:#1F2935;font:700 14px/1 'Lato', sans-serif">See the platform</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px">
+            <div style="flex:1;min-width:0;border-radius:14px;background:#002854;padding:22px;display:flex;flex-direction:column;gap:8px">
+              <div style="{{ f.figDarkStyle }}">4.5X</div>
+              <div style="font:700 13.5px/1.3 'Lato', sans-serif;color:#6AAEFE">Reduced Turnover</div>
+            </div>
+            <div style="flex:1;min-width:0;border-radius:14px;background:#00E4C0;padding:22px;display:flex;flex-direction:column;gap:8px">
+              <div style="{{ f.figMintStyle }}">68%</div>
+              <div style="font:700 13.5px/1.3 'Lato', sans-serif;color:#1F2935">Faster time to hire</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:14px;padding-top:12px;border-top:1px solid #E4EBF3;margin-top:6px">
+            <div style="font:700 10px/1 'Lato', sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8491A0">Header sizes</div>
+            <sc-for list="{{ f.headers }}" as="hd" hint-placeholder-count="6">
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <div style="font:400 9.5px/1.4 ui-monospace, monospace;color:#8491A0">{{ hd.label }}</div>
+                <div style="{{ hd.style }}">{{ hd.text }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;padding-top:12px;border-top:1px solid #E4EBF3">
+            <div style="font:700 10px/1 'Lato', sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8491A0">Character set</div>
+            <sc-for list="{{ f.charsets }}" as="cs" hint-placeholder-count="6">
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="font:400 9.5px/1.4 ui-monospace, monospace;color:#8491A0">{{ cs.label }}</div>
+                <div style="{{ cs.style }}">{{ cs.text }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:1px solid #E4EBF3">
+      <div style="font:600 17px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Everything we considered</div>
+      <div style="font:400 13px/1.6 'Lato', sans-serif;color:#505C6B;max-width:70ch;text-wrap:pretty">Every pairing explored on the way here, with the same headline, body line and stat figure in each so they stay comparable.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(380px, 1fr));gap:16px">
+      <sc-for list="{{ history }}" as="h" hint-placeholder-count="12">
+        <div style="{{ h.cardStyle }}">
+          <div style="display:flex;align-items:flex-start;gap:9px">
+            <div style="{{ h.badgeStyle }}">{{ h.badge }}</div>
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <div style="font:700 13.5px/1.3 'Lato', sans-serif;color:#1F2935">{{ h.name }}</div>
+              <div style="font:400 11.5px/1.45 'Lato', sans-serif;color:#687483">{{ h.verdict }}</div>
+            </div>
+          </div>
+          <div style="{{ h.headlineStyle }}">Hire the people who stay.</div>
+          <div style="{{ h.bodyStyle }}">Journeyfront scores every candidate against the outcomes your team actually cares about.</div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-top:auto;padding-top:4px">
+            <div style="{{ h.figStyle }}">4.5X</div>
+            <div style="{{ h.figLabelStyle }}">Reduced Turnover</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showFamilies }}">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #E4EBF3;padding-bottom:8px">
+        <div style="font:600 17px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">The two families</div>
+        <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">one for display, one for everything read</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(360px, 1fr));gap:16px;align-items:stretch">
+        <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:600 22px/1 'Plus Jakarta Sans', sans-serif;color:#1F2935">Plus Jakarta Sans</div>
+            <div style="padding:3px 8px;border-radius:6px;background:#F0F7FF;font:700 10px/1.5 'Lato', sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#00376E">Display</div>
+          </div>
+          <div style="font:600 46px/1.08 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#1F2935;text-wrap:pretty">Hire the people who stay</div>
+          <div style="font:400 13.5px/1.6 'Lato', sans-serif;color:#505C6B;text-wrap:pretty">Headings, section titles, eyebrows and stat figures. A geometric grotesque with tall x-height and flat sides, so it holds a page at 58px where Lato Black goes soft. Needs negative tracking above 30px and never runs as body copy.</div>
+        </div>
+
+        <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:600 22px/1 'Lato', sans-serif;color:#1F2935">Lato</div>
+            <div style="padding:3px 8px;border-radius:6px;background:#DCFFF5;font:700 10px/1.5 'Lato', sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#004336">Text</div>
+          </div>
+          <div style="font:400 19px/1.62 'Lato', sans-serif;color:#1F2935;text-wrap:pretty">Journeyfront scores every candidate against the outcomes your team cares about, then closes the loop with what happened after the hire.</div>
+          <div style="font:400 13.5px/1.6 'Lato', sans-serif;color:#505C6B;text-wrap:pretty">Body copy, captions, table data, form fields, buttons and UI labels. Already live across the site, product, deck, collateral and email, so nothing shipped has to change — and it stays warm and legible at 13px where the display face would not.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #E4EBF3;padding-bottom:8px">
+        <div style="font:600 17px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">The pairing rule</div>
+        <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">one decision, applied every time</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(420px, 1fr));gap:14px">
+        <sc-for list="{{ pairingRules }}" as="r" hint-placeholder-count="4">
+          <div style="min-width:0;box-sizing:border-box;border:1px solid #D0DAE5;border-left:3px solid #0072D5;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="font:700 14px/1.3 'Plus Jakarta Sans', sans-serif;letter-spacing:-.01em;color:#1F2935">{{ r.title }}</div>
+              <div style="font:400 13px/1.55 'Lato', sans-serif;color:#505C6B;text-wrap:pretty">{{ r.body }}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:10px">
+              <sc-for list="{{ r.examples }}" as="e" hint-placeholder-count="2">
+                <div style="{{ e.boxStyle }}">
+                  <div style="{{ e.labelStyle }}">{{ e.label }}</div>
+                  <sc-for list="{{ e.lines }}" as="ln" hint-placeholder-count="2">
+                    <div style="{{ ln.style }}">{{ ln.text }}</div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #E4EBF3;padding-bottom:8px">
+        <div style="font:600 17px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">The scale</div>
+        <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">ten steps, each with its weight and tracking</div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="font:600 12px/1 'Lato', sans-serif;color:#687483">Medium</div>
+        <sc-for list="{{ mediums }}" as="m" hint-placeholder-count="3">
+          <div onClick="{{ m.onPick }}" style="{{ m.style }}">{{ m.label }}</div>
+        </sc-for>
+        <div style="font:400 12px/1.5 'Lato', sans-serif;color:#687483">{{ mediumNote }}</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0;border:1px solid #D0DAE5;border-radius:14px;overflow:hidden">
+        <div style="display:flex;gap:16px;padding:12px 20px;background:#F0F7FF;font:700 11px/1.4 'Lato', sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#00376E">
+          <div style="width:120px;flex:none">Step</div>
+          <div style="width:186px;flex:none">Family · size / line · weight · tracking</div>
+          <div style="flex:1;min-width:0">Specimen</div>
+        </div>
+        <sc-for list="{{ scale }}" as="r" hint-placeholder-count="9">
+          <div style="display:flex;gap:16px;align-items:center;padding:16px 20px;border-top:1px solid #E4EBF3">
+            <div style="width:120px;flex:none;display:flex;flex-direction:column;gap:3px">
+              <div style="font:600 12.5px/1.3 'Lato', sans-serif;color:#1F2935">{{ r.name }}</div>
+              <div style="font:400 10.5px/1.3 'Lato', sans-serif;color:#8491A0">{{ r.use }}</div>
+            </div>
+            <div style="width:186px;flex:none;display:flex;flex-direction:column;gap:3px">
+              <div style="font:500 11.5px/1.4 'Lato', sans-serif;color:#505C6B">{{ r.family }}</div>
+              <div style="font:500 11px/1.4 ui-monospace, monospace;color:#1F2935">{{ r.spec }}</div>
+            </div>
+            <div style="{{ r.cellStyle }}">
+              <div style="{{ r.specimenStyle }}">{{ r.specimen }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #E4EBF3;padding-bottom:8px">
+        <div style="font:600 17px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Fallbacks</div>
+        <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">what renders when the webfont does not</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ stacks }}" as="s" hint-placeholder-count="2">
+          <div style="display:flex;align-items:baseline;gap:14px;padding:12px 16px;border-radius:10px;background:#F1F6FD">
+            <div style="width:96px;flex:none;font:700 11px/1.4 'Lato', sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#00376E">{{ s.label }}</div>
+            <div style="font:500 12.5px/1.5 ui-monospace, monospace;color:#1F2935;word-break:break-word">{{ s.stack }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showSetting }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(420px, 1fr));gap:20px">
+
+      <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="font:600 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Measure</div>
+        <div style="font:400 13px/1.55 'Lato', sans-serif;color:#505C6B">Body copy sits between 45 and 75 characters per line. Set it with a <span style="font-family:ui-monospace, monospace;font-size:12px">ch</span> max-width, not a pixel guess.</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:14px;border-radius:10px;background:#DCFFF5;display:flex;flex-direction:column;gap:6px">
+            <div style="font:700 9.5px/1 'Lato', sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#004336">Good · 62ch</div>
+            <div style="font:400 14px/1.62 'Lato', sans-serif;color:#1F2935;max-width:62ch;text-wrap:pretty">Journeyfront scores every candidate against the outcomes your team actually cares about, then closes the loop with what happened after the hire. Each hiring class resets the standard for the next one.</div>
+          </div>
+          <div style="padding:14px;border-radius:10px;background:#FFF2F3;display:flex;flex-direction:column;gap:6px">
+            <div style="font:700 9.5px/1 'Lato', sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#A90142">Avoid · 118ch</div>
+            <div style="font:400 14px/1.62 'Lato', sans-serif;color:#1F2935">Journeyfront scores every candidate against the outcomes your team actually cares about, then closes the loop with what happened after the hire. Each hiring class resets the standard for the next one.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="font:600 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Line height</div>
+        <div style="font:400 13px/1.55 'Lato', sans-serif;color:#505C6B">Leading tightens as size grows. Large display type at 1.5 reads as a list of separate lines.</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <sc-for list="{{ leading }}" as="l" hint-placeholder-count="4">
+            <div style="display:flex;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid #E4EBF3">
+              <div style="width:120px;flex:none;font:600 12px/1.4 'Lato', sans-serif;color:#1F2935">{{ l.range }}</div>
+              <div style="width:60px;flex:none;font:500 12px/1.4 ui-monospace, monospace;color:#0072D5">{{ l.value }}</div>
+              <div style="flex:1;min-width:0;font:400 12px/1.5 'Lato', sans-serif;color:#505C6B">{{ l.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="font:600 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Tracking</div>
+        <div style="font:400 13px/1.55 'Lato', sans-serif;color:#505C6B">Tracking steps with size — the value is set by the scale step, never chosen per use.</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="font:500 11px/1.4 ui-monospace, monospace;color:#687483">-0.03em · Display XL and Display, 40px and up</div>
+            <div style="font:700 40px/1.1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#1F2935">Do your best hiring</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="font:500 11px/1.4 ui-monospace, monospace;color:#687483">-0.02em · Heading 1 and 2 · -0.01em · Heading 3</div>
+            <div style="font:700 24px/1.2 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#1F2935">What the closed loop returned</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="font:500 11px/1.4 ui-monospace, monospace;color:#687483">0 · all body · 0.02em · labels · 0.14em · eyebrows</div>
+            <div style="font:700 11px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">Case study</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="font:600 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Case and emphasis</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <sc-for list="{{ caseRules }}" as="c" hint-placeholder-count="5">
+            <div style="display:flex;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid #E4EBF3">
+              <div style="width:16px;flex:none;font:700 13px/1.4 'Lato', sans-serif;color:{{ c.markColour }}">{{ c.mark }}</div>
+              <div style="flex:1;min-width:0;font:400 12.5px/1.55 'Lato', sans-serif;color:#505C6B;text-wrap:pretty">{{ c.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="font:600 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Numbers</div>
+        <div style="font:400 13px/1.55 'Lato', sans-serif;color:#505C6B">Stat figures are Plus Jakarta 700. Anything in a column is Lato with tabular figures, so digits align down the table.</div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <div style="flex:1;min-width:150px;padding:16px;border-radius:10px;background:#002854;display:flex;flex-direction:column;gap:6px">
+            <div style="font:600 38px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#6AAEFE">4.5X</div>
+            <div style="font:600 12.5px/1.35 'Lato', sans-serif;color:#6AAEFE">Reduced turnover</div>
+          </div>
+          <div style="flex:1;min-width:170px;padding:16px;border-radius:10px;background:#F1F6FD;display:flex;flex-direction:column;gap:5px;font-variant-numeric:tabular-nums;font-feature-settings:'tnum' 1">
+            <div style="display:flex;justify-content:space-between;font:400 13px/1.5 'Lato', sans-serif;color:#1F2935"><span>Q1</span><span>412</span><span>61%</span></div>
+            <div style="display:flex;justify-content:space-between;font:400 13px/1.5 'Lato', sans-serif;color:#1F2935"><span>Q2</span><span>438</span><span>74%</span></div>
+            <div style="display:flex;justify-content:space-between;font:400 13px/1.5 'Lato', sans-serif;color:#1F2935"><span>Q3</span><span>455</span><span>83%</span></div>
+            <div style="display:flex;justify-content:space-between;font:600 13px/1.5 'Lato', sans-serif;color:#1F2935"><span>Q4</span><span>470</span><span>89%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="font:600 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Type on colour</div>
+        <div style="font:400 13px/1.55 'Lato', sans-serif;color:#505C6B">Contrast is checked live against the palette rules — body needs 4.5, large text 3.</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ onColour }}" as="o" hint-placeholder-count="4">
+            <div style="{{ o.rowStyle }}">
+              <div style="{{ o.textStyle }}">{{ o.text }}</div>
+              <div style="{{ o.metaStyle }}">{{ o.meta }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showApplied }}">
+    <div style="display:flex;flex-direction:column;gap:20px">
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <div style="font:600 15px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Web page</div>
+          <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">display 58 · body 18 · eyebrow 12</div>
+        </div>
+        <div style="border:1px solid #D0DAE5;border-radius:14px;padding:44px 48px;display:flex;flex-direction:column;gap:16px;background:#FFFFFF">
+          <div style="font:700 12px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">The intelligent ATS</div>
+          <div style="font:600 58px/1.06 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#1F2935;max-width:16ch">Hire the people who stay.</div>
+          <div style="font:400 18px/1.6 'Lato', sans-serif;color:#505C6B;max-width:52ch;text-wrap:pretty">Journeyfront scores every candidate against the outcomes your team actually cares about, then closes the loop with what happened after the hire.</div>
+          <div style="display:flex;gap:12px;padding-top:4px">
+            <div style="height:50px;padding:0 26px;display:flex;align-items:center;border-radius:10px;background:#0072D5;color:#FFFFFF;font:600 15px/1 'Lato', sans-serif">Book a demo</div>
+            <div style="height:50px;padding:0 26px;display:flex;align-items:center;border-radius:10px;border:1.5px solid #B9C5D3;color:#1F2935;font:600 15px/1 'Lato', sans-serif">See the platform</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <div style="font:600 15px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Slide · 1920 × 1080 scaled</div>
+          <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">nothing under 24px at full size</div>
+        </div>
+        <div style="width:640px;height:360px;box-sizing:border-box;border-radius:14px;background:#002854;padding:44px;display:flex;flex-direction:column;gap:14px">
+          <div style="font:700 9px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6AAEFE">Q4 review · 24px at full size</div>
+          <div style="font:600 40px/1.1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#FFFFFF;max-width:20ch">The loop closed in one quarter</div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:54px;height:4px;border-radius:99px;background:#00E4C0"></div><div style="width:18px;height:4px;border-radius:99px;background:#ED00E6"></div></div>
+          <div style="font:400 15px/1.55 'Lato', sans-serif;color:#99C7FF;max-width:44ch;text-wrap:pretty">Two interview signals that had been weighted heavily turned out to be unrelated to ninety-day retention.</div>
+          <div style="margin-top:auto;display:flex;gap:36px">
+            <div style="display:flex;flex-direction:column;gap:4px"><div style="font:600 30px/1 'Plus Jakarta Sans', sans-serif;color:#6AAEFE">4.5X</div><div style="font:600 11px/1.3 'Lato', sans-serif;color:#6AAEFE">Reduced turnover</div></div>
+            <div style="display:flex;flex-direction:column;gap:4px"><div style="font:600 30px/1 'Plus Jakarta Sans', sans-serif;color:#6AAEFE">68%</div><div style="font:600 11px/1.3 'Lato', sans-serif;color:#6AAEFE">Faster to hire</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <div style="font:600 15px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Document</div>
+          <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">body 12pt minimum in print</div>
+        </div>
+        <div style="width:560px;box-sizing:border-box;border:1px solid #D0DAE5;border-radius:14px;padding:40px 44px;display:flex;flex-direction:column;gap:14px;background:#FFFFFF">
+          <div style="font:700 11px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">Results · four hiring classes</div>
+          <div style="font:600 30px/1.16 'Plus Jakarta Sans', sans-serif;letter-spacing:-.01em;color:#1F2935;max-width:24ch">What the closed loop returned</div>
+          <div style="font:400 15px/1.65 'Lato', sans-serif;color:#505C6B;max-width:64ch;text-wrap:pretty">Each class was scored against the standard built from the previous one. Turnover is measured at ninety days; efficiency counts recruiter hours per accepted offer.</div>
+          <div style="font:600 15px/1.4 'Plus Jakarta Sans', sans-serif;color:#1F2935;padding-top:6px">How the standard is set</div>
+          <div style="font:400 15px/1.65 'Lato', sans-serif;color:#505C6B;max-width:64ch;text-wrap:pretty">The model reads your own performance and retention data rather than a generic competency library, so the bar moves with the roles you are actually filling.</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { view: 'new', tab: 'type', medium: 'web' };
+
+  // display, display weight, text, chosen?, name, verdict
+  HISTORY = [
+    ["'Plus Jakarta Sans'", 700, "'Lato'", 1, 'Plus Jakarta over Lato', 'Chosen. Flat-sided and modern at 58px, and Lato stays everywhere it already ships.'],
+    ["'Lato'", 900, "'Lato'", 0, 'All Lato', 'Current. Nothing wrong with it, but Black is the only display voice and it is a soft one.'],
+    ["'Poppins'", 600, "'Lato'", 0, 'Poppins over Lato', 'Close runner-up. Wider and more circular, but the two faces are quiet enough together to read as indecision.'],
+    ["'Archivo'", 700, "'Lato'", 0, 'Archivo over Lato', 'Squarer skeleton with real authority. Lost on warmth against Jakarta.'],
+    ["'Inter'", 700, "'Lato'", 0, 'Inter over Lato', 'Too close to Lato at header sizes — the change would not be legible as a change.'],
+    ["'Inter'", 700, "'Inter'", 0, 'All Inter', 'One family, but it replaces Lato everywhere. Ruled out by the migration cost.'],
+    ["'Archivo'", 700, "'Archivo'", 0, 'All Archivo', 'One family done properly. Same migration problem as all-Inter.'],
+    ["'Instrument Serif'", 400, "'Lato'", 0, 'Instrument Serif over Lato', 'The most distinctive option. Serif read editorial rather than technical.'],
+    ["'Instrument Serif'", 400, "'Instrument Sans'", 0, 'Instrument Serif + Sans', 'Full editorial system. Wrong voice for a measurement product.'],
+    ["'Space Grotesk'", 700, "'IBM Plex Sans'", 0, 'Space Grotesk + IBM Plex Sans', 'The most technical pairing built. Too engineered, and a full replacement.'],
+    ["'Sora'", 600, "'DM Sans'", 0, 'Sora + DM Sans', 'Authority from proportion rather than weight. Still a full replacement.'],
+    ["'Public Sans'", 700, "'IBM Plex Mono'", 0, 'Public Sans + Plex Mono', 'Mono on every figure and label. Interesting, but it dates fast.']
+  ];
+
+  TABS = [['type', 'Typefaces & scale'], ['setting', 'Setting'], ['applied', 'In place']];
+  MEDIUMS = [['web', 'Web'], ['deck', 'Slide 1920'], ['print', 'Print']];
+
+  MEDIUM_NOTE = {
+    web: 'Pixel values as written. The default context.',
+    deck: 'Multiply every web value by 1.6 and never go under 24px.',
+    print: 'Points, not pixels. Body 12pt floor, display down one step from web.'
+  };
+
+  // name, use, web px, line, family, weight, specimen, tracking
+  SCALE = [
+    ['Display XL', 'hero, cover', 58, 1.06, 'Plus Jakarta Sans', 700, 'Hire the people', '-0.03em'],
+    ['Display', 'section opener', 40, 1.1, 'Plus Jakarta Sans', 700, 'One loop, end to end', '-0.03em'],
+    ['Heading 1', 'page section', 34, 1.14, 'Plus Jakarta Sans', 700, 'What the closed loop returned', '-0.02em'],
+    ['Heading 2', 'card, subsection', 24, 1.2, 'Plus Jakarta Sans', 700, 'Define the outcome', '-0.02em'],
+    ['Heading 3', 'label heading', 19, 1.25, 'Plus Jakarta Sans', 700, 'Score every candidate', '-0.01em'],
+    ['Body large', 'intro, lede', 18, 1.6, 'Lato', 400, 'Scored against your own outcomes.', '0'],
+    ['Body', 'default copy', 15, 1.65, 'Lato', 400, 'Each class was scored against the standard built from the previous one.', '0'],
+    ['Body small', 'caption, meta', 13, 1.55, 'Lato', 400, 'Measured against the client’s own pre-Journeyfront baseline.', '0'],
+    ['Label', 'UI, buttons, table head', 12, 1.4, 'Lato', 700, 'Cleared for web and deck', '0.02em'],
+    ['Eyebrow', 'uppercase kicker', 11, 1, 'Plus Jakarta Sans', 700, 'Case study', '0.14em']
+  ];
+
+  MULT = { web: 1, deck: 1.6, print: 0.9 };
+
+  DISPLAY_WEIGHTS = [
+    ['400 Regular', 'Aa Hiring', 'rare — long display only'],
+    ['500 Medium', 'Aa Hiring', 'pull quotes'],
+    ['600 SemiBold', 'Aa Hiring', 'every heading'],
+    ['700 Bold', 'Aa Hiring', 'eyebrows and stat figures']
+  ];
+
+  TEXT_WEIGHTS = [
+    ['300 Light', 'Aa Hiring', 'never — too thin at 15px'],
+    ['400 Regular', 'Aa Hiring', 'body, table data'],
+    ['700 Bold', 'Aa Hiring', 'labels, buttons, emphasis'],
+    ['900 Black', 'Aa Hiring', 'table heads only']
+  ];
+
+  // per rule: [good lines, avoid lines] — line = [family, weight, size, line, tracking, colour, text]
+  PAIRING_EXAMPLES = [
+    [
+      [["'Plus Jakarta Sans'", 700, 24, 1.2, '-0.02em', '#1F2935', 'Close the loop on every hire'],
+       ["'Lato'", 400, 14, 1.6, '0', '#505C6B', 'Ninety-day and one-year results return to the model and reset the bar for the next requisition.']],
+      [["'Plus Jakarta Sans'", 700, 24, 1.2, '-0.02em', '#1F2935', 'Close the loop on every hire'],
+       ["'Plus Jakarta Sans'", 500, 14, 1.6, '0', '#505C6B', 'Ninety-day and one-year results return to the model and reset the bar for the next requisition.']]
+    ],
+    [
+      [["'Plus Jakarta Sans'", 700, 24, 1.2, '-0.02em', '#1F2935', 'One loop, end to end'],
+       ["'Lato'", 400, 13, 1.55, '0', '#505C6B', 'Every step writes back into the model, so the next class is scored on what worked for the last one.']],
+      [["'Plus Jakarta Sans'", 700, 24, 1.2, '-0.02em', '#1F2935', 'One loop, end to end'],
+       ["'Plus Jakarta Sans'", 700, 21, 1.22, '-0.02em', '#1F2935', 'Scored on what worked before']]
+    ],
+    [
+      [["'Plus Jakarta Sans'", 700, 24, 1.2, '-0.02em', '#1F2935', 'Define the outcome'],
+       ["'Lato'", 400, 14, 1.6, '0', '#505C6B', 'Set the standard from your own performance data, not a generic competency library.']],
+      [["'Plus Jakarta Sans'", 700, 24, 1.2, '.06em', '#BC03B6', 'DEFINE THE OUTCOME'],
+       ["'Lato'", 400, 14, 1.6, '0', '#505C6B', 'Set the standard from your own performance data, not a generic competency library.']]
+    ],
+    [
+      [["'Plus Jakarta Sans'", 700, 38, 1, '-0.02em', '#0072D5', '4.5X'],
+       ["'Lato'", 700, 13, 1.35, '0', '#1F2935', 'Reduced turnover']],
+      [["'Lato'", 900, 38, 1, '-0.02em', '#0072D5', '4.5X'],
+       ["'Lato'", 700, 13, 1.35, '0', '#1F2935', 'Reduced turnover']]
+    ]
+  ];
+
+  PAIRING = [
+    ['Jakarta stops at the headline', 'If a block runs longer than about two lines and someone has to read it, it is Lato. No exceptions for pull quotes over three lines.'],
+    ['Never two display sizes adjacent', 'A section opener and its subhead need at least two steps of the scale between them, or the hierarchy reads as an accident.'],
+    ['One weight change per level', 'Change size or weight to signal a level, not both plus colour plus case. Three signals at once is decoration.'],
+    ['Numbers borrow the display face', 'A stat figure is Plus Jakarta 700 even inside a Lato block, because the figure is the headline of that card.']
+  ];
+
+  STACKS = [
+    ['Display', "'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif"],
+    ['Text', "'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif"],
+    ['Tabular', "'Lato', ui-monospace, 'SF Mono', Menlo, monospace"]
+  ];
+
+  LEADING = [
+    ['40px and up', '1.06–1.1', 'Display. Tight enough that the lines read as one object.'],
+    ['24–39px', '1.14–1.2', 'Headings. Room for descenders, nothing more.'],
+    ['15–19px', '1.6–1.65', 'Body. The widest leading in the system.'],
+    ['11–14px', '1.35–1.55', 'Labels and captions. Tighter as size drops, since the measure is short.']
+  ];
+
+  CASE_RULES = [
+    ['✓', 'Sentence case for every heading, button and label. Only the eyebrow is uppercase.'],
+    ['✓', 'Emphasis in body copy is Lato 700, never italic and never colour alone.'],
+    ['✓', 'A link is JF Blue 600 with no underline until hover.'],
+    ['✕', 'No all-caps headings, no small caps, no letter-spaced body copy.'],
+    ['✕', 'No underline for emphasis — it reads as a link everywhere else on the page.']
+  ];
+
+  // background, text colour, sample, size, weight
+  ON_COLOUR = [
+    ['#FFFFFF', '#505C6B', 'Body copy on white', 14, 400],
+    ['#F1F6FD', '#1F2935', 'Body copy on Slate 50', 14, 400],
+    ['#002854', '#99C7FF', 'Body copy on Blue 950', 14, 400],
+    ['#00E4C0', '#1F2935', 'Label on Mint 300', 14, 600],
+    ['#ED00E6', '#FFFFFF', 'Large text on Magenta 500', 20, 700]
+  ];
+
+  lum(hex) {
+    const v = [1, 3, 5].map(i => {
+      const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+  }
+
+  ratio(a, b) {
+    const x = this.lum(a), y = this.lum(b);
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+  }
+
+  renderVals() {
+    const tab = this.state.tab;
+    const medium = this.state.medium;
+    const mult = this.MULT[medium];
+    const chip = on => 'flex:none;height:32px;padding:0 15px;display:flex;align-items:center;border-radius:9px;cursor:pointer;white-space:nowrap;font:600 12.5px/1 Lato, sans-serif;border:1px solid ' +
+      (on ? '#1F2935' : '#D0DAE5') + ';background:' + (on ? '#1F2935' : '#FFFFFF') + ';color:' + (on ? '#FFFFFF' : '#1F2935');
+    const wRow = (fam, w) => {
+      const px = parseInt(w[0], 10);
+      return { label: w[0], sample: w[1], use: w[2], style: 'font-family:' + fam + ', sans-serif;font-weight:' + px + ';font-size:19px;line-height:1.2;color:#1F2935' };
+    };
+
+    const view = this.state.view;
+    return {
+      showHistory: view === 'history',
+      showSubTabs: view === 'new',
+      primaryTabs: [['new', 'New Typeface'], ['history', 'History']].map(p => ({
+        label: p[1],
+        style: 'flex:none;height:34px;padding:0 16px;display:flex;align-items:center;border-radius:9px;cursor:pointer;white-space:nowrap;font:700 12.5px/1 Lato, sans-serif;border:1px solid ' +
+          (p[0] === view ? '#002854' : '#D0DAE5') + ';background:' + (p[0] === view ? '#002854' : '#FFFFFF') + ';color:' + (p[0] === view ? '#FFFFFF' : '#1F2935'),
+        onPick: () => this.setState({ view: p[0] })
+      })),
+
+      finalists: (view === 'history' ? [
+        ["'Plus Jakarta Sans'", 700, 'A', 'Plus Jakarta over Lato', 'chosen — headers and figures in Jakarta 700', '#0072D5'],
+        ["'Poppins'", 600, 'B', 'Poppins over Lato', 'runner-up — headers and figures in Poppins 600', '#804BFF']
+      ] : []).map(f => ({
+        badge: f[2],
+        name: f[3],
+        note: f[4],
+        badgeStyle: 'flex:none;padding:3px 8px;border-radius:6px;background:' + f[5] +
+          ';color:#FFFFFF;font:700 10px/1.6 Lato, sans-serif;letter-spacing:.08em',
+        h1Style: 'font-family:' + f[0] + ', sans-serif;font-weight:' + f[1] +
+          ';font-size:46px;line-height:1.06;letter-spacing:-.02em;color:#1F2935;max-width:16ch',
+        figDarkStyle: 'font-family:' + f[0] + ', sans-serif;font-weight:' + f[1] +
+          ';font-size:42px;line-height:1;letter-spacing:-.02em;color:#6AAEFE',
+        figMintStyle: 'font-family:' + f[0] + ', sans-serif;font-weight:' + f[1] +
+          ';font-size:42px;line-height:1;letter-spacing:-.02em;color:#1F2935',
+        headers: [
+          [58, 1.04, 'Display XL · 58 / 1.04', 'Hire the people who stay'],
+          [40, 1.1, 'Display · 40 / 1.1', 'One loop, requisition to retention'],
+          [34, 1.14, 'Heading 1 · 34 / 1.14', 'What the closed loop returned'],
+          [24, 1.2, 'Heading 2 · 24 / 1.2', 'Define the outcome, then score it'],
+          [19, 1.25, 'Heading 3 · 19 / 1.25', 'How the standard is set each quarter'],
+          [15, 1.35, 'Heading 4 · 15 / 1.35', 'Ninety-day retention by hiring class']
+        ].map(hd => ({
+          label: hd[2],
+          text: hd[3],
+          style: 'font-family:' + f[0] + ', sans-serif;font-weight:' + f[1] + ';font-size:' + hd[0] +
+            'px;line-height:' + hd[1] + ';letter-spacing:-.02em;color:#1F2935;text-wrap:pretty'
+        })),
+        charsets: [
+          ['Header uppercase', f[0], f[1], 21, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
+          ['Header lowercase', f[0], f[1], 21, 'abcdefghijklmnopqrstuvwxyz'],
+          ['Header figures · punctuation', f[0], f[1], 21, '0123456789 &@#%$ .,:;!?’“” ()[]{} –—/+×='],
+          ['Lato uppercase', "'Lato'", 400, 19, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
+          ['Lato lowercase', "'Lato'", 400, 19, 'abcdefghijklmnopqrstuvwxyz'],
+          ['Lato figures · punctuation', "'Lato'", 400, 19, '0123456789 &@#%$ .,:;!?’“” ()[]{} –—/+×=']
+        ].map(cs => ({
+          label: cs[0],
+          text: cs[4],
+          style: 'font-family:' + cs[1] + ', sans-serif;font-weight:' + cs[2] + ';font-size:' + cs[3] +
+            'px;line-height:1.45;color:#1F2935;word-break:break-word'
+        }))
+      })),
+
+      history: (view === 'history' ? this.HISTORY : []).map(hh => ({
+        name: hh[4],
+        verdict: hh[5],
+        badge: hh[3] ? 'New' : 'Considered',
+        cardStyle: 'min-width:0;box-sizing:border-box;border:1px solid ' + (hh[3] ? '#0072D5' : '#D0DAE5') +
+          ';border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:11px;min-height:210px;background:#FFFFFF',
+        badgeStyle: 'flex:none;padding:3px 8px;border-radius:6px;font:700 9.5px/1.6 Lato, sans-serif;letter-spacing:.08em;text-transform:uppercase;background:' +
+          (hh[3] ? '#0072D5' : '#E4EBF3') + ';color:' + (hh[3] ? '#FFFFFF' : '#3E4956'),
+        headlineStyle: 'font-family:' + hh[0] + ', sans-serif;font-weight:' + hh[1] +
+          ';font-size:31px;line-height:1.08;letter-spacing:-.02em;color:#1F2935;max-width:15ch',
+        bodyStyle: 'font-family:' + hh[2] + ', sans-serif;font-weight:400;font-size:13.5px;line-height:1.6;color:#505C6B;text-wrap:pretty',
+        figStyle: 'font-family:' + hh[0] + ', sans-serif;font-weight:' + hh[1] +
+          ';font-size:28px;line-height:1;letter-spacing:-.02em;color:#0072D5',
+        figLabelStyle: 'font-family:' + hh[2] + ', sans-serif;font-weight:700;font-size:12px;line-height:1.3;color:#1F2935'
+      })),
+
+      tabs: (view === 'new' ? this.TABS : []).map(t => ({
+        label: t[1],
+        style: chip(t[0] === tab),
+        onPick: () => this.setState({ tab: t[0] })
+      })),
+      showFamilies: view === 'new' && tab === 'type',
+      showScale: view === 'new' && tab === 'type',
+      showWeights: view === 'new' && tab === 'type',
+      showSetting: view === 'new' && tab === 'setting',
+      showApplied: view === 'new' && tab === 'applied',
+
+      mediums: this.MEDIUMS.map(m => ({
+        label: m[1],
+        style: chip(m[0] === medium),
+        onPick: () => this.setState({ medium: m[0] })
+      })),
+      mediumNote: this.MEDIUM_NOTE[medium],
+
+      displayWeights: this.DISPLAY_WEIGHTS.map(w => wRow("'Plus Jakarta Sans'", w)),
+      textWeights: this.TEXT_WEIGHTS.map(w => wRow("'Lato'", w)),
+      pairingRules: this.PAIRING.map((p, i) => {
+        const lines = set => (set || []).map(l => ({
+          text: l[6],
+          style: 'font-family:' + l[0] + ', sans-serif;font-weight:' + l[1] + ';font-size:' + l[2] +
+            'px;line-height:' + l[3] + ';letter-spacing:' + l[4] + ';color:' + l[5] + ';text-wrap:pretty'
+        }));
+        const ex = this.PAIRING_EXAMPLES[i] || [];
+        return {
+          title: p[0],
+          body: p[1],
+          examples: [['Good', ex[0], '#05A78C'], ['Avoid', ex[1], '#B3283F']].map(e => ({
+            label: e[0],
+            lines: lines(e[1]),
+            boxStyle: 'padding:14px;border-radius:9px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;background:#FFFFFF;border:1px solid #E4EBF3',
+            labelStyle: 'padding:2px 8px;border-radius:99px;font:700 9px/1.6 Lato, sans-serif;letter-spacing:.1em;text-transform:uppercase;color:' +
+              e[2] + ';border:1px solid ' + e[2]
+          }))
+        };
+      }),
+      stacks: this.STACKS.map(s => ({ label: s[0], stack: s[1] })),
+      leading: this.LEADING.map(l => ({ range: l[0], value: l[1], note: l[2] })),
+      caseRules: this.CASE_RULES.map(c => ({ mark: c[0], body: c[1], markColour: c[0] === '✓' ? '#004336' : '#A90142' })),
+
+      scale: this.SCALE.map(r => {
+        const raw = r[2] * mult;
+        const size = medium === 'print' ? Math.round(raw * 0.75 * 10) / 10 : Math.round(raw);
+        const unit = medium === 'print' ? 'pt' : 'px';
+        const track = r[7];
+        const upper = r[0] === 'Eyebrow';
+        // the preview is capped so a 93px deck step still fits its row
+        const shown = Math.min(medium === 'print' ? size / 0.75 : raw, 58);
+        return {
+          name: r[0],
+          use: r[1],
+          metrics: size + unit + ' / ' + r[3],
+          family: r[4],
+          spec: size + unit + ' / ' + r[3] + ' · ' + r[5] + ' · ' + track,
+          specimen: r[6],
+          cellStyle: 'flex:1;min-width:0;padding:' + (shown >= 34 ? 8 : 2) + 'px 0',
+          specimenStyle: 'font-family:\'' + r[4] + '\', sans-serif;font-weight:' + r[5] + ';font-size:' + shown +
+            'px;line-height:' + r[3] + ';letter-spacing:' + track + ';color:#1F2935;text-wrap:pretty' +
+            (upper ? ';text-transform:uppercase' : '')
+        };
+      }),
+
+      onColour: this.ON_COLOUR.map(o => {
+        const r = this.ratio(o[1], o[0]);
+        const large = o[3] >= 18 || (o[3] >= 14 && o[4] >= 700);
+        const need = large ? 3 : 4.5;
+        const pass = r >= need;
+        return {
+          text: o[2],
+          meta: r.toFixed(2) + ' · ' + (large ? 'large ≥3' : 'body ≥4.5') + ' · ' + (pass ? 'pass' : 'fail'),
+          rowStyle: 'padding:14px 16px;border-radius:10px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;background:' + o[0] +
+            (o[0] === '#FFFFFF' ? ';border:1px solid #E4EBF3' : ''),
+          textStyle: 'font-family:Lato, sans-serif;font-weight:' + o[4] + ';font-size:' + o[3] + 'px;line-height:1.5;color:' + o[1],
+          metaStyle: 'font:600 10.5px/1.4 ui-monospace, monospace;color:' + o[1] + ';opacity:.8'
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
