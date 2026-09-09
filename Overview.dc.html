@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="assets/ds/tokens/fonts.css">
+<link rel="stylesheet" href="assets/ds/tokens/colors.css">
+<link rel="stylesheet" href="assets/ds/tokens/typography.css">
+<link rel="stylesheet" href="assets/ds/tokens/effects.css">
+<link rel="stylesheet" href="tokens/tokens.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  a { color: var(--jf-blue); text-decoration: none; }
+  a:hover { color: var(--jf-blue-hover); }
+  [data-jf-nav] a:hover { background:var(--jf-blue-pastel) !important; color:var(--jf-blue) !important; }
+  [data-ov-card]:hover { border-color: var(--jf-blue) !important; box-shadow: var(--jf-shadow-sm); }
+  .ov-scroll::-webkit-scrollbar { width: 10px; }
+  .ov-scroll::-webkit-scrollbar-thumb { background: #D8DDE1; border-radius: 99px; border: 3px solid #FFFFFF; }
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;font-family:var(--jf-font-sans);color:var(--jf-ink)">
+  <div data-jf-nav="1" style="flex:none;display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:9px 22px;background:var(--jf-white);border-bottom:1px solid var(--jf-border)">
+    <a href="Overview.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:var(--jf-ink);color:var(--jf-white);">Overview</a>
+    <a href="Logo%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Logo</a>
+    <a href="Colors%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Colors</a>
+    <a href="Typography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Typography</a>
+    <a href="Icons.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Icons</a>
+    <a href="Dot%20Patterns.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Dot patterns</a>
+    <a href="Photography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Photography</a>
+    <a href="Screens.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Screens</a>
+    <a href="Layout.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Layout</a>
+  </div>
+
+  <div class="ov-scroll" style="flex:1;min-height:0;overflow-y:auto;background:var(--jf-white)">
+    <div style="max-width:1080px;margin:0 auto;padding:48px 30px 80px 30px;display:flex;flex-direction:column;gap:52px">
+
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <img src="assets/logos/2026/lockup.svg" alt="Journeyfront" style="height:34px;width:auto;object-fit:contain;display:block;align-self:flex-start">
+        <div style="font:700 44px/1.08 var(--jf-font-display);letter-spacing:-0.01em;color:var(--jf-blue-dark);max-width:20ch;text-wrap:pretty">The Journeyfront design system</div>
+        <div style="font-size:16px;line-height:1.6;color:var(--jf-text-muted);max-width:62ch;text-wrap:pretty">Everything the brand is made of: the mark, the colour system, the type pairing, the icon library, and the rules for dot patterns, photography, product screens and layout. Each page holds the current direction plus the reasoning behind it.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px">
+          <a href="Logo%202026.dc.html" style="height:40px;padding:0 20px;display:inline-flex;align-items:center;border-radius:10px;background:var(--jf-blue);color:var(--jf-white);font:700 13px/1 var(--jf-font-sans)">Start with the logo</a>
+          <a href="Colors%202026.dc.html" style="height:40px;padding:0 20px;display:inline-flex;align-items:center;border-radius:10px;border:1px solid var(--jf-border-strong);color:var(--jf-ink);font:700 13px/1 var(--jf-font-sans)">See the colour system</a>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">The six colour families</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+          <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+            <div style="height:88px;border-radius:12px;background:#0072D5"></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">JF Blue</div><div style="font-size:11px;line-height:1.45;color:var(--jf-text-muted)">Leads every composition, never alone.</div></div>
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+            <div style="height:88px;border-radius:12px;background:#00E4C0"></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Mint</div><div style="font-size:11px;line-height:1.45;color:var(--jf-text-muted)">Positive signal and light accent fills.</div></div>
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+            <div style="height:88px;border-radius:12px;background:#804BFF"></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Violet</div><div style="font-size:11px;line-height:1.45;color:var(--jf-text-muted)">Secondary accent, charts and depth.</div></div>
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+            <div style="height:88px;border-radius:12px;background:#ED00E6"></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Magenta</div><div style="font-size:11px;line-height:1.45;color:var(--jf-text-muted)">AI, campaigns, launches. Large text only.</div></div>
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+            <div style="height:88px;border-radius:12px;background:#FF4B79"></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Rose</div><div style="font-size:11px;line-height:1.45;color:var(--jf-text-muted)">People, stories, careers, alerts.</div></div>
+          </div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+            <div style="height:88px;border-radius:12px;background:#1F2935"></div>
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Slate</div><div style="font-size:11px;line-height:1.45;color:var(--jf-text-muted)">The only neutral. All type and surfaces.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">The eight pages</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+          <a data-ov-card="1" href="Logo%202026.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Logo</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">The 2026 mark in lockup, icon and stacked form, with clear space and the two-tone rule.</div>
+          </a>
+          <a data-ov-card="1" href="Colors%202026.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Colors</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">Every ramp and stop, contrast checks, gradient use, and the direction that governs them.</div>
+          </a>
+          <a data-ov-card="1" href="Typography.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Typography</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">The chosen pairing at every size, plus the twelve candidates it was picked from.</div>
+          </a>
+          <a data-ov-card="1" href="Icons.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Icons</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">The full searchable library with size and colour controls. Copy what you need.</div>
+          </a>
+          <a data-ov-card="1" href="Dot%20Patterns.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Dot patterns</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">Rules, the approved pattern set, and a generator for new ones.</div>
+          </a>
+          <a data-ov-card="1" href="Photography.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Photography</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">How people are shot, cut out and placed, with approved examples side by side with what to avoid.</div>
+          </a>
+          <a data-ov-card="1" href="Screens.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Screens</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">Product screenshots in marketing: framing, cropping and the approved set.</div>
+          </a>
+          <a data-ov-card="1" href="Layout.dc.html" style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:7px;padding:20px;border-radius:14px;border:1px solid var(--jf-border);background:var(--jf-white);transition:border-color .12s,box-shadow .12s">
+            <div style="font:700 14px/1.3 var(--jf-font-display);color:var(--jf-blue-dark)">Layout</div>
+            <div style="font-size:12px;line-height:1.5;color:var(--jf-text-muted)">How dots, people and screens combine — six composition recipes and the cases to avoid.</div>
+          </a>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
+        <div style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:14px;background:var(--jf-surface-tint)">
+          <div style="font:700 13px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Using the system</div>
+          <div style="font-size:12.5px;line-height:1.6;color:var(--jf-ink)">Read the Direction rules on a page before pulling assets from it. Where a page shows Good and Avoid side by side, the Avoid case is there because it has already happened.</div>
+          <div style="font-size:12.5px;line-height:1.6;color:var(--jf-ink)">Requests for a new pattern, a new photo or an exception go to the brand owner rather than into a one-off file.</div>
+        </div>
+        <div style="min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;padding:22px;border-radius:14px;border:1px solid var(--jf-border)">
+          <div style="font:700 13px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">What changed recently</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;gap:12px"><div style="flex:none;width:52px;font:700 11px/1.5 var(--jf-font-sans);color:var(--jf-text-subtle)">Sep 9</div><div style="flex:1;min-width:0;font-size:12px;line-height:1.5;color:var(--jf-ink)">Gradient set trimmed to four, and a rule added: gradients are light accents only, used to represent AI where needed.</div></div>
+            <div style="display:flex;gap:12px"><div style="flex:none;width:52px;font:700 11px/1.5 var(--jf-font-sans);color:var(--jf-text-subtle)">Sep 8</div><div style="flex:1;min-width:0;font-size:12px;line-height:1.5;color:var(--jf-ink)">Colour system restructured around the six families, with all hardcoded values replaced by tokens.</div></div>
+            <div style="display:flex;gap:12px"><div style="flex:none;width:52px;font:700 11px/1.5 var(--jf-font-sans);color:var(--jf-text-subtle)">Sep 8</div><div style="flex:1;min-width:0;font-size:12px;line-height:1.5;color:var(--jf-ink)">Layout page added: six composition recipes plus texture studies.</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

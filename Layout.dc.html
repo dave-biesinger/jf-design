@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#FFFFFF; height:100%; overflow:hidden; }
+  a { color:#0072D5; text-decoration:none; }
+  [data-jf-nav] a:hover { background:#F0F7FF !important; color:#0072D5 !important; }
+  a:hover { color:#005AAB; }
+</style>
+</helmet>
+
+<div style="font-family:'Lato', system-ui, sans-serif;color:#1F2935;height:100vh;overflow:hidden;display:flex;flex-direction:column;background:#FFFFFF">
+  <div data-jf-nav="1" style="flex:none;display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:9px 40px;background:#FFFFFF;border-bottom:1px solid #E4EBF3">
+    <a href="Overview.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Overview</a>
+    <a href="Logo%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Logo</a>
+    <a href="Colors%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Colors</a>
+    <a href="Typography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Typography</a>
+    <a href="Icons.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Icons</a>
+    <a href="Dot%20Patterns.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Dot patterns</a>
+    <a href="Photography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Photography</a>
+    <a href="Screens.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Screens</a>
+    <a href="Layout.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:#1F2935;color:#FFFFFF;">Layout</a>
+  </div>
+
+  <div style="flex:1;min-width:0;overflow-y:auto;overflow-x:hidden;padding:32px 40px 90px;display:flex;flex-direction:column;gap:40px">
+
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <div style="font:700 11px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">Layout 2026</div>
+    <div style="font:700 27px/1.2 'Plus Jakarta Sans', sans-serif;color:#1F2935">White ground, blue leading, one accent always present</div>
+    <div style="font-size:13.5px;line-height:1.55;color:#505C6B;max-width:74ch;text-wrap:pretty">Two assets built from the JF System palette: a marketing page and a two-page sales PDF. White carries the composition, JF Blue is the strongest colour in both, and Mint or Magenta appears in every screen — small, but never absent.</div>
+    <div style="display:flex;align-items:center;gap:8px;padding-top:4px">
+      <div style="width:60px;height:5px;border-radius:99px;background:#0072D5"></div>
+      <div style="width:26px;height:5px;border-radius:99px;background:#00E4C0"></div>
+      <div style="width:12px;height:5px;border-radius:99px;background:#ED00E6"></div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <div style="padding:3px 9px;border-radius:6px;background:#1F2935;color:#FFFFFF;font:700 10px/1.6 'Plus Jakarta Sans', sans-serif;letter-spacing:.08em">01</div>
+      <div style="font:700 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Marketing page</div>
+      <div style="font-size:12px;color:#687483">1280px · white ground, blue hero, mint proof, magenta eyebrow</div>
+    </div>
+
+    <div data-fit="1280" style="width:100%;max-width:1280px;overflow:hidden">
+    <div style="width:1280px;zoom:var(--fit,1);border-radius:14px;overflow:hidden;border:1px solid #D0DAE5;box-shadow:0 1px 2px rgba(31,41,53,.06),0 14px 36px rgba(31,41,53,.07)">
+      <div style="height:34px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#E4EBF3;border-bottom:1px solid #D0DAE5">
+        <div style="width:9px;height:9px;border-radius:99px;background:#B9C5D3"></div>
+        <div style="width:9px;height:9px;border-radius:99px;background:#B9C5D3"></div>
+        <div style="width:9px;height:9px;border-radius:99px;background:#B9C5D3"></div>
+        <div style="margin-left:10px;font:700 10.5px/1 'Lato', sans-serif;color:#3E4956">journeyfront.com</div>
+      </div>
+
+      <div style="background:#FFFFFF;display:flex;flex-direction:column">
+
+        <div style="height:78px;flex:none;display:flex;align-items:center;gap:36px;padding:0 64px;border-bottom:1px solid #E4EBF3">
+          <div style="{{ markLight26 }}"></div>
+          <div style="display:flex;gap:26px;font:700 14px/1 'Lato', sans-serif;color:#505C6B"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:20px">
+            <div style="font:700 14px/1 'Lato', sans-serif;color:#0072D5">Sign in</div>
+            <div style="height:42px;padding:0 20px;display:flex;align-items:center;border-radius:10px;background:#0072D5;color:#FFFFFF;font:700 14px/1 'Lato', sans-serif">Book a demo</div>
+          </div>
+        </div>
+
+        <div style="padding:66px 64px 58px;display:flex;gap:56px;align-items:center">
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:18px">
+            <div style="font:700 12px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">The intelligent ATS</div>
+            <div style="font:700 58px/1.06 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#1F2935;max-width:16ch">Hire the people who stay.</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:72px;height:6px;border-radius:99px;background:#0072D5"></div>
+              <div style="width:24px;height:6px;border-radius:99px;background:#00E4C0"></div>
+            </div>
+            <div style="font:400 18px/1.6 'Lato', sans-serif;color:#505C6B;max-width:52ch;text-wrap:pretty">Journeyfront scores every candidate against the outcomes your team actually cares about, then closes the loop with what happened after the hire.</div>
+            <div style="display:flex;gap:12px;padding-top:6px">
+              <div style="height:50px;padding:0 26px;display:flex;align-items:center;border-radius:10px;background:#0072D5;color:#FFFFFF;font:700 15px/1 'Lato', sans-serif">Book a demo</div>
+              <div style="height:50px;padding:0 26px;display:flex;align-items:center;border-radius:10px;border:1.5px solid #B9C5D3;color:#1F2935;font:700 15px/1 'Lato', sans-serif">See the platform</div>
+            </div>
+            <div style="font:400 13.5px/1.5 'Lato', sans-serif;color:#687483">Used across 40,000+ hires in contact centres, healthcare and field operations.</div>
+          </div>
+
+          <div style="width:460px;flex:none;display:flex;flex-direction:column;gap:16px">
+            <div style="border-radius:16px;background:#002854;padding:30px;display:flex;flex-direction:column;gap:10px">
+              <div style="font:700 54px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#6AAEFE">4.5X</div>
+              <div style="font:700 15px/1.3 'Lato', sans-serif;color:#6AAEFE">Reduced Turnover</div>
+              <div style="font:400 13.5px/1.5 'Lato', sans-serif;color:#99C7FF;padding-top:2px">Measured against the client's own pre-Journeyfront baseline across four hiring classes.</div>
+            </div>
+            <div style="display:flex;gap:16px">
+              <div style="flex:1;min-width:0;border-radius:16px;background:#00E4C0;padding:24px;display:flex;flex-direction:column;gap:8px">
+                <div style="font:700 38px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#1F2935">68%</div>
+                <div style="font:700 14px/1.35 'Lato', sans-serif;color:#1F2935">Faster time to hire</div>
+              </div>
+              <div style="flex:1;min-width:0;border-radius:16px;background:#F0F7FF;padding:24px;display:flex;flex-direction:column;gap:8px">
+                <div style="font:700 38px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#0072D5">71%</div>
+                <div style="font:700 14px/1.35 'Lato', sans-serif;color:#1F2935">Hiring efficiency gain</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:0 64px 58px;display:flex;flex-direction:column;gap:26px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px">
+            <div style="font:700 34px/1.14 'Plus Jakarta Sans', sans-serif;letter-spacing:-.01em;color:#1F2935;max-width:26ch">One loop, from requisition to retention</div>
+            <div style="font:400 15px/1.6 'Lato', sans-serif;color:#505C6B;max-width:40ch;text-wrap:pretty">Every step writes back into the model, so the next class is scored on what worked for the last one.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:20px">
+            <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
+              <div style="width:44px;height:6px;border-radius:99px;background:#0072D5"></div>
+              <div style="font:700 19px/1.25 'Plus Jakarta Sans', sans-serif;color:#1F2935">Define the outcome</div>
+              <div style="font:400 14.5px/1.6 'Lato', sans-serif;color:#505C6B;text-wrap:pretty">Set the standard from your own performance and retention data, not a generic competency library.</div>
+            </div>
+            <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
+              <div style="width:44px;height:6px;border-radius:99px;background:#00E4C0"></div>
+              <div style="font:700 19px/1.25 'Plus Jakarta Sans', sans-serif;color:#1F2935">Score every candidate</div>
+              <div style="font:400 14.5px/1.6 'Lato', sans-serif;color:#505C6B;text-wrap:pretty">Structured assessments and interviews roll into one ranked view your recruiters can defend.</div>
+            </div>
+            <div style="min-width:0;border:1px solid #D0DAE5;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
+              <div style="width:44px;height:6px;border-radius:99px;background:#ED00E6"></div>
+              <div style="font:700 19px/1.25 'Plus Jakarta Sans', sans-serif;color:#1F2935">Close the loop</div>
+              <div style="font:400 14.5px/1.6 'Lato', sans-serif;color:#505C6B;text-wrap:pretty">Ninety-day and one-year results return to the model and reset the bar for the next requisition.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:52px 64px;background:#F1F6FD;display:flex;gap:48px;align-items:center;border-top:1px solid #E4EBF3;border-bottom:1px solid #E4EBF3">
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:40px;height:5px;border-radius:99px;background:#00E4C0"></div>
+              <div style="font:700 11.5px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#004336">Customer proof</div>
+            </div>
+            <div style="font:500 26px/1.42 'Plus Jakarta Sans', sans-serif;color:#1F2935;max-width:44ch;text-wrap:pretty">"We stopped guessing which interview signals mattered. The turnover number moved in one quarter."</div>
+            <div style="font:400 14px/1.5 'Lato', sans-serif;color:#505C6B">VP Talent Acquisition · national contact centre operator</div>
+          </div>
+          <div style="width:360px;flex:none;display:flex;flex-direction:column;gap:12px">
+            <div style="border-radius:14px;background:#FFFFFF;border:1px solid #D0DAE5;padding:22px;display:flex;flex-direction:column;gap:6px">
+              <div style="font:700 30px/1 'Plus Jakarta Sans', sans-serif;color:#0072D5">1 quarter</div>
+              <div style="font:700 13.5px/1.4 'Lato', sans-serif;color:#1F2935">To first measured turnover change</div>
+            </div>
+            <div style="border-radius:14px;background:#FFFFFF;border:1px solid #D0DAE5;padding:22px;display:flex;flex-direction:column;gap:6px">
+              <div style="font:700 30px/1 'Plus Jakarta Sans', sans-serif;color:#004336">12 classes</div>
+              <div style="font:700 13.5px/1.4 'Lato', sans-serif;color:#1F2935">Scored on the same standard</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:56px 64px;display:flex;align-items:center;justify-content:space-between;gap:40px;background:#002854">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="font:700 34px/1.16 'Plus Jakarta Sans', sans-serif;letter-spacing:-.01em;color:#FFFFFF;max-width:26ch">See it on your own requisitions</div>
+            <div style="font:400 15.5px/1.6 'Lato', sans-serif;color:#99C7FF;max-width:48ch">Thirty minutes, your roles, your scoring standard.</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="height:52px;padding:0 28px;display:flex;align-items:center;border-radius:10px;background:#00E4C0;color:#1F2935;font:700 15px/1 'Lato', sans-serif">Book a demo</div>
+            <div style="height:52px;padding:0 28px;display:flex;align-items:center;border-radius:10px;border:1.5px solid #6AAEFE;color:#6AAEFE;font:700 15px/1 'Lato', sans-serif">Talk to sales</div>
+          </div>
+        </div>
+
+        <div style="padding:34px 64px;display:flex;align-items:center;justify-content:space-between;gap:40px;background:#FFFFFF">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="{{ markLight22 }}"></div>
+            <div style="font:400 12.5px/1.5 'Lato', sans-serif;color:#687483">© 2026 Journeyfront</div>
+          </div>
+          <div style="display:flex;gap:28px;font:400 12.5px/1.5 'Lato', sans-serif;color:#687483"><span>Privacy</span><span>Security</span><span>Careers</span></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <div style="padding:3px 9px;border-radius:6px;background:#1F2935;color:#FFFFFF;font:700 10px/1.6 'Plus Jakarta Sans', sans-serif;letter-spacing:.08em">02</div>
+      <div style="font:700 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Sales PDF</div>
+      <div style="font-size:12px;color:#687483">two letter pages · cover and results, same palette rules</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:28px;align-items:stretch;max-width:816px">
+
+      <div data-fit="816" style="width:100%;overflow:hidden"><div style="width:816px;height:1056px;zoom:var(--fit,1);box-sizing:border-box;background:#FFFFFF;border:1px solid #D0DAE5;box-shadow:0 1px 2px rgba(31,41,53,.06),0 14px 36px rgba(31,41,53,.07);display:flex;flex-direction:column">
+        <div style="padding:64px 64px 0;display:flex;align-items:center;justify-content:space-between">
+          <div style="{{ markLight26 }}"></div>
+          <div style="font:700 13px/1 'Lato', sans-serif;color:#687483">Sales overview · 2026</div>
+        </div>
+
+        <div style="padding:76px 64px 0;display:flex;flex-direction:column;gap:22px">
+          <div style="font:700 12px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">Prepared for talent leaders</div>
+          <div style="font:700 60px/1.04 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#1F2935;max-width:15ch">The hire that holds after ninety days</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:88px;height:6px;border-radius:99px;background:#0072D5"></div>
+            <div style="width:30px;height:6px;border-radius:99px;background:#00E4C0"></div>
+          </div>
+          <div style="font:400 17px/1.65 'Lato', sans-serif;color:#505C6B;max-width:56ch;text-wrap:pretty">What changes when the scoring standard comes from your own retention data, and what the first four hiring classes looked like.</div>
+        </div>
+
+        <div style="margin-top:auto;padding:0 64px 40px;display:flex;flex-direction:column;gap:20px">
+          <div style="border-radius:16px;background:#002854;padding:34px 34px 30px;display:flex;gap:34px">
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="font:700 50px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#6AAEFE">4.5X</div>
+              <div style="font:700 15px/1.35 'Lato', sans-serif;color:#6AAEFE">Reduced Turnover</div>
+            </div>
+            <div style="width:1px;background:#00376E"></div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="font:700 50px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#6AAEFE">68%</div>
+              <div style="font:700 15px/1.35 'Lato', sans-serif;color:#6AAEFE">Faster time to hire</div>
+            </div>
+            <div style="width:1px;background:#00376E"></div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="font:700 50px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#6AAEFE">71%</div>
+              <div style="font:700 15px/1.35 'Lato', sans-serif;color:#6AAEFE">Hiring efficiency gain</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font:400 12.5px/1.5 'Lato', sans-serif;color:#687483">
+            <span>Confidential · shared under NDA</span>
+            <span>journeyfront.com</span>
+          </div>
+        </div>
+      </div></div>
+
+      <div data-fit="816" style="width:100%;overflow:hidden"><div style="width:816px;height:1056px;zoom:var(--fit,1);box-sizing:border-box;background:#FFFFFF;border:1px solid #D0DAE5;box-shadow:0 1px 2px rgba(31,41,53,.06),0 14px 36px rgba(31,41,53,.07);display:flex;flex-direction:column">
+        <div style="padding:52px 64px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4EBF3;padding-bottom:20px">
+          <div style="font:700 13px/1 'Lato', sans-serif;color:#687483">Results · four hiring classes</div>
+          <div style="{{ markLight20 }}"></div>
+        </div>
+
+        <div style="padding:40px 64px 0;display:flex;flex-direction:column;gap:14px">
+          <div style="font:700 36px/1.14 'Plus Jakarta Sans', sans-serif;letter-spacing:-.01em;color:#1F2935;max-width:24ch">What the closed loop returned</div>
+          <div style="font:400 16px/1.65 'Lato', sans-serif;color:#505C6B;max-width:60ch;text-wrap:pretty">Each class was scored against the standard built from the previous one. Turnover is measured at ninety days; efficiency counts recruiter hours per accepted offer.</div>
+        </div>
+
+        <div style="padding:34px 64px 0;display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px">
+          <div style="min-width:0;border-radius:14px;background:#00E4C0;padding:22px;display:flex;flex-direction:column;gap:7px">
+            <div style="font:700 34px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#1F2935">4.5X</div>
+            <div style="font:700 14px/1.35 'Lato', sans-serif;color:#1F2935">Reduced turnover</div>
+          </div>
+          <div style="min-width:0;border-radius:14px;background:#F0F7FF;padding:22px;display:flex;flex-direction:column;gap:7px">
+            <div style="font:700 34px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#0072D5">29%</div>
+            <div style="font:700 14px/1.35 'Lato', sans-serif;color:#1F2935">New-hire turnover improvement</div>
+          </div>
+          <div style="min-width:0;border-radius:14px;background:#1F2935;padding:22px;display:flex;flex-direction:column;gap:7px">
+            <div style="font:700 34px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#6AAEFE">12</div>
+            <div style="font:700 14px/1.35 'Lato', sans-serif;color:#6AAEFE">Classes on one standard</div>
+          </div>
+        </div>
+
+        <div style="padding:36px 64px 0;display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;gap:16px;padding:12px 16px;border-radius:10px 10px 0 0;background:#F0F7FF;font:700 12px/1.4 'Lato', sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#00376E">
+            <div style="flex:1.6;min-width:0">Hiring class</div>
+            <div style="flex:1;min-width:0">Offers</div>
+            <div style="flex:1;min-width:0">90-day retention</div>
+            <div style="flex:1;min-width:0">Hours per hire</div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;border-bottom:1px solid #E4EBF3;font:400 14.5px/1.4 'Lato', sans-serif;color:#1F2935">
+            <div style="flex:1.6;min-width:0">Q1 · baseline</div><div style="flex:1;min-width:0">412</div><div style="flex:1;min-width:0">61%</div><div style="flex:1;min-width:0">9.4</div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;border-bottom:1px solid #E4EBF3;font:400 14.5px/1.4 'Lato', sans-serif;color:#1F2935">
+            <div style="flex:1.6;min-width:0">Q2 · first scored class</div><div style="flex:1;min-width:0">438</div><div style="flex:1;min-width:0">74%</div><div style="flex:1;min-width:0">6.1</div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;border-bottom:1px solid #E4EBF3;font:400 14.5px/1.4 'Lato', sans-serif;color:#1F2935">
+            <div style="flex:1.6;min-width:0">Q3</div><div style="flex:1;min-width:0">455</div><div style="flex:1;min-width:0">83%</div><div style="flex:1;min-width:0">4.2</div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;border-bottom:2px solid #0072D5;font:700 14.5px/1.4 'Lato', sans-serif;color:#1F2935">
+            <div style="flex:1.6;min-width:0">Q4</div><div style="flex:1;min-width:0">470</div><div style="flex:1;min-width:0">89%</div><div style="flex:1;min-width:0">3.0</div>
+          </div>
+        </div>
+
+        <div style="padding:32px 64px 0">
+          <div style="border-radius:14px;background:#DCFFF5;padding:24px;display:flex;flex-direction:column;gap:9px">
+            <div style="font:700 11.5px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#004336">What moved it</div>
+            <div style="font:400 15.5px/1.6 'Lato', sans-serif;color:#1F2935;text-wrap:pretty">Two interview signals that had been weighted heavily turned out to be unrelated to ninety-day retention. Dropping them changed the ranked shortlist for every requisition in the class.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto;padding:0 64px 40px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="width:64px;height:5px;border-radius:99px;background:#ED00E6"></div>
+            <div style="font:700 18px/1.4 'Plus Jakarta Sans', sans-serif;color:#1F2935;max-width:34ch">Next: a thirty-minute scoring review on your own open roles.</div>
+            <div style="font:400 13.5px/1.5 'Lato', sans-serif;color:#687483">sales@journeyfront.com</div>
+          </div>
+          <div style="font:400 12.5px/1.5 'Lato', sans-serif;color:#687483">2 of 2</div>
+        </div>
+      </div></div>
+
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <div style="padding:3px 9px;border-radius:6px;background:#1F2935;color:#FFFFFF;font:700 10px/1.6 'Plus Jakarta Sans', sans-serif;letter-spacing:.08em">03</div>
+      <div style="font:700 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Composition recipes</div>
+      <div style="font-size:12px;color:#687483">dots always present · layer order dots, person, screen</div>
+    </div>
+
+    <sc-if value="{{ hasShotError }}"><div style="max-width:1280px;border:1px solid #E8A0A0;background:#FFF2F3;border-radius:10px;padding:12px 14px;font:700 12px/1.5 Lato, sans-serif;color:#A90142">{{ shotError }}</div></sc-if>
+
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px;max-width:1280px">
+      <sc-for list="{{ recipes }}" as="rc" hint-placeholder-count="6">
+        <div style="min-width:0;display:flex;flex-direction:column;gap:9px">
+          <div style="{{ rc.badgeStyle }}">{{ rc.verdict }}</div>
+          <div style="font:700 13.5px/1.3 'Plus Jakarta Sans', sans-serif;letter-spacing:-.01em;color:#1F2935">{{ rc.name }}</div>
+          <div style="{{ rc.tileStyle }}">
+            <sc-if value="{{ rc.hasDots }}"><div style="{{ rc.dotStyle }}"></div></sc-if>
+            <sc-if value="{{ rc.hasPerson }}"><div style="{{ rc.personStyle }}"><sc-if value="{{ rc.personEmpty }}"><span>Approved cut-out</span></sc-if></div></sc-if>
+            <sc-if value="{{ rc.hasScreen }}"><div style="{{ rc.screenStyle }}"></div></sc-if>
+            <sc-if value="{{ rc.hasShot }}"><div style="{{ rc.shotStyle }}"></div></sc-if>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <label style="font:700 10.5px/1 Lato, sans-serif;color:#0072D5;cursor:pointer" style-hover="color:#005AAB"><sc-if value="{{ rc.noShot }}">Upload your own example</sc-if><sc-if value="{{ rc.hasShot }}">Replace</sc-if><input type="file" accept="image/*" onChange="{{ rc.onShot }}" style="display:none"></label>
+            <sc-if value="{{ rc.hasShot }}"><div onClick="{{ rc.onClearShot }}" style="font:700 10.5px/1 Lato, sans-serif;color:#687483;cursor:pointer" style-hover="color:#B3283F">Remove</div></sc-if>
+          </div>
+          <div style="font:700 10.5px/1.4 Lato, sans-serif;color:#0072D5">{{ rc.layers }}</div>
+          <div style="font:400 11.5px/1.5 Lato, sans-serif;color:#687483;text-wrap:pretty">{{ rc.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:baseline;gap:10px">
+      <div style="padding:3px 9px;border-radius:6px;background:#1F2935;color:#FFFFFF;font:700 10px/1.6 'Plus Jakarta Sans', sans-serif;letter-spacing:.08em">04</div>
+      <div style="font:700 16px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">Dots as texture</div>
+      <div style="font-size:12px;color:#687483">saved dot patterns, approved photos and approved screens, pulled from their own pages</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0, 1fr);gap:18px;max-width:1280px">
+
+      <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+        <div style="position:relative;height:340px;border-radius:14px;overflow:hidden;background:#F0F7FF;border:1px solid #E4EBF3">
+          <div style="{{ dotA }}"></div>
+          <div style="position:absolute;left:26px;top:22px"><div style="{{ markLight20 }}"></div></div>
+          <div style="position:absolute;left:0;right:0;top:96px;text-align:center;font:700 40px/1.1 'Plus Jakarta Sans', sans-serif;letter-spacing:-.03em;color:#1F2935">Do Your Best Hiring</div>
+          <div style="{{ subjA.style }}"><sc-if value="{{ subjA.empty }}"><span>Approved cut-out from the photography library</span></sc-if></div>
+        </div>
+        <div style="font:700 11px/1.4 'Lato', sans-serif;color:#687483">{{ capA }} · fading up · Slate 950 headline</div>
+      </div>
+
+      <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+        <div style="position:relative;height:340px;border-radius:14px;overflow:hidden;background:#FFFFFF;border:1px solid #E4EBF3">
+          <div style="{{ dotB }}"></div>
+          <div style="{{ subjB.style }}"><sc-if value="{{ subjB.empty }}"><span>Approved cut-out</span></sc-if></div>
+          <sc-if value="{{ screenB.has }}"><div style="{{ screenB.style }}"></div></sc-if>
+          <sc-if value="{{ screenB.empty }}"><div style="position:absolute;right:34px;top:60px;width:330px;border-radius:14px;background:#FFFFFF;box-shadow:0 2px 6px rgba(31,41,53,.08),0 18px 40px rgba(31,41,53,.12);padding:22px;display:flex;flex-direction:column;gap:12px">
+            <div style="font:400 12px/1 'Lato', sans-serif;color:#687483">Assessment</div>
+            <div style="font:700 19px/1.3 'Plus Jakarta Sans', sans-serif;color:#1F2935">I enjoy meeting new people.</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="height:38px;display:flex;align-items:center;padding:0 14px;border-radius:9px;border:1px solid #D0DAE5;font:400 13px/1 'Lato', sans-serif;color:#1F2935">Strongly agree</div>
+              <div style="height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-radius:9px;background:#0072D5;font:700 13px/1 'Lato', sans-serif;color:#FFFFFF"><span>Agree</span><span>✓</span></div>
+              <div style="height:38px;display:flex;align-items:center;padding:0 14px;border-radius:9px;border:1px solid #D0DAE5;font:400 13px/1 'Lato', sans-serif;color:#1F2935">Unsure</div>
+              <div style="height:38px;display:flex;align-items:center;padding:0 14px;border-radius:9px;border:1px solid #D0DAE5;font:400 13px/1 'Lato', sans-serif;color:#1F2935">Disagree</div>
+            </div>
+          </div></sc-if>
+        </div>
+        <div style="font:700 11px/1.4 'Lato', sans-serif;color:#687483">{{ capB }} behind the subject · approved screen at right</div>
+      </div>
+
+      <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+        <div style="position:relative;height:340px;border-radius:14px;overflow:hidden;background:#002854">
+          <div style="{{ dotC }}"></div>
+          <div style="position:absolute;left:30px;top:24px"><div style="{{ markDark20 }}"></div></div>
+          <div style="position:absolute;left:30px;top:96px;width:300px;display:flex;flex-direction:column;gap:14px">
+            <div style="font:700 34px/1.12 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#FFFFFF">Hire the people who stay.</div>
+            <div style="display:flex;align-items:center;gap:8px"><div style="width:54px;height:5px;border-radius:99px;background:#00E4C0"></div><div style="width:18px;height:5px;border-radius:99px;background:#ED00E6"></div></div>
+            <div style="font:400 14px/1.6 'Lato', sans-serif;color:#99C7FF">Dot field carries the right third; the headline keeps the flat ground.</div>
+          </div>
+          <div style="{{ subjC.style }}"><sc-if value="{{ subjC.empty }}"><span>Approved cut-out</span></sc-if></div>
+        </div>
+        <div style="font:700 11px/1.4 'Lato', sans-serif;color:#687483">{{ capC }} · radial fade · mint and magenta rule</div>
+      </div>
+
+      <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+        <div style="position:relative;height:340px;border-radius:14px;overflow:hidden;background:#FFFFFF;border:1px solid #E4EBF3">
+          <div style="{{ dotD }}"></div>
+          <div style="position:absolute;left:34px;top:34px;right:34px;display:flex;flex-direction:column;gap:12px">
+            <div style="font:700 11px/1 'Plus Jakarta Sans', sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">Case study</div>
+            <div style="font:700 32px/1.14 'Plus Jakarta Sans', sans-serif;letter-spacing:-.02em;color:#1F2935;max-width:20ch">4.5X reduced turnover in one quarter</div>
+          </div>
+          <div style="position:absolute;left:34px;bottom:34px;display:flex;gap:12px">
+            <div style="width:150px;min-width:0;flex:none;box-sizing:border-box;border-radius:12px;background:#002854;padding:18px;display:flex;flex-direction:column;gap:6px">
+              <div style="font:700 30px/1 'Plus Jakarta Sans', sans-serif;color:#6AAEFE">4.5X</div>
+              <div style="font:700 12px/1.3 'Lato', sans-serif;color:#6AAEFE">Reduced turnover</div>
+            </div>
+            <div style="width:150px;min-width:0;flex:none;box-sizing:border-box;border-radius:12px;background:#00E4C0;padding:18px;display:flex;flex-direction:column;gap:6px">
+              <div style="font:700 30px/1 'Plus Jakarta Sans', sans-serif;color:#1F2935">68%</div>
+              <div style="font:700 12px/1.3 'Lato', sans-serif;color:#1F2935">Faster to hire</div>
+            </div>
+          </div>
+          <div style="{{ subjD.style }}"><sc-if value="{{ subjD.empty }}"><span>Approved photo</span></sc-if></div>
+        </div>
+        <div style="font:700 11px/1.4 'Lato', sans-serif;color:#687483">{{ capD }} · magenta eyebrow, blue and mint stat cards</div>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400}}">
+class Component extends DCLogic {
+  state = { dots: [], photos: [], screens: [] };
+
+  // the committed 2026 artwork; shape roles match Logo 2026
+  ART = { light: 'assets/logos/2026/lockup.svg', dark: 'assets/logos/2026/lockup.svg' };
+  ROLES = ['ink', 'blue'];
+  _svg = {};
+
+  RECIPEKEY = 'jf-layout-recipe-shots-v1';
+  DOTKEY = 'jf-dot-patterns-v1';
+  PHOTOKEY = 'jf-photo-library-v1';
+  SCREENKEY = 'jf-screens-library-v1';
+
+  componentWillUnmount() {
+    if (this._ro) this._ro.disconnect();
+  }
+
+  fit() {
+    document.querySelectorAll('[data-fit]').forEach(w => {
+      const design = Number(w.getAttribute('data-fit')) || 1280;
+      const scale = Math.min(1, w.clientWidth / design);
+      w.style.setProperty('--fit', scale.toFixed(4));
+      // frames without a declared aspect take their height from the scaled content
+      if (!w.style.aspectRatio) {
+        const inner = w.firstElementChild;
+        if (inner) w.style.height = Math.round(inner.getBoundingClientRect().height) + 'px';
+      }
+    });
+  }
+
+  componentDidMount() {
+    this._ro = new ResizeObserver(() => this.fit());
+    document.querySelectorAll('[data-fit]').forEach(w => this._ro.observe(w));
+    this.fit();
+    requestAnimationFrame(() => this.fit());
+    const read = k => { try { return JSON.parse(localStorage.getItem(k) || '[]') || []; } catch (e) { return []; } };
+    let shots = {};
+    try { shots = JSON.parse(localStorage.getItem(this.RECIPEKEY) || '{}') || {}; } catch (e) {}
+    this.setState({
+      recipeShots: shots,
+      dots: read(this.DOTKEY),
+      photos: read(this.PHOTOKEY),
+      screens: read(this.SCREENKEY)
+    });
+  }
+
+  // the saved pattern paints its own ground rect; as a texture it must be transparent
+  patternUrl(entry) {
+    if (!entry || !entry.uri) return '';
+    let text = '';
+    try {
+      const comma = entry.uri.indexOf(',');
+      const head = entry.uri.slice(5, comma);
+      const body = entry.uri.slice(comma + 1);
+      text = /;base64/i.test(head) ? atob(body) : decodeURIComponent(body);
+    } catch (e) { return ''; }
+    const bare = text.replace(/<rect[^>]*\/>\s*/i, '');
+    return this.blobUrl('pat-' + entry.id, 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(bare));
+  }
+
+  dotCaption(index, ground, fallbackColour) {
+    const list = this.state.dots || [];
+    if (!list.length) return ground + ' · ' + fallbackColour + ' lattice — save a pattern on the Dot Patterns page to use a real one';
+    const e = list[index % list.length];
+    const ink = ((e.params || {}).ink || '').toUpperCase();
+    const names = { '#99C7FF': 'Blue 300', '#6AAEFE': 'Blue 400', '#0072D5': 'Blue 600', '#BFDCFF': 'Blue 200', '#00E4C0': 'Mint 300', '#A4FFE7': 'Mint 100', '#ED00E6': 'Magenta 500', '#1F2935': 'Slate 950', '#002854': 'Blue 950' };
+    return ground + ' · ' + (e.name || 'saved pattern') + ' · ' + (names[ink] || ink) + ' dots';
+  }
+
+  // a saved dot pattern if the library has one, otherwise the CSS lattice
+  dotField(index, box, fallbackColour, gap, mask) {
+    const list = this.state.dots || [];
+    const entry = list.length ? list[index % list.length] : null;
+    const url = this.patternUrl(entry);
+    const layer = url
+      ? 'background-image:url(' + url + ');background-size:cover;background-position:center'
+      : 'background-image:radial-gradient(circle, ' + fallbackColour + ' 2.7px, transparent 2.8px);background-size:' + gap + 'px ' + gap + 'px';
+    return box + ';' + layer + ';-webkit-mask-image:' + mask + ';mask-image:' + mask;
+  }
+
+  // a landscape capture, sized from its own aspect so the card hugs the screen
+  screenSlot(width, css) {
+    const all = this.state.screens || [];
+    const land = all.filter(p => p.w && p.h && p.w / p.h >= 1.2);
+    const entry = (land.length ? land : all)[0];
+    if (!entry) return { has: false, empty: true, style: '' };
+    const h = Math.round(width * entry.h / entry.w);
+    return {
+      has: true,
+      empty: false,
+      style: css + ';width:' + width + 'px;height:' + h + 'px;background-image:url(' + this.blobUrl('screens-' + entry.id, entry.uri) +
+        ');background-size:cover;background-position:top center;background-repeat:no-repeat'
+    };
+  }
+
+  // a framed photo, sized from its own aspect so the box never letterboxes
+  photoFrame(width, css) {
+    const all = this.state.photos || [];
+    const full = all.filter(p => p.w && p.h && !/_no_?b(g|ackground)|no_bgrd/i.test(p.name || ''));
+    const entry = (full.length ? full : all)[0];
+    if (!entry || !entry.w) return { has: false, empty: true, style: '' };
+    const h = Math.round(width * entry.h / entry.w);
+    return {
+      has: true,
+      empty: false,
+      style: css + ';width:' + width + 'px;height:' + h + 'px;background-image:url(' + this.blobUrl('photos-' + entry.id, entry.uri) +
+        ');background-size:cover;background-position:center;background-repeat:no-repeat'
+    };
+  }
+
+  imageSlot(store, index, box, emptyBox, kind) {
+    const all = this.state[store] || [];
+    let list = all;
+    if (kind === 'cutout') {
+      const cut = all.filter(p => /_no_?b(g|ackground)|no_bgrd/i.test(p.name || '') || /no.?b(g|ackground)/i.test(p.caption || ''));
+      list = cut.length ? cut : all;
+    } else if (kind === 'framed') {
+      const full = all.filter(p => !(/_no_?b(g|ackground)|no_bgrd/i.test(p.name || '')));
+      list = full.length ? full : all;
+    }
+    const entry = list.length ? list[index % list.length] : null;
+    if (!entry) return { has: false, empty: true, style: emptyBox };
+    return {
+      has: true,
+      empty: false,
+      style: box + ';background-image:url(' + this.blobUrl(store + '-' + entry.id, entry.uri) +
+        ');background-size:contain;background-repeat:no-repeat;background-position:bottom center'
+    };
+  }
+
+  svgText(src) {
+    if (!src || !/\.svg($|\?)|^data:image\/svg\+xml/i.test(src)) return null;
+    if (Object.prototype.hasOwnProperty.call(this._svg, src)) return this._svg[src];
+    if (/^data:/i.test(src)) {
+      let t = '';
+      try {
+        const c = src.slice(src.indexOf(',') + 1);
+        t = /;base64/i.test(src.slice(0, src.indexOf(','))) ? atob(c) : decodeURIComponent(c);
+      } catch (e) { t = ''; }
+      this._svg[src] = t;
+      return t;
+    }
+    this._svg[src] = null;
+    fetch(src).then(r => r.text()).then(t => { this._svg[src] = t; this.forceUpdate(); }).catch(() => { this._svg[src] = ''; });
+    return null;
+  }
+
+  // recolour the two shapes of the lockup: "journey" then "front"
+  _blobs = {};
+
+  // a blob: URL survives the inline-style parser (a data URI's semicolons do not)
+  blobUrl(key, uri) {
+    if (this._blobs[key]) return this._blobs[key];
+    try {
+      const comma = uri.indexOf(',');
+      const head = uri.slice(5, comma);
+      const type = head.split(';')[0] || 'image/svg+xml';
+      const body = uri.slice(comma + 1);
+      let bytes;
+      if (/;base64/i.test(head)) {
+        const bin = atob(body);
+        bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      } else {
+        bytes = new TextEncoder().encode(decodeURIComponent(body));
+      }
+      this._blobs[key] = URL.createObjectURL(new Blob([bytes], { type: type }));
+    } catch (e) { this._blobs[key] = ''; }
+    return this._blobs[key];
+  }
+
+  saveShots(shots) {
+    try {
+      localStorage.setItem(this.RECIPEKEY, JSON.stringify(shots));
+      this.setState({ recipeShots: shots, shotError: '' });
+    } catch (e) {
+      this.setState({ shotError: 'This browser is out of storage, so that example was not saved. Remove one and try again.' });
+    }
+  }
+
+  readShot(i, ev) {
+    const file = ((ev.target && ev.target.files) || [])[0];
+    if (ev.target) ev.target.value = '';
+    if (!file) return;
+    const fr = new FileReader();
+    fr.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const render = (cap, q) => {
+          const scale = Math.min(1, cap / Math.max(img.width, img.height));
+          const w = Math.round(img.width * scale), h = Math.round(img.height * scale);
+          const c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          const ctx = c.getContext('2d');
+          ctx.imageSmoothingQuality = 'high';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+          return c.toDataURL('image/jpeg', q);
+        };
+        const BUDGET = 260000;
+        let uri = '';
+        for (const stepDef of [[1200, 0.85], [1000, 0.82], [800, 0.8], [640, 0.78]]) {
+          uri = render(stepDef[0], stepDef[1]);
+          if (uri.length <= BUDGET) break;
+        }
+        const shots = Object.assign({}, this.state.recipeShots || {});
+        shots[i] = uri;
+        this.saveShots(shots);
+      };
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  }
+
+  mark(which, uri, h) {
+    const url = /^data:/i.test(uri) ? this.blobUrl(which + h + uri.length, uri) : uri;
+    return 'height:' + h + 'px;width:' + Math.round(h * 6.19) + 'px;flex:none;background-image:url(' + url +
+      ');background-size:contain;background-repeat:no-repeat;background-position:left center';
+  }
+
+  // recolour the two shapes: Slate 950 + Blue 600 on light, white + Blue 400 on dark
+  logo(which) {
+    const src = this.ART[which];
+    const t = this.svgText(src);
+    if (!t) return src;
+    const onDark = which === 'dark';
+    const ink = onDark ? '#FFFFFF' : '#1F2935';
+    const blue = onDark ? '#6AAEFE' : '#0072D5';
+    const re = /(fill|stop-color|stroke)(\s*[:=]\s*["']?\s*)(#[0-9a-f]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)|[a-z]{3,20}\b)/gi;
+    const skip = { none: 1, currentcolor: 1, transparent: 1, inherit: 1, initial: 1, unset: 1 };
+    let n = -1;
+    let out = t.replace(re, (whole, prop, sep, colour) => {
+      if (skip[colour.toLowerCase()]) return whole;
+      n++;
+      const role = this.ROLES[n] || 'ink';
+      return prop + sep + (role === 'blue' ? blue : ink);
+    });
+    // a second opacity attribute would be invalid XML and the SVG would not parse
+    out = out.replace(/\s(fill|stroke)-opacity\s*=\s*"[^"]*"/gi, '')
+             .replace(/(fill|stroke)-opacity\s*:\s*[^;"']+;?/gi, '');
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(out);
+  }
+
+  renderVals() {
+    const light = this.logo('light');
+    const dark = this.logo('dark');
+    const fadeUp = 'linear-gradient(to top, #000 0%, rgba(0,0,0,.35) 62%, transparent 100%)';
+    const fadeRight = 'linear-gradient(to right, #000 0%, rgba(0,0,0,.4) 65%, transparent 100%)';
+    const fadeRadial = 'radial-gradient(circle at 78% 55%, #000 0%, rgba(0,0,0,.4) 55%, transparent 88%)';
+    const fadeUpHard = 'linear-gradient(to top, #000 0%, transparent 100%)';
+    const cut = 'border-radius:12px 12px 0 0;background-repeat:no-repeat';
+
+    return {
+      shotError: this.state.shotError || '',
+      hasShotError: !!this.state.shotError,
+      recipes: (() => {
+        const fadeUp = 'linear-gradient(to top, #000 0%, rgba(0,0,0,.35) 62%, transparent 100%)';
+        const box = 'position:absolute;left:0;right:0;bottom:0;height:74%';
+        const shots = this.state.recipeShots || {};
+        const defs = [
+          ['Dots alone', 1, 0, 0, 'ok', 'A field on its own carries a divider, a cover or a quiet section.'],
+          ['Dots + person', 1, 1, 0, 'ok', 'The field sits behind the cut-out. Layer order: dots, then person.'],
+          ['Dots + screen', 1, 0, 1, 'ok', 'The field sits behind the product capture. Layer order: dots, then screen.'],
+          ['Dots + person + screen', 1, 1, 1, 'ok', 'All three, in order: dots at the back, person, screen in front.'],
+          ['Person with no dots', 0, 1, 0, 'no', 'A cut-out on flat white has nothing holding it to the page.'],
+          ['Screen with no dots', 0, 0, 1, 'no', 'A capture floating on white reads as a screenshot, not a brand asset.']
+        ];
+        return defs.map((d, i) => {
+          const shot = shots[i] || '';
+          const person = d[2] ? this.imageSlot('photos', i, 'position:absolute;left:9%;bottom:0;width:36%;height:78%;background-repeat:no-repeat;background-size:contain;background-position:bottom center',
+            'position:absolute;left:9%;bottom:0;width:36%;height:78%;border-radius:10px 10px 0 0;border:1px dashed #6AAEFE;border-bottom:none;background:rgba(255,255,255,.55);display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font:700 10px/1.3 Lato, sans-serif;color:#00376E;text-align:center', 'cutout')
+            : { has: false, empty: false, style: 'display:none' };
+          return {
+            name: d[0],
+            note: d[5],
+            verdict: d[4] === 'ok' ? 'Allowed' : 'Avoid',
+            badgeStyle: 'align-self:flex-start;padding:2px 9px;border-radius:99px;font:700 10.5px/1.7 Lato, sans-serif;letter-spacing:.1em;text-transform:uppercase;color:' +
+              (d[4] === 'ok' ? '#004336' : '#B3283F') + ';border:1px solid ' + (d[4] === 'ok' ? '#004336' : '#B3283F'),
+            tileStyle: 'position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#FFFFFF;border:1px solid #E4EBF3',
+            // an uploaded mock replaces the whole composed tile
+            hasShot: !!shot,
+            noShot: !shot,
+            shotStyle: shot
+              ? 'position:absolute;inset:0;background-color:#FFFFFF;background-image:url(' + this.blobUrl('shot-' + i + '-' + shot.length, shot) +
+                ');background-size:contain;background-repeat:no-repeat;background-position:center'
+              : '',
+            onShot: e => this.readShot(i, e),
+            onClearShot: () => {
+              const next = Object.assign({}, shots);
+              delete next[i];
+              this.saveShots(next);
+            },
+            hasDots: !!d[1] && !shot,
+            dotStyle: d[1] ? this.dotField(i, box, '#99C7FF', 14, fadeUp) : '',
+            hasPerson: !!d[2] && !shot,
+            personStyle: person.style,
+            personEmpty: !!person.empty,
+            hasScreen: !!d[3] && !shot,
+            screenStyle: 'position:absolute;right:6%;top:16%;width:52%;height:56%;border-radius:10px;overflow:hidden;background-color:#FFFFFF;box-shadow:0 2px 6px rgba(31,41,53,.10),0 16px 34px rgba(31,41,53,.14);border:1px solid #E4EBF3' +
+              (this.state.screens && this.state.screens.length
+                ? ';background-image:url(' + this.blobUrl('rec-' + i + '-' + this.state.screens[0].id, this.state.screens[0].uri) + ');background-size:cover;background-position:top center'
+                : ''),
+            layers: d[1] && d[2] && d[3] ? 'dots → person → screen' : d[1] && d[2] ? 'dots → person' : d[1] && d[3] ? 'dots → screen' : d[1] ? 'dots' : d[2] ? 'person only' : 'screen only'
+          };
+        });
+      })(),
+
+      capA: this.dotCaption(0, 'Blue 50 ground', 'Blue 300'),
+      capB: this.dotCaption(1, 'White ground', 'Blue 200'),
+      capC: this.dotCaption(2, 'Blue 950 ground', 'Blue 400'),
+      capD: this.dotCaption(3, 'White ground', 'Mint 100'),
+      dotA: this.dotField(0, 'position:absolute;left:0;right:0;bottom:0;height:300px', '#99C7FF', 15, fadeUp),
+      dotB: this.dotField(1, 'position:absolute;left:0;top:0;bottom:0;width:300px', '#BFDCFF', 17, fadeRight),
+      dotC: this.dotField(2, 'position:absolute;right:0;top:0;bottom:0;width:420px;opacity:.75', '#6AAEFE', 16, fadeRadial),
+      dotD: this.dotField(3, 'position:absolute;left:0;right:0;bottom:0;height:250px', '#A4FFE7', 15, fadeUpHard),
+
+      subjA: this.imageSlot('photos', 0, 'position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:300px;height:270px;' + cut,
+        'position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:300px;height:270px;border-radius:12px 12px 0 0;border:1px dashed #6AAEFE;border-bottom:none;background:rgba(255,255,255,.55);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;font:700 11.5px/1.4 Lato, sans-serif;color:#00376E;text-align:center', 'cutout'),
+      subjB: this.imageSlot('photos', 1, 'position:absolute;left:56px;bottom:0;width:250px;height:340px;' + cut,
+        'position:absolute;left:56px;bottom:0;width:250px;height:340px;border-radius:12px 12px 0 0;border:1px dashed #6AAEFE;border-bottom:none;background:rgba(255,255,255,.6);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;font:700 11.5px/1.4 Lato, sans-serif;color:#00376E;text-align:center', 'cutout'),
+      subjC: this.imageSlot('photos', 2, 'position:absolute;right:52px;bottom:0;width:250px;height:330px;' + cut,
+        'position:absolute;right:52px;bottom:0;width:250px;height:330px;border-radius:12px 12px 0 0;border:1px dashed #6AAEFE;border-bottom:none;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;font:700 11.5px/1.4 Lato, sans-serif;color:#99C7FF;text-align:center', 'cutout'),
+      subjD: this.photoFrame(240, 'position:absolute;right:34px;bottom:34px;border-radius:12px;overflow:hidden'),
+
+      screenB: this.screenSlot(330, 'position:absolute;right:34px;top:88px;border-radius:14px;overflow:hidden;box-shadow:0 2px 6px rgba(31,41,53,.08),0 18px 40px rgba(31,41,53,.12);background-color:#FFFFFF'),
+
+      markLight26: this.mark('light', light, 26),
+      markLight22: this.mark('light', light, 22),
+      markLight20: this.mark('light', light, 20),
+      markDark20: this.mark('dark', dark, 20)
+    };
+  }
+}
+</script>
+</body>
+</html>

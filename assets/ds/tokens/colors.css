@@ -1,57 +1,57 @@
 /* ============================================================
    Journeyfront — Color tokens
    Source: 2026 Brand Book (Journeyfront).fig
-   Primary brand color: Bright Blue #3CB1E5
-   Primary text / base grey: Dark Grey #373232
+   Primary brand color: JF Blue 600 #0072D5
+   Primary text / anchor: Slate 950 #1F2935
    ============================================================ */
 
 :root {
   /* ---- Brand core ---- */
-  --jf-blue: #3CB1E5;          /* Bright Blue — our primary color, used for accenting */
-  --jf-blue-dark: #11465B;     /* Dark Blue — backgrounds, deep surfaces */
-  --jf-ink: #373232;           /* Dark Grey — primary text + base grey */
+  --jf-blue: #0072D5;          /* Bright Blue — our primary color, used for accenting */
+  --jf-blue-dark: #1F2935;     /* Dark Blue — backgrounds, deep surfaces */
+  --jf-ink: #1F2935;           /* Dark Grey — primary text + base grey */
   --jf-white: #FFFFFF;
-  --jf-logo-gray: #808285;     /* the grey in the "front" of the wordmark */
+  --jf-logo-gray: #8491A0;     /* the grey in the "front" of the wordmark */
 
   /* ---- Blue ramp ---- */
-  --jf-blue-pastel: #E8F6FC;
-  --jf-blue-light:  #B1E0F5;
-  --jf-blue-mid:    #8FD2F0;
-  --jf-blue-bright: #3CB1E5;
-  --jf-blue-deep:   #11465B;
-  --jf-blue-hover:  #1A7195;   /* pressed / hover blue (darker than bright) */
+  --jf-blue-pastel: #F0F7FF;
+  --jf-blue-light:  #DCECFF;
+  --jf-blue-mid:    #99C7FF;
+  --jf-blue-bright: #0072D5;
+  --jf-blue-deep:   #002854;
+  --jf-blue-hover:  #005AAB;   /* pressed / hover blue (darker than bright) */
 
   /* ---- Green ramp (success / positive signal) ---- */
-  --jf-green-pastel: #E3FCF6;
-  --jf-green-light:  #A1F4E1;
-  --jf-green-mid:    #6EEDD1;
-  --jf-green-bright: #20E0B2;
-  --jf-green-deep:   #005B47;
+  --jf-green-pastel: #DCFFF5;
+  --jf-green-light:  #A4FFE7;
+  --jf-green-mid:    #11FBD4;
+  --jf-green-bright: #00E4C0;
+  --jf-green-deep:   #004336;
 
   /* ---- Pink / Magenta ramp (AI accent + alert / caution) ---- */
-  --jf-pink-pastel: #F2EDFD;
-  --jf-pink-light:  #D4C3FA;
-  --jf-pink-mid:    #BFA2F7;
-  --jf-pink-bright: #D62CFF;
-  --jf-pink-deep:   #5A0566;
+  --jf-pink-pastel: #FFF1FD;
+  --jf-pink-light:  #FFDEFB;
+  --jf-pink-mid:    #FF99F6;
+  --jf-pink-bright: #ED00E6;
+  --jf-pink-deep:   #60005D;
 
   /* ---- Grayscale ramp ---- */
-  --jf-gray-pastel: #F7F8F9;
-  --jf-gray-light:  #E5E5E5;
-  --jf-gray-mid:    #B7B7B7;
-  --jf-gray-bright: #6A6A6A;
-  --jf-gray-deep:   #373232;
+  --jf-gray-pastel: #F1F6FD;
+  --jf-gray-light:  #E4EBF3;
+  --jf-gray-mid:    #B9C5D3;
+  --jf-gray-bright: #687483;
+  --jf-gray-deep:   #1F2935;
 
   /* ============================================================
      Semantic aliases — prefer these in product UI
      ============================================================ */
 
   /* Text */
-  --jf-text:          var(--jf-ink);        /* #373232 body text */
-  --jf-text-heading:  var(--jf-blue-dark);  /* #11465B — headings / section titles (per brand guides) */
+  --jf-text:          var(--jf-ink);        /* Slate 950 body text */
+  --jf-text-heading:  var(--jf-blue-dark);  /* Slate 950 — headings / section titles */
   --jf-text-muted:    var(--jf-gray-bright);/* #6A6A6A secondary text */
-  --jf-text-subtle:   var(--jf-gray-mid);   /* #B7B7B7 captions, placeholders */
-  --jf-text-accent:   var(--jf-blue);       /* #3CB1E5 emphasis / links */
+  --jf-text-subtle:   var(--jf-gray-bright);   /* #B7B7B7 captions, placeholders */
+  --jf-text-accent:   var(--jf-blue);       /* JF Blue 600 emphasis / links */
   --jf-text-on-dark:  var(--jf-white);
   --jf-text-on-accent:var(--jf-white);
 
@@ -60,7 +60,7 @@
   --jf-surface-subtle: var(--jf-gray-pastel);/* #F7F8F9 app canvas */
   --jf-surface-tint:   var(--jf-blue-pastel);/* #E8F6FC tinted panels */
   --jf-surface-sunken: var(--jf-gray-light); /* #E5E5E5 wells */
-  --jf-surface-dark:   var(--jf-blue-dark);  /* #11465B dark sections */
+  --jf-surface-dark:   var(--jf-blue-dark);  /* Slate 950 dark sections */
 
   /* Borders & lines */
   --jf-border:        var(--jf-gray-light);  /* #E5E5E5 default hairline */
@@ -72,7 +72,7 @@
   --jf-primary-hover:  var(--jf-blue-hover);
   --jf-primary-active: var(--jf-blue-deep);
   --jf-primary-tint:   var(--jf-blue-pastel);
-  --jf-focus-ring:     rgba(60, 177, 229, 0.40);
+  --jf-focus-ring:     rgba(0, 114, 213, 0.40);
 
   /* Status — brand has no red; magenta carries caution/alert */
   --jf-success:      var(--jf-green-bright);
@@ -80,18 +80,18 @@
   --jf-success-tint: var(--jf-green-pastel);
   --jf-info:         var(--jf-blue);
   --jf-info-tint:    var(--jf-blue-pastel);
-  --jf-warning:      var(--jf-pink-bright);
-  --jf-warning-deep: var(--jf-pink-deep);
-  --jf-warning-tint: var(--jf-pink-pastel);
-  --jf-danger:       var(--jf-pink-bright);  /* #D62CFF — brand caution magenta */
-  --jf-danger-deep:  var(--jf-pink-deep);
-  --jf-danger-tint:  var(--jf-pink-pastel);
+  --jf-warning:      #FF4B79;
+  --jf-warning-deep: #6D0027;
+  --jf-warning-tint: #FFF2F3;
+  --jf-danger:       #FF4B79;  /* Rose 500 */
+  --jf-danger-deep:  #A90142;
+  --jf-danger-tint:  #FFF2F3;
 
   /* ============================================================
      Gradients — use SPARINGLY, never behind type
      ============================================================ */
-  --jf-gradient-full:      linear-gradient(90deg, #D62CFF 0%, #3CB1E5 50%, #20E0B2 100%); /* @kind other */
-  --jf-gradient-ai:        linear-gradient(90deg, #D62CFF 0%, #3CB1E5 100%); /* @kind other */
-  --jf-gradient-secondary: linear-gradient(90deg, #3CB1E5 0%, #20E0B2 100%); /* @kind other */
+  --jf-gradient-full:      linear-gradient(90deg, #ED00E6 0%, #0072D5 50%, #00E4C0 100%); /* @kind other */
+  --jf-gradient-ai:        linear-gradient(90deg, #ED00E6 0%, #0072D5 100%); /* @kind other */
+  --jf-gradient-secondary: linear-gradient(90deg, #0072D5 0%, #00E4C0 100%); /* @kind other */
   --jf-fade-white:         linear-gradient(90deg, #FFFFFF 30.49%, #FFFFFF 54.17%, rgba(255,255,255,0.8) 70.97%, rgba(255,255,255,0.4) 98.4%); /* @kind other */
 }

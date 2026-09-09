@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="assets/ds/tokens/fonts.css">
+<link rel="stylesheet" href="assets/ds/tokens/colors.css">
+<link rel="stylesheet" href="assets/ds/tokens/typography.css">
+<link rel="stylesheet" href="assets/ds/tokens/effects.css">
+<link rel="stylesheet" href="tokens/tokens.css">
+<style>
+  /* the DS subtle tone is 2.01:1 — too pale for the 10px captions this tool leans on */
+  :root { --jf-text-subtle: #6A6A6A; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  a { color: var(--jf-blue); text-decoration: none; }
+  [data-jf-nav] a:hover { background:var(--jf-blue-pastel) !important; color:var(--jf-blue) !important; }
+  a:hover { color: var(--jf-blue-hover); }
+  input, button, select { font-family: var(--jf-font-sans); }
+  .c26-scroll::-webkit-scrollbar { width: 10px; }
+  .c26-scroll::-webkit-scrollbar-thumb { background: #D8DDE1; border-radius: 99px; border: 3px solid #FFFFFF; }
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;height:100vh;overflow:hidden;font-family:var(--jf-font-sans);color:var(--jf-ink)">
+  <div data-jf-nav="1" style="flex:none;display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:9px 22px;background:var(--jf-white);border-bottom:1px solid var(--jf-border)">
+    <a href="Overview.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Overview</a>
+    <a href="Logo%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Logo</a>
+    <a href="Colors%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:var(--jf-ink);color:var(--jf-white);">Colors</a>
+    <a href="Typography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Typography</a>
+    <a href="Icons.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Icons</a>
+    <a href="Dot%20Patterns.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Dot patterns</a>
+    <a href="Photography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Photography</a>
+    <a href="Screens.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Screens</a>
+    <a href="Layout.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Layout</a>
+  </div>
+
+
+  <div style="flex:none;display:flex;align-items:center;gap:14px;padding:12px 22px;background:var(--jf-white);border-bottom:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm);overflow-x:auto">
+    <div style="flex:none;font:700 13px/1.3 var(--jf-font-sans);letter-spacing:.02em;color:var(--jf-blue-dark);padding-right:6px">Colors 2026</div>
+    <div style="flex:none;width:1px;height:30px;background:var(--jf-border)"></div>
+    <sc-for list="{{ primaryTabs }}" as="ptab" hint-placeholder-count="2">
+      <div onClick="{{ ptab.onPick }}" style="{{ ptab.style }}">{{ ptab.label }}</div>
+    </sc-for>
+    <sc-if value="{{ showHistoryTabs }}"><div style="flex:none;width:1px;height:30px;background:var(--jf-border)"></div></sc-if>
+    <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="0">
+      <div onClick="{{ tab.onPick }}" title="{{ tab.label }}" style="{{ tab.style }}">
+        <div style="{{ tab.stripStyle }}">
+          <sc-for list="{{ tab.chips }}" as="chip" hint-placeholder-count="5">
+            <div style="{{ chip.style }}"></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="{{ tab.labelStyle }}">{{ tab.label }}</div>
+          <div style="{{ tab.countStyle }}">{{ tab.count }}</div>
+        </div>
+      </div>
+    </sc-for>
+    <sc-if value="{{ showHistoryTabs }}"><div onClick="{{ onAddOption }}" title="Add another palette option" style="flex:none;height:34px;padding:0 14px;display:flex;align-items:center;gap:6px;border-radius:var(--jf-radius-md);border:1px dashed var(--jf-border-strong);background:var(--jf-white);font:700 11.5px/1 var(--jf-font-sans);color:var(--jf-blue-deep);cursor:pointer;white-space:nowrap" style-hover="border-color:var(--jf-blue);background:var(--jf-blue-pastel)">+ Option</div></sc-if>
+  </div>
+
+  <div style="flex:1;min-height:0;display:flex;overflow:hidden">
+
+    <div style="width:344px;flex:none;display:flex;flex-direction:column;background:var(--jf-white);border-right:1px solid var(--jf-border);overflow-y:auto" class="c26-scroll">
+      <div style="padding:20px 20px 14px 20px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--jf-border)">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <sc-if value="{{ readOnly }}"><div style="font:700 17px/1.2 var(--jf-font-display);color:var(--jf-blue-dark)">{{ activeLabel }}</div></sc-if>
+          <sc-if value="{{ editable }}"><input type="text" value="{{ activeName }}" placeholder="{{ namePlaceholder }}" onChange="{{ onRename }}" title="Name this palette" style="flex:1;min-width:0;height:30px;padding:0 8px;border-radius:var(--jf-radius-sm);border:1px solid transparent;background:transparent;font:700 17px/1.2 var(--jf-font-display);color:var(--jf-blue-dark);box-sizing:border-box" style-hover="border-color:var(--jf-border);background:var(--jf-white)" style-focus="border-color:var(--jf-blue);background:var(--jf-white);outline:none"></sc-if>
+          <sc-if value="{{ editable }}"><div onClick="{{ onResetAll }}" title="Back to the committed palette" style="flex:none;font:700 10.5px/1 var(--jf-font-sans);color:var(--jf-text-subtle);cursor:pointer;padding:5px 8px;border-radius:var(--jf-radius-sm);border:1px solid var(--jf-border)" style-hover="color:var(--jf-blue-deep);border-color:var(--jf-border-strong)">Reset all</div></sc-if>
+        </div>
+        <div style="font-size:11.5px;line-height:1.45;color:var(--jf-text-subtle)">{{ panelHint }}</div>
+      </div>
+
+      <div style="padding:16px 20px 28px 20px;display:flex;flex-direction:column;gap:20px">
+        <sc-for list="{{ ramps }}" as="ramp" hint-placeholder-count="5">
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <div style="font:700 12px/1.35 var(--jf-font-sans);color:var(--jf-blue-dark)">{{ ramp.label }}</div>
+              <div style="font-size:10px;line-height:1.4;color:var(--jf-text-subtle)">{{ ramp.hint }}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ ramp.stops }}" as="stop" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <input type="color" value="{{ stop.value }}" onChange="{{ stop.onChange }}" title="{{ stop.token }}" style="{{ stop.swatchStyle }}">
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px">
+                    <div style="display:flex;align-items:center;gap:5px;min-width:0"><div style="font:700 10.5px/1.3 var(--jf-font-mono, ui-monospace);color:var(--jf-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ stop.token }}</div><sc-if value="{{ stop.isBase }}"><div style="{{ stop.sideBaseStyle }}">MAIN</div></sc-if></div>
+                    <div style="font-size:10px;line-height:1.3;color:var(--jf-text-subtle)">{{ stop.note }}</div>
+                  </div>
+                  <div style="font:400 10.5px/1.3 var(--jf-font-mono, ui-monospace);color:var(--jf-text-subtle);flex:none">{{ stop.value }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="c26-scroll" style="flex:1;min-width:0;overflow-y:auto;padding:26px 30px 60px 30px;display:flex;flex-direction:column;gap:26px;background:{{ pageBg }}">
+
+      <div style="{{ paletteVars }}">
+
+        <sc-if value="{{ hasRules }}">
+          <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:26px">
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Direction</div>
+              <div style="font-size:11px;color:var(--jf-text-subtle)">the rules that come with this palette</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+              <sc-for list="{{ rules }}" as="rule" hint-placeholder-count="6">
+                <div style="min-width:0;box-sizing:border-box;background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);border-left:4px solid var(--t-primary-500);border-radius:var(--t-radius-md);padding:16px 18px;display:flex;flex-direction:column;gap:6px">
+                  <div style="font:700 12.5px/1.35 var(--jf-font-sans);color:var(--t-text-heading)">{{ rule.title }}</div>
+                  <div style="font-size:11.5px;line-height:1.5;color:var(--t-text-muted)">{{ rule.body }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">The ramps</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">every stop in {{ activeLabel }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ ramps }}" as="ramp" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:96px;flex:none;font:700 12px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">{{ ramp.label }}</div>
+                <div style="flex:1;min-width:0;display:grid;grid-template-columns:repeat(auto-fill, minmax(62px, 1fr));gap:8px">
+                  <sc-for list="{{ ramp.stops }}" as="stop" hint-placeholder-count="4">
+                    <div title="{{ stop.token }} · {{ stop.value }}" style="{{ stop.tileStyle }}">
+                      <div style="display:flex;flex-direction:column;gap:3px"><sc-if value="{{ stop.isBase }}"><div style="{{ stop.baseChipStyle }}">MAIN</div></sc-if><div style="{{ stop.tileLabelStyle }}">{{ stop.stopLabel }}</div></div>
+                      <div style="{{ stop.tileHexStyle }}">{{ stop.value }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{ showCombos }}">
+          <div style="display:flex;flex-direction:column;gap:14px;padding-top:26px">
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Combinations</div>
+              <div style="font-size:11px;color:var(--jf-text-subtle)">the same stat card in every fill the palette allows</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <sc-for list="{{ comboRows }}" as="row" hint-placeholder-count="8">
+                <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:16px">
+                  <sc-for list="{{ row.cells }}" as="cell" hint-placeholder-count="4">
+                    <div style="min-width:0;display:flex;flex-direction:column;gap:7px;align-items:stretch">
+                      <div style="{{ cell.cardStyle }}">
+                        <sc-if value="{{ cell.filled }}"><div style="{{ cell.statStyle }}">4.5X</div></sc-if>
+                        <sc-if value="{{ cell.filled }}"><div style="{{ cell.labelStyle }}">Reduced Turnover</div></sc-if>
+                        <sc-if value="{{ cell.noteInside }}"><div style="{{ cell.noteStyle }}">{{ cell.note }}</div></sc-if>
+                      </div>
+                      <sc-if value="{{ cell.noteOutside }}"><div style="{{ cell.noteOutStyle }}">{{ cell.note }}</div></sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:26px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">In place — web</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">1280px · header, hero, stat band, footer</div>
+          </div>
+          <div data-spec="1" style="--w:1280px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg);border:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm)">
+            <div style="width:var(--w);zoom:var(--fit,1)">
+              <div style="min-height:760px;box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column">
+                <div style="height:76px;flex-shrink:0;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
+                  <img src="assets/logos/2026/lockup.svg" data-src="{{ logoLight }}" alt="Journeyfront" style="flex:none;height:28px;width:auto;object-fit:contain;display:block">
+                  <div style="display:flex;gap:26px;white-space:nowrap;font-size:var(--t-size-body);color:var(--t-text-muted)"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
+                  <div style="flex:1"></div>
+                  <div style="height:40px;flex:none;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Sign In</div>
+                </div>
+                <div style="flex:1;display:flex;align-items:center;gap:40px;padding:56px var(--t-layout-gutter);background:var(--t-surface-tint);min-height:0">
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px">
+                    <div style="font-size:var(--t-size-body);font-weight:700;color:var(--t-primary)">The Intelligent ATS for</div>
+                    <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-display);line-height:1.04;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">High Volume Hiring</div>
+                    <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text-muted);max-width:var(--t-content-measure)">Everything you need in one place for a more intelligent, high volume hiring process. Hire faster. Hire smarter. Get results.</div>
+                    <div style="display:flex;gap:12px;padding-top:8px">
+                      <div style="height:48px;flex:none;padding:0 24px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body);box-shadow:var(--t-shadow-md);white-space:nowrap">Get a Demo</div>
+                      <div style="height:48px;flex:none;padding:0 24px;display:flex;align-items:center;border-radius:var(--t-radius-md);border:var(--t-border-hairline) solid var(--t-primary);color:var(--t-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body);white-space:nowrap">See How It Works</div>
+                    </div>
+                  </div>
+                  <div style="width:430px;height:300px;flex-shrink:0;position:relative">
+                    <img src="assets/graphics/dot-arch-blue.svg" alt="" style="position:absolute;right:-30px;top:10px;width:calc(var(--t-graphic-dots-size) * 0.68);opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 25%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 25%,rgba(0,0,0,0) 100%);pointer-events:none">
+                    <img src="assets/photography/cutout-woman-laptop.png" alt="" style="position:absolute;right:0;bottom:0;height:98%;width:auto;object-fit:contain;object-position:bottom right;display:block">
+                  </div>
+                </div>
+                <div style="flex-shrink:0;display:flex;gap:16px;padding:34px var(--t-layout-gutter)">
+                  <div style="flex:1;min-width:0;box-sizing:border-box;padding:22px;border-radius:var(--t-radius-md);background:var(--t-primary-950);display:flex;flex-direction:column;gap:8px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary-400)">4.5X</div><div style="font-weight:700;font-size:var(--t-size-small);line-height:1.35;color:var(--t-primary-400)">Reduced Turnover</div></div>
+                  <div style="flex:1;min-width:0;box-sizing:border-box;padding:22px;border-radius:var(--t-radius-md);background:var(--t-accent1-300);display:flex;flex-direction:column;gap:8px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-neutral-900)">68%</div><div style="font-weight:700;font-size:var(--t-size-small);line-height:1.35;color:var(--t-neutral-900)">Time-to-Hire Reduction</div></div>
+                  <div style="flex:1;min-width:0;box-sizing:border-box;padding:22px;border-radius:var(--t-radius-md);background:var(--t-primary-50);display:flex;flex-direction:column;gap:8px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary-500)">71%</div><div style="font-weight:700;font-size:var(--t-size-small);line-height:1.35;color:var(--t-neutral-900)">Hiring Efficiency Improvement</div></div>
+                  <div style="flex:1;min-width:0;box-sizing:border-box;padding:22px;border-radius:var(--t-radius-md);background:var(--t-neutral-900);display:flex;flex-direction:column;gap:8px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary-400)">29%</div><div style="font-weight:700;font-size:var(--t-size-small);line-height:1.35;color:var(--t-primary-400)">New Hire Turnover Improvement</div></div>
+                </div>
+                <div style="flex-shrink:0;padding:40px var(--t-layout-gutter);background:var(--t-surface-dark);display:flex;justify-content:space-between;gap:40px">
+                  <div style="display:flex;flex-direction:column;gap:14px">
+                    <img src="assets/logos/2026/lockup.svg" data-src="{{ logoDark }}" alt="Journeyfront" style="height:26px;width:auto;object-fit:contain;display:block">
+                    <div style="font-size:var(--t-size-small);color:var(--t-text-inverse);opacity:.6">© 2026 Journeyfront</div>
+                  </div>
+                  <div style="display:flex;gap:56px;font-size:var(--t-size-small);color:var(--t-text-inverse);opacity:.76">
+                    <div style="display:flex;flex-direction:column;gap:9px"><div style="font-weight:700">Platform</div><div>Assessments</div><div>For BPOs</div></div>
+                    <div style="display:flex;flex-direction:column;gap:9px"><div style="font-weight:700">Company</div><div>Resources</div><div>Sign In</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:26px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">In place — web, dark hero</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">1280px · reversed header, logo cloud, pricing</div>
+          </div>
+          <div data-spec="1" style="--w:1280px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg);border:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm)">
+            <div style="width:var(--w);zoom:var(--fit,1)">
+              <div style="box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column">
+                <div style="background:var(--t-surface-dark);position:relative;overflow:hidden">
+                  <img src="assets/graphics/dot-arch-white.svg" alt="" style="position:absolute;right:-60px;top:-120px;width:520px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
+                  <div style="position:relative;height:76px;display:flex;align-items:center;gap:34px;padding:0 var(--t-layout-gutter);border-bottom:1px solid rgba(255,255,255,.14)">
+                    <img src="assets/logos/2026/lockup.svg" data-src="{{ logoDark }}" alt="Journeyfront" style="flex:none;height:28px;width:auto;object-fit:contain;display:block">
+                    <div style="display:flex;gap:26px;white-space:nowrap;font-size:var(--t-size-body);color:var(--t-text-inverse);opacity:.76"><span>Platform</span><span>Assessments</span><span>For BPOs</span><span>Resources</span></div>
+                    <div style="flex:1"></div>
+                    <div style="height:40px;flex:none;padding:0 20px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-body)">Get a Demo</div>
+                  </div>
+                  <div style="position:relative;padding:72px var(--t-layout-gutter);display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+                    <div style="height:30px;padding:0 14px;display:flex;align-items:center;border-radius:var(--t-radius-pill);background:var(--t-primary-900);border:1px solid var(--t-primary-700);color:var(--t-primary-300);font-weight:700;font-size:var(--t-size-small)">New — closed-loop scoring</div>
+                    <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-display);line-height:1.04;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse);max-width:18ch">Hire faster. Hire smarter.</div>
+                    <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text-inverse);opacity:.76;max-width:var(--t-content-measure)">The reversed hero puts the primary to work as the only saturated colour on the page.</div>
+                    <div style="width:120px;height:5px;border-radius:99px;background:var(--t-gradient-primary)"></div>
+                  </div>
+                </div>
+                <div style="padding:0 var(--t-layout-gutter) 44px var(--t-layout-gutter);background:var(--t-surface-dark);display:flex;gap:16px">
+                  <div style="flex:1;min-width:0;box-sizing:border-box;padding:22px;border-radius:var(--t-radius-md);background:var(--t-primary-950);display:flex;flex-direction:column;gap:8px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary-400)">4.5X</div><div style="font-weight:700;font-size:var(--t-size-small);line-height:1.35;color:var(--t-primary-400)">Reduced Turnover</div></div>
+                  <div style="flex:1;min-width:0;box-sizing:border-box;padding:22px;border-radius:var(--t-radius-md);background:var(--t-neutral-900);display:flex;flex-direction:column;gap:8px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-primary-400)">68%</div><div style="font-weight:700;font-size:var(--t-size-small);line-height:1.35;color:var(--t-primary-400)">Time-to-Hire Reduction</div></div>
+                  <div style="flex:1;min-width:0;box-sizing:border-box;padding:22px;border-radius:var(--t-radius-md);background:var(--t-accent1-300);display:flex;flex-direction:column;gap:8px"><div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);line-height:1;letter-spacing:var(--t-tracking-display);color:var(--t-neutral-900)">71%</div><div style="font-weight:700;font-size:var(--t-size-small);line-height:1.35;color:var(--t-neutral-900)">Hiring Efficiency Improvement</div></div>
+                </div>
+                <div style="padding:28px var(--t-layout-gutter);background:var(--t-surface-subtle);display:flex;align-items:center;gap:40px;border-bottom:var(--t-border-hairline) solid var(--t-border)">
+                  <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t-text-subtle);white-space:nowrap">Trusted by</div>
+                  <div style="flex:1;display:flex;gap:34px;align-items:center">
+                    <div style="flex:1;height:16px;border-radius:99px;background:var(--t-surface-sunken)"></div>
+                    <div style="flex:1;height:16px;border-radius:99px;background:var(--t-surface-sunken)"></div>
+                    <div style="flex:1;height:16px;border-radius:99px;background:var(--t-surface-sunken)"></div>
+                    <div style="flex:1;height:16px;border-radius:99px;background:var(--t-surface-sunken)"></div>
+                  </div>
+                </div>
+                <div style="padding:56px var(--t-layout-gutter);display:flex;flex-direction:column;gap:28px">
+                  <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h1);letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">Plans</div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px">
+                    <div style="border:var(--t-border-hairline) solid var(--t-border);border-radius:var(--t-radius-lg);background:var(--t-surface);padding:28px;display:flex;flex-direction:column;gap:14px">
+                      <div style="font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">Team</div>
+                      <div style="font-family:var(--t-font-display);font-weight:700;font-size:38px;color:var(--t-text-heading)">$4<span style="font-size:16px;color:var(--t-text-muted);font-weight:400">/hire</span></div>
+                      <div style="font-size:var(--t-size-small);line-height:1.6;color:var(--t-text-muted)">Structured interviews and scorecards for a single hiring team.</div>
+                      <div style="margin-top:auto;height:42px;display:flex;align-items:center;justify-content:center;border-radius:var(--t-radius-md);border:var(--t-border-hairline) solid var(--t-primary);color:var(--t-primary);font-weight:700;font-size:var(--t-size-small)">Choose Team</div>
+                    </div>
+                    <div style="border:var(--t-border-strong-w) solid var(--t-primary);border-radius:var(--t-radius-lg);background:var(--t-surface-tint);padding:28px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--t-shadow-md)">
+                      <div style="display:flex;align-items:center;gap:10px"><div style="font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">Volume</div><div style="height:22px;padding:0 9px;display:flex;align-items:center;border-radius:99px;background:var(--t-primary);color:var(--t-on-primary);font-weight:700;font-size:10px">Popular</div></div>
+                      <div style="font-family:var(--t-font-display);font-weight:700;font-size:38px;color:var(--t-text-heading)">$3<span style="font-size:16px;color:var(--t-text-muted);font-weight:400">/hire</span></div>
+                      <div style="font-size:var(--t-size-small);line-height:1.6;color:var(--t-text-muted)">Predictive assessments and the closed loop across every requisition.</div>
+                      <div style="margin-top:auto;height:42px;display:flex;align-items:center;justify-content:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-weight:700;font-size:var(--t-size-small)">Choose Volume</div>
+                    </div>
+                    <div style="border:var(--t-border-hairline) solid var(--t-border);border-radius:var(--t-radius-lg);background:var(--t-surface);padding:28px;display:flex;flex-direction:column;gap:14px">
+                      <div style="font-weight:700;font-size:var(--t-size-h3);color:var(--t-text-heading)">Enterprise</div>
+                      <div style="font-family:var(--t-font-display);font-weight:700;font-size:38px;color:var(--t-text-heading)">Talk</div>
+                      <div style="font-size:var(--t-size-small);line-height:1.6;color:var(--t-text-muted)">Multi-site BPO programmes with custom scoring standards.</div>
+                      <div style="margin-top:auto;height:42px;display:flex;align-items:center;justify-content:center;border-radius:var(--t-radius-md);border:var(--t-border-hairline) solid var(--t-primary);color:var(--t-primary);font-weight:700;font-size:var(--t-size-small)">Contact us</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:26px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">In place — web, content page</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">1280px · article, callouts, CTA band</div>
+          </div>
+          <div data-spec="1" style="--w:1280px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-lg);border:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm)">
+            <div style="width:var(--w);zoom:var(--fit,1)">
+              <div style="box-sizing:border-box;background:var(--t-surface);font-family:var(--t-font-body);display:flex;flex-direction:column">
+                <div style="height:68px;display:flex;align-items:center;gap:30px;padding:0 var(--t-layout-gutter);border-bottom:var(--t-border-hairline) solid var(--t-border)">
+                  <img src="assets/logos/2026/lockup.svg" data-src="{{ logoLight }}" alt="Journeyfront" style="flex:none;height:24px;width:auto;object-fit:contain;display:block">
+                  <div style="display:flex;gap:24px;white-space:nowrap;font-size:var(--t-size-small);color:var(--t-text-muted)"><span>Guides</span><span style="color:var(--t-primary);font-weight:700;border-bottom:var(--t-border-strong-w) solid var(--t-primary);padding-bottom:4px">Research</span><span>Customers</span></div>
+                </div>
+                <div style="padding:48px var(--t-layout-gutter);display:flex;gap:44px">
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:20px">
+                    <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t-primary)">Research</div>
+                    <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h1);line-height:1.12;letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">Screening methods, compared</div>
+                    <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text)">Resumes tell you what candidates have done. Predictive assessments tell you what they will do in your role. Across twelve hiring classes, the gap between the two showed up in the first ninety days.</div>
+                    <div style="border-left:var(--t-border-strong-w) solid var(--t-primary);background:var(--t-surface-tint);padding:20px 24px;border-radius:0 var(--t-radius-md) var(--t-radius-md) 0;font-size:var(--t-size-h3);line-height:1.5;color:var(--t-text-heading)">A pull quote carries the primary as an edge, not a fill.</div>
+                    <div style="font-size:var(--t-size-body);line-height:var(--t-leading-body);color:var(--t-text)">Where scoring was structured, panel agreement rose and time-to-offer fell. Where it was not, the same roles stalled at the final panel regardless of pipeline volume.</div>
+                    <div style="display:flex;gap:14px">
+                      <div style="flex:1;border-radius:var(--t-radius-md);background:var(--t-accent1-50);border:var(--t-border-hairline) solid var(--t-accent1-300);padding:18px;display:flex;flex-direction:column;gap:5px"><div style="font-weight:700;font-size:var(--t-size-body);color:var(--t-accent1-900)">What worked</div><div style="font-size:var(--t-size-small);line-height:1.5;color:var(--t-accent1-900);opacity:.82">One scoring standard across every panel.</div></div>
+                      <div style="flex:1;border-radius:var(--t-radius-md);background:var(--t-accent2-50);border:var(--t-border-hairline) solid var(--t-accent2-300);padding:18px;display:flex;flex-direction:column;gap:5px"><div style="font-weight:700;font-size:var(--t-size-body);color:var(--t-accent2-900)">What stalled</div><div style="font-size:var(--t-size-small);line-height:1.5;color:var(--t-accent2-900);opacity:.82">Unscored final rounds and open-ended debriefs.</div></div>
+                    </div>
+                  </div>
+                  <div style="width:300px;flex:none;display:flex;flex-direction:column;gap:16px">
+                    <div style="border:var(--t-border-hairline) solid var(--t-border);border-radius:var(--t-radius-md);background:var(--t-surface-subtle);padding:20px;display:flex;flex-direction:column;gap:12px">
+                      <div style="font-weight:700;font-size:var(--t-size-body);color:var(--t-text-heading)">On this page</div>
+                      <div style="display:flex;flex-direction:column;gap:9px;font-size:var(--t-size-small);color:var(--t-text-muted)"><div style="color:var(--t-primary);font-weight:700">The gap</div><div>Method comparison</div><div>Ninety-day outcomes</div><div>What to change</div></div>
+                    </div>
+                    <div style="border-radius:var(--t-radius-md);background:var(--t-surface-dark);padding:22px;display:flex;flex-direction:column;gap:12px">
+                      <div style="font-family:var(--t-font-display);font-weight:700;font-size:20px;line-height:1.2;color:var(--t-text-inverse)">Get the full study</div>
+                      <div style="font-size:var(--t-size-small);line-height:1.5;color:var(--t-text-inverse);opacity:.74">Twelve classes, four screening methods.</div>
+                      <div style="height:40px;display:flex;align-items:center;justify-content:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-weight:700;font-size:var(--t-size-small)">Download</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:44px var(--t-layout-gutter);background:var(--t-surface-tint);display:flex;align-items:center;justify-content:space-between;gap:34px">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-h2);letter-spacing:var(--t-tracking-display);color:var(--t-text-heading)">See it on your own roles</div>
+                    <div style="font-size:var(--t-size-body);color:var(--t-text-muted)">Thirty minutes, your requisitions, your scoring standard.</div>
+                  </div>
+                  <div style="height:48px;flex:none;padding:0 26px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-weight:700;font-size:var(--t-size-body);box-shadow:var(--t-shadow-md)">Get a Demo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:26px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">In place — interface</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">buttons, states, feedback colours</div>
+          </div>
+          <div style="background:var(--t-surface);border:var(--t-border-hairline) solid var(--t-border);border-radius:var(--t-radius-lg);box-shadow:var(--t-shadow-sm);padding:26px;display:flex;flex-direction:column;gap:24px">
+            <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+              <div style="height:44px;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary);color:var(--t-on-primary);font-weight:700;font-size:var(--t-size-body)">Primary</div>
+              <div style="height:44px;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary-hover);color:var(--t-on-primary);font-weight:700;font-size:var(--t-size-body)">Hover</div>
+              <div style="height:44px;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);border:var(--t-border-hairline) solid var(--t-primary);color:var(--t-primary);font-weight:700;font-size:var(--t-size-body)">Secondary</div>
+              <div style="height:44px;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-primary-tint);color:var(--t-text-heading);font-weight:700;font-size:var(--t-size-body)">Tinted</div>
+              <div style="height:44px;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-surface-sunken);color:var(--t-text-subtle);font-weight:700;font-size:var(--t-size-body)">Disabled</div>
+              <div style="height:44px;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:var(--t-surface);border:var(--t-border-strong-w) solid var(--t-focus);color:var(--t-text);font-weight:700;font-size:var(--t-size-body)">Focus ring</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+              <div style="border-radius:var(--t-radius-md);background:var(--t-accent1-50);border:var(--t-border-hairline) solid var(--t-accent1-300);padding:18px;display:flex;flex-direction:column;gap:6px"><div style="font-weight:700;font-size:var(--t-size-body);color:var(--t-accent1-900)">Offer accepted</div><div style="font-size:var(--t-size-small);line-height:1.5;color:var(--t-accent1-900);opacity:.8">Accent 1 — confirmations and completed states.</div></div>
+              <div style="border-radius:var(--t-radius-md);background:var(--t-accent2-50);border:var(--t-border-hairline) solid var(--t-accent2-300);padding:18px;display:flex;flex-direction:column;gap:6px"><div style="font-weight:700;font-size:var(--t-size-body);color:var(--t-accent2-900)">Scorecard overdue</div><div style="font-size:var(--t-size-small);line-height:1.5;color:var(--t-accent2-900);opacity:.8">Accent 2 — attention without alarm.</div></div>
+              <div style="border-radius:var(--t-radius-md);background:var(--t-surface-subtle);border:var(--t-border-hairline) solid var(--t-border);padding:18px;display:flex;flex-direction:column;gap:6px"><div style="font-weight:700;font-size:var(--t-size-body);color:var(--t-text-heading)">Draft requisition</div><div style="font-size:var(--t-size-small);line-height:1.5;color:var(--t-text-muted)">Neutral — inactive and informational.</div></div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <div style="height:30px;padding:0 14px;display:flex;align-items:center;border-radius:var(--t-radius-pill);background:var(--t-accent1-100);color:var(--t-accent1-900);font-weight:700;font-size:var(--t-size-small)">Hired</div>
+              <div style="height:30px;padding:0 14px;display:flex;align-items:center;border-radius:var(--t-radius-pill);background:var(--t-primary-100);color:var(--t-primary-900);font-weight:700;font-size:var(--t-size-small)">In panel</div>
+              <div style="height:30px;padding:0 14px;display:flex;align-items:center;border-radius:var(--t-radius-pill);background:var(--t-accent2-100);color:var(--t-accent2-900);font-weight:700;font-size:var(--t-size-small)">Stalled</div>
+              <div style="height:30px;padding:0 14px;display:flex;align-items:center;border-radius:var(--t-radius-pill);background:var(--t-surface-subtle);color:var(--t-text-muted);font-weight:700;font-size:var(--t-size-small)">Archived</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:26px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">In place — presentation</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">1280×720 · dark title slide</div>
+          </div>
+          <div data-spec="1" style="--w:1280px;width:100%;height:auto;overflow:hidden;border-radius:var(--jf-radius-md);border:1px solid var(--jf-border);box-shadow:var(--jf-shadow-sm)">
+            <div style="width:var(--w);zoom:var(--fit,1)">
+              <div style="min-height:720px;box-sizing:border-box;background:var(--t-surface-dark);font-family:var(--t-font-body);position:relative;overflow:hidden">
+                <img src="assets/graphics/dot-arch-white.svg" alt="" style="position:absolute;right:-80px;bottom:-140px;width:620px;opacity:var(--t-graphic-dots-opacity);-webkit-mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 30%,rgba(0,0,0,0) 100%);pointer-events:none">
+                <div style="position:relative;min-height:720px;box-sizing:border-box;padding:84px 92px;display:flex;flex-direction:column">
+                  <img src="assets/logos/2026/lockup.svg" data-src="{{ logoDark }}" alt="Journeyfront" style="height:34px;width:auto;object-fit:contain;display:block;align-self:flex-start">
+                  <div style="flex:1"></div>
+                  <div style="font-size:var(--t-size-small);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--t-primary-400);margin-bottom:20px">Q3 hiring review</div>
+                  <div style="font-family:var(--t-font-display);font-weight:700;font-size:var(--t-size-display);line-height:1.0;letter-spacing:var(--t-tracking-display);color:var(--t-text-inverse);max-width:820px">Hire faster. Hire smarter. Get results.</div>
+                  <div style="width:120px;height:5px;border-radius:99px;background:var(--t-gradient-primary);margin:32px 0 22px 0"></div>
+                  <div style="font-size:21px;line-height:var(--t-leading-body);color:var(--t-text-inverse);opacity:.78;max-width:640px">What the closed loop learned from 12 hiring classes.</div>
+                  <div style="flex:1"></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;font-size:var(--t-size-small);color:var(--t-text-inverse);opacity:.6"><span>Talent Operations</span><span style="color:var(--t-primary-400);font-weight:700;opacity:1">01</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:26px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Gradients</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">the three ramps blended · every stop from the active palette</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+            <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="height:120px;border-radius:var(--t-radius-md);background:linear-gradient(90deg, var(--t-primary-500) 0%, var(--t-accent1-500) 100%)"></div>
+              <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Primary → Accent 1</div><div style="font-size:10.5px;line-height:1.4;color:var(--jf-text-subtle)">Blue into mint. The house blend — rules, bars, progress.</div></div>
+            </div>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="height:120px;border-radius:var(--t-radius-md);background:linear-gradient(90deg, var(--t-primary-500) 0%, var(--t-accent2-500) 100%)"></div>
+              <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Primary → Accent 2</div><div style="font-size:10.5px;line-height:1.4;color:var(--jf-text-subtle)">Blue into magenta. Passes through violet, so keep it wide.</div></div>
+            </div>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="height:120px;border-radius:var(--t-radius-md);background:linear-gradient(90deg, var(--t-accent1-500) 0%, var(--t-primary-500) 50%, var(--t-accent2-500) 100%)"></div>
+              <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Full spectrum</div><div style="font-size:10.5px;line-height:1.4;color:var(--jf-text-subtle)">All three with primary at the midpoint holding it together.</div></div>
+            </div>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="height:120px;border-radius:var(--t-radius-md);background:linear-gradient(90deg, var(--t-primary-500) 0%, var(--t-magenta-500) 100%)"></div>
+              <div style="display:flex;flex-direction:column;gap:2px"><div style="font:700 12px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">JF Blue → Magenta</div><div style="font-size:10.5px;line-height:1.4;color:var(--jf-text-subtle)">Campaigns, events, launches.</div></div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding-top:6px">
+
+            <div style="min-width:0;box-sizing:border-box;min-height:280px;border-radius:var(--t-radius-lg);border:var(--t-border-hairline) solid var(--t-border);background:var(--t-surface);padding:26px;display:flex;flex-direction:column;gap:18px">
+              <div style="font:700 12.5px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">Gradient in small doses</div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;flex-direction:column;gap:7px">
+                  <div style="display:flex;justify-content:space-between;font-size:var(--t-size-small);color:var(--t-text-muted)"><span>Scorecards complete</span><span>92%</span></div>
+                  <div style="height:10px;border-radius:99px;background:var(--t-surface-sunken);overflow:hidden"><div style="width:92%;height:100%;border-radius:99px;background:linear-gradient(90deg, var(--t-primary-500), var(--t-accent1-500))"></div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:7px">
+                  <div style="display:flex;justify-content:space-between;font-size:var(--t-size-small);color:var(--t-text-muted)"><span>Panels scheduled</span><span>64%</span></div>
+                  <div style="height:10px;border-radius:99px;background:var(--t-surface-sunken);overflow:hidden"><div style="width:64%;height:100%;border-radius:99px;background:linear-gradient(90deg, var(--t-primary-500), var(--t-accent2-500))"></div></div>
+                </div>
+              </div>
+              <div style="display:flex;gap:12px">
+                <div style="flex:1;min-width:0;border-radius:var(--t-radius-md);padding:1px;background:linear-gradient(135deg, var(--t-primary-500), var(--t-accent1-500))">
+                  <div style="border-radius:calc(var(--t-radius-md) - 1px);background:var(--t-surface);padding:16px;display:flex;flex-direction:column;gap:4px"><div style="font-weight:700;font-size:var(--t-size-body);color:var(--t-text-heading)">Gradient edge</div><div style="font-size:var(--t-size-small);color:var(--t-text-muted)">A 1px border, not a fill.</div></div>
+                </div>
+                <div style="flex:none;align-self:flex-end;height:44px;padding:0 22px;display:flex;align-items:center;border-radius:var(--t-radius-md);background:linear-gradient(120deg, var(--t-primary-500), var(--t-primary-700));color:var(--t-neutral-0);font-weight:700;font-size:var(--t-size-small)">Primary CTA</div>
+              </div>
+              <div style="margin-top:auto;height:5px;border-radius:99px;background:linear-gradient(90deg, var(--t-accent1-500), var(--t-primary-500), var(--t-accent2-500))"></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:26px">
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <div style="font:700 12px/1 var(--jf-font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--jf-text-subtle)">Contrast check</div>
+            <div style="font-size:11px;color:var(--jf-text-subtle)">each pairing scored against all four WCAG thresholds</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:22px">
+            <sc-for list="{{ contrastGroups }}" as="group" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <div style="{{ group.chipStyle }}"></div>
+                  <div style="font:700 13px/1.3 var(--jf-font-sans);color:var(--jf-blue-dark)">{{ group.label }}</div>
+                  <div style="font-size:11px;color:var(--jf-text-subtle)">{{ group.summary }}</div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+                  <sc-for list="{{ group.rows }}" as="row" hint-placeholder-count="6">
+                    <div style="{{ row.style }}">
+                      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px">
+                        <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                          <div style="font-weight:700;font-size:13px">{{ row.label }}</div>
+                          <div style="font-size:11px;opacity:.75">{{ row.pair }}</div>
+                        </div>
+                        <div style="{{ row.ratioStyle }}">{{ row.ratio }}</div>
+                      </div>
+                      <div style="display:flex;flex-wrap:wrap;gap:6px">
+                        <sc-for list="{{ row.tiers }}" as="tier" hint-placeholder-count="4">
+                          <div title="{{ tier.title }}" style="{{ tier.style }}"><span>{{ tier.mark }}</span>{{ tier.label }}</div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  KEY = 'colors2026-v1';
+
+  RAMPS = [
+    ['Primary', 'the blue the product runs on', [
+      ['--t-primary-50', '#E8F6FC', '50', 'tint surfaces'],
+      ['--t-primary-100', '#B1E0F5', '100', 'chips, fills'],
+      ['--t-primary-200', '#A4C7E1', '200', 'tertiary fill'],
+      ['--t-primary-300', '#8FD2F0', '300', 'focus ring'],
+      ['--t-primary-400', '#77BBEC', '400', 'chart step'],
+      ['--t-primary-500', '#3CB1E5', '500', 'primary'],
+      ['--t-primary-600', '#2AA8F2', '600', 'alias — no distinct stop in every palette'],
+      ['--t-primary-700', '#1A7195', '700', 'hover, pressed'],
+      ['--t-primary-900', '#11465B', '900', 'dark surface, headings']
+    ]],
+    ['Accent 1', 'confirmations, completed states', [
+      ['--t-accent1-50', '#E3FCF6', '50', 'banner fill'],
+      ['--t-accent1-100', '#A1F4E1', '100', 'chips'],
+      ['--t-accent1-200', '#E9FAF5', '200', 'wash'],
+      ['--t-accent1-300', '#6EEDD1', '300', 'edges'],
+      ['--t-accent1-400', '#AAF9E4', '400', 'chart step'],
+      ['--t-accent1-500', '#20E0B2', '500', 'accent'],
+      ['--t-accent1-700', '#0E9C7C', '700', 'hover, pressed'],
+      ['--t-accent1-900', '#005B47', '900', 'text on tint']
+    ]],
+    ['Accent 2', 'attention without alarm', [
+      ['--t-accent2-50', '#F2EDFD', '50', 'banner fill'],
+      ['--t-accent2-100', '#D4C3FA', '100', 'chips'],
+      ['--t-accent2-200', '#A7A1D5', '200', 'wash'],
+      ['--t-accent2-300', '#BFA2F7', '300', 'edges'],
+      ['--t-accent2-400', '#998AE6', '400', 'chart step'],
+      ['--t-accent2-500', '#D62CFF', '500', 'accent'],
+      ['--t-accent2-700', '#9317B3', '700', 'hover, pressed'],
+      ['--t-accent2-900', '#5A0566', '900', 'text on tint']
+    ]],
+    ['Deep', 'the anchor — type and primary buttons', [      ['--t-deep-7', '#B4CFE3', '7', 'lightest'],
+      ['--t-deep-6', '#8CB0CB', '6', 'dividers on dark'],
+      ['--t-deep-5', '#6895B6', '5', 'muted on dark'],
+      ['--t-deep-4', '#467A9F', '4', 'chart categorical'],
+      ['--t-deep-3', '#296085', '3', 'dark UI edge'],
+      ['--t-deep-2', '#284960', '2', 'raised dark'],
+      ['--t-deep-500', '#1F3545', 'base', 'all type, primary buttons'],
+      ['--t-deep-1', '#0D1C27', '1', 'deepest']
+        ]],
+    ['Magenta', 'extended palette — charts and campaign', [      ['--t-magenta-7', '#DEBBDA', '7', 'lightest'],
+      ['--t-magenta-6', '#E2ADDD', '6', 'wash'],
+      ['--t-magenta-5', '#E79DE0', '5', 'tint'],
+      ['--t-magenta-4', '#ED87E5', '4', 'tint'],
+      ['--t-magenta-3', '#F369EB', '3', 'fill'],
+      ['--t-magenta-2', '#F935F1', '2', 'bright'],
+      ['--t-magenta-500', '#ED00E6', 'base', 'chart categorical'],
+      ['--t-magenta-1', '#AD00A8', '1', 'text weight']
+        ]],
+    ['Rose', 'extended palette — charts and campaign', [      ['--t-rose-7', '#E2C6CA', '7', 'lightest'],
+      ['--t-rose-6', '#E5BCC1', '6', 'wash'],
+      ['--t-rose-5', '#E9AFB7', '5', 'tint'],
+      ['--t-rose-4', '#EF9FAB', '4', 'tint'],
+      ['--t-rose-3', '#F48C9D', '3', 'fill'],
+      ['--t-rose-2', '#F9728D', '2', 'bright'],
+      ['--t-rose-500', '#FF4B79', 'base', 'chart categorical'],
+      ['--t-rose-1', '#CC0051', '1', 'text weight']
+        ]],
+    ['Neutral', 'surfaces, borders, body copy', [
+      ['--t-neutral-0', '#FFFFFF', '0', 'page, cards'],
+      ['--t-neutral-50', '#F8FAFD', '50', 'lightest fill'],
+      ['--t-neutral-100', '#F7F8F9', '100', 'subtle fill'],
+      ['--t-neutral-200', '#E1E7EC', '200', 'borders'],
+      ['--t-neutral-300', '#E5E5E5', '300', 'strong borders'],
+      ['--t-neutral-400', '#A9B3BA', '400', 'disabled'],
+      ['--t-neutral-500', '#B7B7B7', '500', 'subtle text'],
+      ['--t-neutral-600', '#636D75', '600', 'muted text'],
+      ['--t-neutral-700', '#6A6A6A', '700', 'secondary text'],
+      ['--t-neutral-800', '#394249', '800', 'near-black'],
+      ['--t-neutral-900', '#373232', '900', 'body text']
+    ]],
+    ['States', 'UI only — never a brand accent', [
+      ['--t-state-success', '#1E7A5A', 'success', 'saved, passed, hired'],
+      ['--t-state-warning', '#946B00', 'warning', 'overdue, needs review'],
+      ['--t-state-error', '#B3283F', 'error', 'failed, blocked']
+    ]]
+  ];
+
+  SEMANTIC = [
+    ['--t-text', '--t-neutral-900'],
+    ['--t-text-heading', '--t-primary-900'],
+    ['--t-text-muted', '--t-neutral-700'],
+    ['--t-text-subtle', '--t-neutral-700'],
+    ['--t-text-inverse', '--t-neutral-0'],
+    ['--t-surface', '--t-neutral-0'],
+    ['--t-surface-subtle', '--t-neutral-100'],
+    ['--t-surface-tint', '--t-primary-50'],
+    ['--t-surface-sunken', '--t-neutral-300'],
+    ['--t-surface-dark', '--t-primary-900'],
+    ['--t-surface-topbar', '--t-neutral-900'],
+    ['--t-border', '--t-neutral-300'],
+    ['--t-border-strong', '--t-neutral-500'],
+    ['--t-primary', '--t-primary-500'],
+    ['--t-primary-hover', '--t-primary-700'],
+    ['--t-primary-tint', '--t-primary-50'],
+    ['--t-on-primary', '--t-neutral-0'],
+    ['--t-focus', '--t-primary-300']
+  ];
+
+  CONTRAST_GROUPS = [
+    ['Primary', [
+      ['300 on white', '--t-primary-300', '--t-neutral-0', 4.5],
+      ['500 on white', '--t-primary-500', '--t-neutral-0', 4.5],
+      ['700 on white', '--t-primary-700', '--t-neutral-0', 4.5],
+      ['900 on white', '--t-primary-900', '--t-neutral-0', 4.5],
+      ['White on 500', '--t-neutral-0', '--t-primary-500', 4.5],
+      ['White on 900', '--t-neutral-0', '--t-primary-900', 4.5],
+      ['300 on 900', '--t-primary-300', '--t-primary-900', 4.5],
+      ['900 on 50', '--t-primary-900', '--t-primary-50', 4.5]
+    ]],
+    ['Accent 1', [
+      ['300 on white', '--t-accent1-300', '--t-neutral-0', 4.5],
+      ['500 on white', '--t-accent1-500', '--t-neutral-0', 4.5],
+      ['700 on white', '--t-accent1-700', '--t-neutral-0', 4.5],
+      ['900 on white', '--t-accent1-900', '--t-neutral-0', 4.5],
+      ['White on 500', '--t-neutral-0', '--t-accent1-500', 4.5],
+      ['White on 900', '--t-neutral-0', '--t-accent1-900', 4.5],
+      ['300 on 900', '--t-accent1-300', '--t-accent1-900', 4.5],
+      ['900 on 50', '--t-accent1-900', '--t-accent1-50', 4.5]
+    ]],
+    ['Accent 2', [
+      ['300 on white', '--t-accent2-300', '--t-neutral-0', 4.5],
+      ['500 on white', '--t-accent2-500', '--t-neutral-0', 4.5],
+      ['700 on white', '--t-accent2-700', '--t-neutral-0', 4.5],
+      ['900 on white', '--t-accent2-900', '--t-neutral-0', 4.5],
+      ['White on 500', '--t-neutral-0', '--t-accent2-500', 4.5],
+      ['White on 900', '--t-neutral-0', '--t-accent2-900', 4.5],
+      ['300 on 900', '--t-accent2-300', '--t-accent2-900', 4.5],
+      ['900 on 50', '--t-accent2-900', '--t-accent2-50', 4.5]
+    ]],
+    ['Magenta', [
+      ['MAIN on white', '--t-magenta-500', '--t-neutral-0', 4.5],
+      ['White on MAIN', '--t-neutral-0', '--t-magenta-500', 4.5],
+      ['Ink on MAIN', '--t-neutral-900', '--t-magenta-500', 4.5],
+      ['Text step on white', '--t-magenta-1', '--t-neutral-0', 4.5],
+      ['White on text step', '--t-neutral-0', '--t-magenta-1', 4.5],
+      ['Text step on tint', '--t-magenta-1', '--t-magenta-7', 4.5]
+    ]],
+    ['Rose', [
+      ['MAIN on white', '--t-rose-500', '--t-neutral-0', 4.5],
+      ['White on MAIN', '--t-neutral-0', '--t-rose-500', 4.5],
+      ['Ink on MAIN', '--t-neutral-900', '--t-rose-500', 4.5],
+      ['Text step on white', '--t-rose-1', '--t-neutral-0', 4.5],
+      ['White on text step', '--t-neutral-0', '--t-rose-1', 4.5],
+      ['Text step on tint', '--t-rose-1', '--t-rose-7', 4.5]
+    ]],
+    ['Neutral', [
+      ['900 on white', '--t-neutral-900', '--t-neutral-0', 4.5],
+      ['700 on white', '--t-neutral-700', '--t-neutral-0', 4.5],
+      ['500 on white', '--t-neutral-500', '--t-neutral-0', 4.5],
+      ['900 on 100', '--t-neutral-900', '--t-neutral-100', 4.5],
+      ['White on 900', '--t-neutral-0', '--t-neutral-900', 4.5],
+      ['300 on white — border', '--t-neutral-300', '--t-neutral-0', 1.4]
+    ]]
+  ];
+
+  // the committed 2026 mark
+  LOGO_BASE = { light: 'assets/logos/2026/lockup.svg', dark: 'assets/logos/2026/lockup.svg' };
+  _svg = {};
+
+  loadLogos() {}
+
+  svgText(src) {
+    if (!src || !/\.svg($|\?)|^data:image\/svg\+xml/i.test(src)) return null;
+    if (Object.prototype.hasOwnProperty.call(this._svg, src)) return this._svg[src];
+    if (/^data:/i.test(src)) {
+      let t = '';
+      try {
+        const c = src.slice(src.indexOf(',') + 1);
+        t = /;base64/i.test(src.slice(0, src.indexOf(','))) ? atob(c) : decodeURIComponent(c);
+      } catch (e) { t = ''; }
+      this._svg[src] = t;
+      return t;
+    }
+    this._svg[src] = null;
+    fetch(src).then(r => r.text()).then(t => { this._svg[src] = t; this.forceUpdate(); }).catch(() => { this._svg[src] = ''; });
+    return null;
+  }
+
+  // the lockup's two shapes: "journey" then "front"
+  JOURNEY_INDEX = 0;
+  FRONT_INDEX = 1;
+
+  logo(which) {
+    const src = this.LOGO_BASE[which];
+    const opt = this.state.opt;
+    const map = {};
+    map[this.JOURNEY_INDEX] = which === 'dark' ? '#FFFFFF' : this.valIn(opt, '--t-neutral-900');
+    map[this.FRONT_INDEX] = which === 'dark'
+      ? this.valIn(opt, '--t-primary-400')
+      : this.valIn(opt, '--t-primary-500');
+    const t = this.svgText(src);
+    if (!t) return src;
+    const re = /(fill|stop-color|stroke)(\s*[:=]\s*["']?\s*)(#[0-9a-f]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)|[a-z]{3,20}\b)/gi;
+    const skip = { none: 1, currentcolor: 1, transparent: 1, inherit: 1, initial: 1, unset: 1 };
+    let n = -1;
+    let out = t.replace(re, (whole, prop, sep, colour) => {
+      const c = colour.toLowerCase();
+      if (skip[c]) return whole;
+      n++;
+      const to = map[n];
+      return to ? prop + sep + to : whole;
+    });
+    out = out.replace(/\s(fill|stroke)-opacity\s*=\s*"[^"]*"/gi, '')
+             .replace(/(fill|stroke)-opacity\s*:\s*[^;"']+;?/gi, '');
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(out);
+  }
+
+  syncImgs() {
+    document.querySelectorAll('img[data-src]').forEach(im => {
+      const v = im.getAttribute('data-src');
+      if (v && v !== 'undefined' && im.getAttribute('src') !== v) im.setAttribute('src', v);
+    });
+  }
+
+  // starting point for Option A: the committed hues, pushed for saturation
+  SEEDS = {
+    A: {
+      '--t-primary-50': '#E3F6FF', '--t-primary-100': '#A6E3FF', '--t-primary-300': '#5FCCFF',
+      '--t-primary-500': '#0BAAF5', '--t-primary-700': '#0077B3', '--t-primary-900': '#0B3F58',
+      '--t-accent1-50': '#DBFFF5', '--t-accent1-100': '#8DFCDF', '--t-accent1-300': '#45F5CB',
+      '--t-accent1-500': '#00E5AE', '--t-accent1-700': '#009F7A', '--t-accent1-900': '#005844',
+      '--t-accent2-50': '#F8EAFF', '--t-accent2-100': '#E7BBFF', '--t-accent2-300': '#D387FF',
+      '--t-accent2-500': '#C400FF', '--t-accent2-700': '#8E00BC', '--t-accent2-900': '#4E0468',
+      '--t-neutral-900': '#2C2A31'
+    },
+    // a deliberate departure: warm paper, persimmon primary, moss and indigo accents
+    B: {
+      '--t-primary-50': '#FCEEE7', '--t-primary-100': '#F6CDB9', '--t-primary-300': '#EC9C77',
+      '--t-primary-500': '#C9421C', '--t-primary-700': '#9A2F11', '--t-primary-900': '#2E1A12',
+      '--t-accent1-50': '#EEF4E3', '--t-accent1-100': '#CFE1A9', '--t-accent1-300': '#A9C877',
+      '--t-accent1-500': '#6F9A34', '--t-accent1-700': '#4C6E20', '--t-accent1-900': '#25370F',
+      '--t-accent2-50': '#EAEBF7', '--t-accent2-100': '#C2C6EA', '--t-accent2-300': '#9098DA',
+      '--t-accent2-500': '#4A55B8', '--t-accent2-700': '#333C8C', '--t-accent2-900': '#1B2050',
+      '--t-neutral-0': '#FBF7F1', '--t-neutral-100': '#F3EDE3', '--t-neutral-300': '#E1D8C9',
+      '--t-neutral-500': '#A2957F', '--t-neutral-700': '#6B6156', '--t-neutral-900': '#241F1A'
+    },
+    // the Journeyfront colour system: blue / mint / violet over the hue-241 neutral ramp
+    C: {
+      // Blue — light to dark: blue-7…blue-2, hero, blue-1
+      '--t-primary-50': '#EEF2F5', '--t-primary-100': '#B4CCDD', '--t-primary-200': '#A4C7E1',
+      '--t-primary-300': '#90C1E6', '--t-primary-400': '#55B3F2', '--t-primary-600': '#009BE7',
+      '--t-primary-500': '#009BE7', '--t-primary-700': '#0070A8', '--t-primary-900': '#1F3545',
+      // Mint
+      '--t-accent1-50': '#F4FCF9', '--t-accent1-100': '#E9FAF5', '--t-accent1-200': '#D0F9ED',
+      '--t-accent1-300': '#AAF9E4', '--t-accent1-400': '#61FAD9',
+      '--t-accent1-500': '#00E4C0', '--t-accent1-700': '#00AA8F', '--t-accent1-900': '#1F3545',
+      // Violet
+      '--t-accent2-50': '#ADAACE', '--t-accent2-100': '#A7A1D5', '--t-accent2-200': '#A097DD',
+      '--t-accent2-300': '#998AE6', '--t-accent2-400': '#917BEE',
+      '--t-accent2-500': '#804BFF', '--t-accent2-700': '#5C00CE', '--t-accent2-900': '#1F3545',
+      // Deep
+      '--t-deep-1': '#0D1C27', '--t-deep-500': '#1F3545', '--t-deep-2': '#284960',
+      '--t-deep-3': '#296085', '--t-deep-4': '#467A9F', '--t-deep-5': '#6895B6',
+      '--t-deep-6': '#8CB0CB', '--t-deep-7': '#B4CFE3',
+      // Magenta
+      '--t-magenta-1': '#AD00A8', '--t-magenta-500': '#ED00E6', '--t-magenta-2': '#F935F1',
+      '--t-magenta-3': '#F369EB', '--t-magenta-4': '#ED87E5', '--t-magenta-5': '#E79DE0',
+      '--t-magenta-6': '#E2ADDD', '--t-magenta-7': '#DEBBDA',
+      // Rose
+      '--t-rose-1': '#CC0051', '--t-rose-500': '#FF4B79', '--t-rose-2': '#F9728D',
+      '--t-rose-3': '#F48C9D', '--t-rose-4': '#EF9FAB', '--t-rose-5': '#E9AFB7',
+      '--t-rose-6': '#E5BCC1', '--t-rose-7': '#E2C6CA',
+      // Neutral — hue 241, never pure grey
+      '--t-neutral-0': '#FFFFFF', '--t-neutral-50': '#F8FAFD', '--t-neutral-100': '#EEF2F5',
+      '--t-neutral-200': '#E1E7EC', '--t-neutral-300': '#CED5DB', '--t-neutral-400': '#A9B3BA',
+      '--t-neutral-500': '#838E96', '--t-neutral-600': '#636D75', '--t-neutral-700': '#4A545C',
+      '--t-neutral-800': '#394249', '--t-neutral-900': '#2C343A'
+    }
+  };
+
+  RULES = {
+    D: [
+      ['MAIN is a different step per colour', 'The ramps are uniform; the pointer into them is not. JF Blue 600, Mint 300, Violet 600, Magenta 500, Rose 500 — green peaks light, violet peaks dark.'],
+      ['600 is the full-AA text step everywhere', 'Blue 4.81, Mint 4.52, Violet 4.81, Magenta 5.49, Rose 5.37 — all clear 4.5 with white. Coloured text, links, and any button with a small white label.'],
+      ['Check the label colour per MAIN', 'It is not uniform: white on JF Blue and Violet, Slate 950 on Mint, Magenta and Rose. Four of five clear full AA.'],
+      ['Magenta MAIN is large text only', 'Slate 950 on Magenta 500 is 4.03. Small labels use Magenta 600 at 5.49.'],
+      ['Coloured text on a tint uses 900', 'On that colour\u2019s own 50–200 steps, always step 900 — 9.6 to 11.8:1.'],
+      ['Blue leads, never alone', 'JF Blue is always the strongest colour on a page, an ebook, an email. But every composition also carries Mint or Magenta somewhere, even at a small share. Never one colour in isolation across an asset.'],
+      ['Slate is the only neutral', 'The brand blue at roughly 16% of its chroma, so the neutrals belong to the system. One ramp does dark anchor, all type and every surface. Never pure grey.'],
+      ['The mark is always two-tone', 'Only JF Blue and Slate values, never an accent. On white: Slate 950 with Blue 600. On Slate 950: Slate 50 with Blue 400. Mint, Violet, Magenta and Rose are never logo grounds. Test every lockup at 16px.'],
+      ['Gradients uses aparingly', 'only use gradients for light accents, never as a main background or a loud color. Gradients should be used to represent Ai where needed and can be used for variety but very lightly.'],
+      ['Categorical is not colourblind-safe', 'Under deuteranopia Violet and Magenta converge with Blue. Where series carry consequence, add labels, pattern or position.']
+    ],
+    C: [
+      ['Blue is a fill, never text', '#009BE7 clears 3.07:1 on white — enough for UI edges and large type, not for body. Links and coloured labels use #0070A8.'],
+      ['Deep is the anchor', '#1F3545 carries all body type and primary buttons — it is the 900 stop on all three ramps.'],
+      ['Coloured fills take dark labels', 'Only deep and violet clear AA against white. Mint and blue buttons take deep labels.'],
+      ['States sit outside the brand', 'Success #1E7A5A, warning #946B00, error #B3283F. Never an accent.'],
+      ['Neutrals are never pure grey', 'The ramp holds hue 241 at low chroma, so greys stay cool against the blues.'],
+      ['The mark is always two-tone', 'On light: deep with blue. On deep: ground with blue-3.']
+    ]
+  };
+
+  MAINS = { '--t-jf-blue-600': 1, '--t-jf-slate-950': 1, '--t-jf-mint-300': 1, '--t-jf-violet-600': 1, '--t-jf-magenta-500': 1, '--t-jf-rose-500': 1 };
+
+  OPT_RAMPS = {
+    D: [
+      ['JF Blue — hero, hue 254', 'MAIN at 600, which is also the full-AA text step', [
+        ['--t-jf-blue-50', '#F0F7FF', '50', ''],
+        ['--t-jf-blue-100', '#DCECFF', '100', 'tertiary fill — Blue 600 label at 4.00'],
+        ['--t-jf-blue-200', '#BFDCFF', '200', ''],
+        ['--t-jf-blue-300', '#99C7FF', '300', ''],
+        ['--t-jf-blue-400', '#6AAEFE', '400', 'front. on Slate 950'],
+        ['--t-jf-blue-500', '#228FFE', '500', ''],
+        ['--t-jf-blue-600', '#0072D5', '600', 'MAIN — white label at 4.81'],
+        ['--t-jf-blue-700', '#005AAB', '700', 'hover'],
+        ['--t-jf-blue-800', '#004789', '800', ''],
+        ['--t-jf-blue-900', '#00376E', '900', ''],
+        ['--t-jf-blue-950', '#002854', '950', '']
+      ]],
+      ['Slate — anchor, type, all neutrals', 'the brand blue at ~16% chroma; the only neutral scale', [
+        ['--t-jf-slate-50', '#F1F6FD', '50', 'page surface'],
+        ['--t-jf-slate-100', '#E4EBF3', '100', 'sunken surface'],
+        ['--t-jf-slate-200', '#D0DAE5', '200', 'border default'],
+        ['--t-jf-slate-300', '#B9C5D3', '300', 'border strong'],
+        ['--t-jf-slate-400', '#9FACBC', '400', 'disabled'],
+        ['--t-jf-slate-500', '#8491A0', '500', ''],
+        ['--t-jf-slate-600', '#687483', '600', 'text muted — 4.76'],
+        ['--t-jf-slate-700', '#505C6B', '700', 'text secondary — 6.81'],
+        ['--t-jf-slate-800', '#3E4956', '800', 'dark surface, softer'],
+        ['--t-jf-slate-900', '#2F3945', '900', 'primary button — 11.72'],
+        ['--t-jf-slate-950', '#1F2935', '950', 'ANCHOR — all type, primary button hover']
+      ]],
+      ['Mint — hue 176', 'MAIN at 300 — green peaks light', [
+        ['--t-jf-mint-50', '#DCFFF5', '50', ''],
+        ['--t-jf-mint-100', '#A4FFE7', '100', ''],
+        ['--t-jf-mint-200', '#11FBD4', '200', ''],
+        ['--t-jf-mint-300', '#00E4C0', '300', 'MAIN — Slate 950 label at 9.01'],
+        ['--t-jf-mint-400', '#09C6A7', '400', 'hover'],
+        ['--t-jf-mint-500', '#05A78C', '500', ''],
+        ['--t-jf-mint-600', '#028670', '600', 'full-AA text — 4.52'],
+        ['--t-jf-mint-700', '#006B59', '700', ''],
+        ['--t-jf-mint-800', '#005546', '800', ''],
+        ['--t-jf-mint-900', '#004336', '900', ''],
+        ['--t-jf-mint-950', '#003127', '950', '']
+      ]],
+      ['Violet — hue 290', 'MAIN at 600 — violet peaks dark', [
+        ['--t-jf-violet-50', '#F5F4FF', '50', ''],
+        ['--t-jf-violet-100', '#E9E7FF', '100', ''],
+        ['--t-jf-violet-200', '#D7D3FF', '200', ''],
+        ['--t-jf-violet-300', '#C2B9FF', '300', ''],
+        ['--t-jf-violet-400', '#AA9AFE', '400', ''],
+        ['--t-jf-violet-500', '#9172FE', '500', ''],
+        ['--t-jf-violet-600', '#804BFF', '600', 'MAIN — white label at 4.81'],
+        ['--t-jf-violet-700', '#6502E0', '700', 'hover'],
+        ['--t-jf-violet-800', '#5000B5', '800', ''],
+        ['--t-jf-violet-900', '#3F0092', '900', ''],
+        ['--t-jf-violet-950', '#2E006F', '950', '']
+      ]],
+      ['Magenta — hue 330', 'MAIN at 500 — large text only', [
+        ['--t-jf-magenta-50', '#FFF1FD', '50', ''],
+        ['--t-jf-magenta-100', '#FFDEFB', '100', ''],
+        ['--t-jf-magenta-200', '#FFC1F8', '200', ''],
+        ['--t-jf-magenta-300', '#FF99F6', '300', ''],
+        ['--t-jf-magenta-400', '#FE5BF6', '400', ''],
+        ['--t-jf-magenta-500', '#ED00E6', '500', 'MAIN — Slate 950 label at 4.03, large text only'],
+        ['--t-jf-magenta-600', '#BC03B6', '600', 'hover; full-AA small labels — 5.49'],
+        ['--t-jf-magenta-700', '#960192', '700', ''],
+        ['--t-jf-magenta-800', '#780075', '800', ''],
+        ['--t-jf-magenta-900', '#60005D', '900', ''],
+        ['--t-jf-magenta-950', '#480046', '950', '']
+      ]],
+      ['Rose — hue 10', 'MAIN at 500', [
+        ['--t-jf-rose-50', '#FFF2F3', '50', ''],
+        ['--t-jf-rose-100', '#FFE1E5', '100', ''],
+        ['--t-jf-rose-200', '#FFC9CF', '200', ''],
+        ['--t-jf-rose-300', '#FFA7B4', '300', ''],
+        ['--t-jf-rose-400', '#FE7A93', '400', ''],
+        ['--t-jf-rose-500', '#FF4B79', '500', 'MAIN — Slate 950 label at 4.58'],
+        ['--t-jf-rose-600', '#D30355', '600', 'hover'],
+        ['--t-jf-rose-700', '#A90142', '700', ''],
+        ['--t-jf-rose-800', '#880033', '800', ''],
+        ['--t-jf-rose-900', '#6D0027', '900', ''],
+        ['--t-jf-rose-950', '#52001B', '950', '']
+      ]]
+    ]
+  };
+
+  // the previews speak in semantic stops, so map them onto the shared scale
+  // one column per family, one row per treatment — nulls leave the cell empty
+  // cell: [background, stat colour, label colour] — null colour means the contrast-picked ink
+  COMBO_ROWS = [
+    [[
+      ['--t-jf-slate-950', '--t-jf-magenta-500', '--t-jf-magenta-500'], null, null, null
+    ]],
+    [[
+      ['--t-jf-slate-950', '--t-jf-mint-300', '--t-jf-mint-300'], null, null, null
+    ]],
+    [[
+      ['--t-jf-slate-950', '--t-jf-blue-400', '--t-jf-blue-400'],
+      ['--t-jf-blue-950', '--t-jf-blue-400', '--t-jf-blue-400'], null, null
+    ]],
+    [[
+      ['--t-jf-slate-950', null, null],
+      ['--t-jf-blue-950', null, null], null, null
+    ]],
+    [[
+      ['--t-jf-slate-700', null, null],
+      ['--t-jf-blue-600', null, null], null, null
+    ]],
+    [[
+      ['--t-jf-slate-300', null, null],
+      ['--t-jf-blue-400', null, null],
+      ['--t-jf-mint-300', null, null],
+      ['--t-jf-magenta-500', null, null]
+    ]],
+    [[
+      ['--t-jf-slate-50', null, null],
+      ['--t-jf-blue-50', '--t-jf-blue-900', '--t-jf-blue-600'],
+      ['--t-jf-mint-50', null, null],
+      ['--t-jf-magenta-50', null, null]
+    ]],
+    [[
+      null,
+      ['--t-jf-blue-50', '--t-jf-blue-500', null],
+      null,
+      ['--t-jf-magenta-50', '--t-jf-magenta-500', null]
+    ]]
+  ];
+
+  COMBO_FAMILIES = ['Slate', 'JF Blue', 'Mint', 'Magenta'];
+
+  ALIASES = {
+    D: {
+      '--t-primary-50': '--t-jf-blue-50',
+      '--t-neutral-50': '--t-jf-slate-50',
+      '--t-primary-100': '--t-jf-blue-100',
+      '--t-neutral-100': '--t-jf-slate-100',
+      '--t-primary-200': '--t-jf-blue-200',
+      '--t-neutral-200': '--t-jf-slate-200',
+      '--t-primary-300': '--t-jf-blue-300',
+      '--t-neutral-300': '--t-jf-slate-300',
+      '--t-primary-400': '--t-jf-blue-400',
+      '--t-neutral-400': '--t-jf-slate-400',
+      '--t-primary-500': '--t-jf-blue-600',
+      '--t-neutral-500': '--t-jf-slate-500',
+      '--t-primary-600': '--t-jf-blue-700',
+      '--t-neutral-600': '--t-jf-slate-600',
+      '--t-primary-700': '--t-jf-blue-800',
+      '--t-neutral-700': '--t-jf-slate-700',
+      '--t-primary-800': '--t-jf-blue-800',
+      '--t-neutral-800': '--t-jf-slate-900',
+      '--t-primary-900': '--t-jf-slate-950',
+      '--t-neutral-900': '--t-jf-slate-950',
+      '--t-primary-950': '--t-jf-blue-950',
+      '--t-neutral-950': '--t-jf-slate-950',
+      '--t-primary': '--t-jf-slate-900',
+      '--t-primary-hover': '--t-jf-slate-950',
+      '--t-primary-tint': '--t-jf-blue-100',
+      '--t-focus': '--t-jf-blue-600',
+      '--t-neutral-0': '--t-jf-white',
+      '--t-accent1-50': '--t-jf-mint-50',
+      '--t-accent1-100': '--t-jf-mint-100',
+      '--t-accent1-200': '--t-jf-mint-200',
+      '--t-accent1-300': '--t-jf-mint-300',
+      '--t-accent1-400': '--t-jf-mint-400',
+      '--t-accent1-500': '--t-jf-mint-300',
+      '--t-accent1-700': '--t-jf-mint-600',
+      '--t-accent1-900': '--t-jf-mint-900',
+      '--t-accent2-50': '--t-jf-violet-50',
+      '--t-accent2-100': '--t-jf-violet-100',
+      '--t-accent2-200': '--t-jf-violet-200',
+      '--t-accent2-300': '--t-jf-violet-300',
+      '--t-accent2-400': '--t-jf-violet-400',
+      '--t-accent2-500': '--t-jf-violet-600',
+      '--t-accent2-700': '--t-jf-violet-700',
+      '--t-accent2-900': '--t-jf-violet-900',
+      '--t-deep-7': '--t-jf-slate-300',
+      '--t-deep-6': '--t-jf-slate-400',
+      '--t-deep-5': '--t-jf-slate-500',
+      '--t-deep-4': '--t-jf-slate-600',
+      '--t-deep-3': '--t-jf-slate-700',
+      '--t-deep-2': '--t-jf-slate-800',
+      '--t-deep-500': '--t-jf-slate-900',
+      '--t-deep-1': '--t-jf-slate-950',
+      '--t-magenta-7': '--t-jf-magenta-50',
+      '--t-magenta-6': '--t-jf-magenta-100',
+      '--t-magenta-5': '--t-jf-magenta-200',
+      '--t-magenta-4': '--t-jf-magenta-300',
+      '--t-magenta-3': '--t-jf-magenta-400',
+      '--t-magenta-2': '--t-jf-magenta-500',
+      '--t-magenta-500': '--t-jf-magenta-500',
+      '--t-magenta-1': '--t-jf-magenta-600',
+      '--t-rose-7': '--t-jf-rose-50',
+      '--t-rose-6': '--t-jf-rose-100',
+      '--t-rose-5': '--t-jf-rose-200',
+      '--t-rose-4': '--t-jf-rose-300',
+      '--t-rose-3': '--t-jf-rose-400',
+      '--t-rose-2': '--t-jf-rose-500',
+      '--t-rose-500': '--t-jf-rose-500',
+      '--t-rose-1': '--t-jf-rose-600'
+    }
+  };
+
+  EXTRA = { D: { '--t-jf-white': '#FFFFFF' } };
+
+  SEED_NAMES = { A: 'Vibrant', B: 'Editorial', C: 'Electric', D: 'JF System' };
+
+  state = { opt: 'D', sets: {}, names: {}, extra: [], logoSet: {}, logoColours: {} };
+
+  componentDidMount() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(this.KEY) || 'null'); } catch (e) {}
+    if (saved && typeof saved === 'object') {
+      this.setState({
+        sets: saved.sets || {},
+        names: saved.names || {},
+        extra: Array.isArray(saved.extra) ? saved.extra : [],
+        opt: saved.opt || 'current'
+      });
+    }
+    this.loadLogos();
+    this.startFit();
+    this.syncImgs();
+  }
+
+  componentDidUpdate() { if (this._fit) this._fit(); this.syncImgs(); }
+
+  startFit() {
+    const fit = () => {
+      document.querySelectorAll('[data-spec]').forEach(el => {
+        const w = parseFloat(getComputedStyle(el).getPropertyValue('--w')) || 1280;
+        if (el.clientWidth > 0) el.style.setProperty('--fit', Math.min(1, el.clientWidth / w).toFixed(4));
+      });
+    };
+    this._fit = fit;
+    fit();
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(fit);
+      const pane = document.querySelector('.c26-scroll:last-of-type');
+      if (pane) this._ro.observe(pane);
+    }
+    window.addEventListener('resize', fit);
+    setTimeout(fit, 60);
+  }
+
+  PRIMARY = [['D', 'New Palette'], ['history', 'History']];
+
+  opts() {
+    const base = [['current', 'Current'], ['A', 'Option A'], ['B', 'Option B'], ['C', 'Option C'], ['D', 'JF System']];
+    return base.concat((this.state.extra || []).map(k => [k, 'Option ' + k]));
+  }
+
+  rampsFor(opt) { return this.OPT_RAMPS[opt] || this.RAMPS; }
+
+  defFor(token, opt) {
+    for (const r of this.rampsFor(opt)) for (const s of r[2]) if (s[0] === token) return s[1];
+    if (opt) { for (const r of this.RAMPS) for (const s of r[2]) if (s[0] === token) return s[1]; }
+    return '#000000';
+  }
+
+  setOf(opt) { return (this.state.sets && this.state.sets[opt]) || {}; }
+
+  seedFor(opt, token) { return (this.SEEDS[opt] || {})[token]; }
+
+  valIn(opt, token) {
+    const alias = (this.ALIASES[opt] || {})[token];
+    if (alias) return this.valIn(opt, alias);
+    const extra = ((this.EXTRA || {})[opt] || {})[token];
+    if (extra) return this.setOf(opt)[token] || extra;
+    if (opt === 'current') return this.defFor(token);
+    return this.setOf(opt)[token] || this.seedFor(opt, token) || this.defFor(token, opt);
+  }
+
+  save(next) {
+    const s = Object.assign({ sets: this.state.sets, names: this.state.names, extra: this.state.extra, opt: this.state.opt }, next || {});
+    try { localStorage.setItem(this.KEY, JSON.stringify(s)); } catch (e) {}
+    this.setState(s);
+  }
+
+  setColor(token, v) {
+    const opt = this.state.opt;
+    if (opt === 'current') return;
+    const sets = Object.assign({}, this.state.sets);
+    const cur = Object.assign({}, sets[opt] || {});
+    const base = this.seedFor(opt, token) || this.defFor(token);
+    if (v && v.toLowerCase() !== base.toLowerCase()) cur[token] = v.toUpperCase(); else delete cur[token];
+    if (Object.keys(cur).length) sets[opt] = cur; else delete sets[opt];
+    this.save({ sets: sets });
+  }
+
+  resetAll() {
+    const opt = this.state.opt;
+    if (opt === 'current') return;
+    const sets = Object.assign({}, this.state.sets);
+    delete sets[opt];
+    this.save({ sets: sets });
+  }
+
+  addOption() {
+    const used = this.opts().map(o => o[0]);
+    const letters = 'ABCDEFGHIJKLMNOP'.split('');
+    const next = letters.find(l => used.indexOf(l) < 0);
+    if (!next) return;
+    this.save({ extra: (this.state.extra || []).concat([next]), opt: next });
+  }
+
+  nameOf(opt) {
+    if (opt === 'current') return 'Current';
+    const n = (this.state.names || {})[opt];
+    if (n && n.trim()) return n.trim();
+    if (this.SEED_NAMES[opt]) return this.SEED_NAMES[opt];
+    const f = this.opts().find(o => o[0] === opt);
+    return f ? f[1] : opt;
+  }
+
+  rename(v) {
+    const opt = this.state.opt;
+    if (opt === 'current') return;
+    const names = Object.assign({}, this.state.names);
+    const t = String(v || '').trim();
+    if (t) names[opt] = t; else delete names[opt];
+    this.save({ names: names });
+  }
+
+  tokName(token) {
+    const p = String(token).replace('--t-jf-', '').split('-');
+    const fam = p[0] === 'blue' ? 'JF Blue' : p[0].charAt(0).toUpperCase() + p[0].slice(1);
+    return p[1] ? fam + ' ' + p[1] : fam;
+  }
+
+  lum(hex) {
+    const h = hex.replace('#', '');
+    const n = h.length === 3 ? h.split('').map(x => x + x).join('') : h;
+    const c = [0, 2, 4].map(i => {
+      const v = parseInt(n.slice(i, i + 2), 16) / 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+
+  ratio(a, b) {
+    const l1 = this.lum(a), l2 = this.lum(b);
+    const hi = Math.max(l1, l2), lo = Math.min(l1, l2);
+    return (hi + 0.05) / (lo + 0.05);
+  }
+
+  renderVals() {
+    const opt = this.state.opt;
+    const editable = opt !== 'current';
+    const activeLabel = this.nameOf(opt);
+    const set = this.setOf(opt);
+
+    const vars = [];
+    // base stops first so an option-specific ramp set can never drop a token, then layer over
+    this.RAMPS.forEach(r => r[2].forEach(s => vars.push(s[0] + ':' + this.valIn(opt, s[0]))));
+    if (this.OPT_RAMPS[opt]) this.OPT_RAMPS[opt].forEach(r => r[2].forEach(s => vars.push(s[0] + ':' + this.valIn(opt, s[0]))));
+    Object.keys((this.EXTRA || {})[opt] || {}).forEach(t => vars.push(t + ':' + this.valIn(opt, t)));
+    Object.keys(this.ALIASES[opt] || {}).forEach(t => vars.push(t + ':' + this.valIn(opt, t)));
+    // semantic tokens alias the ramps at :root, so they must be re-resolved here
+    const overridden = this.ALIASES[opt] || {};
+    this.SEMANTIC.forEach(sm => { if (!overridden[sm[0]]) vars.push(sm[0] + ':' + this.valIn(opt, sm[1])); });
+    const grad = this.valIn(opt, '--t-primary-500') + ', ' + this.valIn(opt, '--t-primary-700');
+    vars.push('--t-gradient-primary:linear-gradient(90deg, ' + grad + ')');
+
+    const rules = this.RULES[opt] || [];
+
+    return {
+      rules: rules.map(r => ({ title: r[0], body: r[1] })),
+      hasRules: rules.length > 0,
+      logoLight: this.logo('light'),
+      logoDark: this.logo('dark'),
+      activeLabel: activeLabel,
+      editable: editable,
+      readOnly: !editable,
+      activeName: opt === 'current' ? '' : ((this.state.names || {})[opt] || ''),
+      namePlaceholder: activeLabel,
+      onRename: e => this.rename(e.target.value),
+      onResetAll: () => this.resetAll(),
+      onAddOption: () => this.addOption(),
+      paletteVars: 'display:flex;flex-direction:column;' + vars.join(';') + ';',
+      panelHint: opt === 'D'
+        ? 'The 2026 palette. Every stop is editable, and every preview below runs off it.'
+        : editable
+        ? 'Every stop is editable. Each option keeps its own palette, and the previews update as you go.'
+        : 'The committed ramps from the token workbench. Pick an option above to try a different palette.',
+
+      showHistoryTabs: opt !== 'D',
+      primaryTabs: this.PRIMARY.map(pt => {
+        const on = pt[0] === 'history' ? opt !== 'D' : pt[0] === opt;
+        return {
+          key: pt[0],
+          label: pt[1],
+          onPick: () => this.save({ opt: pt[0] === 'history' ? 'current' : 'D' }),
+          style: 'flex:none;height:34px;padding:0 16px;display:flex;align-items:center;border-radius:var(--jf-radius-md);cursor:pointer;white-space:nowrap;font:700 12.5px/1 var(--jf-font-sans);border:1px solid ' + (on ? 'var(--jf-blue-deep)' : 'var(--jf-border)') + ';background:' + (on ? 'var(--jf-blue-deep)' : 'var(--jf-white)') + ';color:' + (on ? '#FFFFFF' : 'var(--jf-ink)')
+        };
+      }),
+
+      tabs: (opt === 'D' ? [] : this.opts().filter(o => o[0] !== 'D')).map(o => {
+        const on = o[0] === opt;
+        const changed = o[0] === 'current' ? 0 : Object.keys(Object.assign({}, this.SEEDS[o[0]] || {}, this.setOf(o[0]))).length;
+        return {
+          key: o[0],
+          label: this.nameOf(o[0]),
+          count: o[0] === 'current' ? 'committed' : (changed ? changed + ' changed' : 'untouched'),
+          onPick: () => this.save({ opt: o[0] }),
+          chips: ['--t-primary-500', '--t-primary-900', '--t-neutral-900', '--t-accent1-500', '--t-accent2-500']
+            .map(t => ({ style: 'flex:1;background:' + this.valIn(o[0], t) })),
+          stripStyle: 'width:52px;height:30px;flex:none;border-radius:4px;border:1px solid var(--jf-border);overflow:hidden;display:flex',
+          style: 'flex:none;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 10px;border-radius:var(--jf-radius-md);cursor:pointer;border:1px solid ' + (on ? 'var(--jf-blue)' : 'var(--jf-border)') + ';background:' + (on ? 'var(--jf-blue-pastel)' : 'var(--jf-white)') + ';box-shadow:' + (on ? '0 0 0 2px rgba(60,177,229,.22)' : 'none'),
+          labelStyle: 'font:700 12px/1.3 var(--jf-font-sans);color:' + (on ? 'var(--jf-blue-deep)' : 'var(--jf-ink)'),
+          countStyle: 'font-size:10px;line-height:1.3;white-space:nowrap;color:var(--jf-text-subtle)'
+        };
+      }),
+
+      ramps: this.rampsFor(opt).map(r => ({
+        label: r[0],
+        hint: r[1],
+        stops: r[2].map(s => {
+          const v = this.valIn(opt, s[0]);
+          const changed = v.toLowerCase() !== s[1].toLowerCase();
+          // pick the label ink by measured contrast, not a luminance guess
+          const INK = '#232F3A';
+          const rW = this.ratio('#FFFFFF', v), rI = this.ratio(INK, v);
+          const useWhite = rW >= rI;
+          const labelInk = useWhite ? '#FFFFFF' : INK;
+          const legible = Math.max(rW, rI) >= 4.5;
+          const pill = legible ? '' : 'align-self:flex-start;padding:1px 4px;border-radius:4px;background:' + labelInk + ';color:' + (useWhite ? INK : '#FFFFFF') + ';';
+          const dark = useWhite;
+          // the family's own base tone carries no numeric suffix
+          const isBase = this.MAINS[s[0]] ? true : (!/^--t-jf-/.test(s[0]) && /-500$/.test(s[0]) && !/^--t-neutral-/.test(s[0]));
+          return {
+            isBase: isBase,
+            baseChipStyle: 'align-self:flex-start;padding:1px 5px;border-radius:99px;font:700 8px/1.5 var(--jf-font-sans);letter-spacing:.06em;background:' + labelInk + ';color:' + (useWhite ? INK : '#FFFFFF'),
+            sideBaseStyle: 'flex:none;padding:1px 5px;border-radius:99px;font:700 8px/1.5 var(--jf-font-sans);letter-spacing:.06em;background:var(--jf-blue-deep);color:#fff',
+            token: s[0],
+            stopLabel: s[2],
+            note: s[3],
+            value: v,
+            changed: changed,
+            onChange: e => this.setColor(s[0], e.target.value),
+            swatchStyle: 'width:30px;height:30px;flex:none;padding:0;border-radius:7px;border:1px solid ' + (changed ? 'var(--jf-blue)' : 'var(--jf-border)') + ';background:' + v + ';cursor:' + (editable ? 'pointer' : 'not-allowed') + ';appearance:none;-webkit-appearance:none;opacity:' + (editable ? '1' : '.85'),
+            tileStyle: 'min-width:0;height:76px;border-radius:var(--t-radius-md);border:' + (isBase ? '2px solid var(--jf-blue-deep)' : '1px solid var(--jf-border)') + ';background:' + v + ';padding:8px 6px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden',
+            tileLabelStyle: pill + 'font:700 11px/1.4 var(--jf-font-sans);color:' + (legible ? labelInk : (useWhite ? INK : '#FFFFFF')),
+            tileHexStyle: pill + 'font:400 9px/1.5 var(--jf-font-mono, ui-monospace);letter-spacing:-.02em;white-space:nowrap;color:' + (legible ? labelInk : (useWhite ? INK : '#FFFFFF'))
+          };
+        })
+      })),
+
+      pageBg: opt === 'D' ? '#FFFFFF' : '#F7F8F9',
+      showCombos: opt === 'D',
+      comboFamilies: this.COMBO_FAMILIES.map(f => ({ label: f })),
+      comboRows: (opt === 'D' ? this.COMBO_ROWS : []).map(row => ({
+        cells: row[0].map(c => {
+          if (!c) return { filled: false, note: '', statStyle: '', labelStyle: '', noteStyle: '', cardStyle: 'min-width:0' };
+          const bg = this.valIn(opt, c[0]);
+          const INK = this.valIn(opt, '--t-jf-slate-950');
+          const ink = this.ratio('#FFFFFF', bg) >= this.ratio(INK, bg) ? '#FFFFFF' : INK;
+          const stat = c[1] ? this.valIn(opt, c[1]) : ink;
+          const lab = c[2] ? this.valIn(opt, c[2]) : ink;
+          // where no ink clears AA at label size, the label goes large-text per the palette rule
+          const labSmall = this.ratio(lab, bg) >= 4.5;
+          const inkName = ink === '#FFFFFF' ? 'White' : this.tokName('--t-jf-slate-950');
+          const names = this.tokName(c[0]) + ' · ' + (c[2] ? this.tokName(c[2]) : (c[1] ? this.tokName(c[1]) : inkName));
+          return {
+            filled: true,
+            note: names,
+            noteInside: this.ratio(ink, bg) >= 4.5,
+            noteOutside: this.ratio(ink, bg) < 4.5,
+            cardStyle: 'min-width:0;box-sizing:border-box;flex:1;min-height:126px;padding:18px 20px;border-radius:var(--t-radius-md);background:' + bg + ';display:flex;flex-direction:column;gap:6px',
+            statStyle: 'font-family:var(--t-font-display);font-weight:700;font-size:34px;line-height:1;letter-spacing:var(--t-tracking-display);color:' + stat,
+            labelStyle: 'font:700 ' + (labSmall ? '12.5px' : '20px') + '/1.3 var(--jf-font-sans);color:' + lab,
+            noteStyle: 'margin-top:auto;font:700 10px/1.3 var(--jf-font-sans);color:' + ink,
+            noteOutStyle: 'font:700 10px/1.3 var(--jf-font-sans);color:var(--jf-text-subtle)'
+          };
+        })
+      })),
+
+      contrastGroups: this.CONTRAST_GROUPS.map(g => {
+        const rows = g[1].map(c => {
+          const fg = this.valIn(opt, c[1]);
+          const bg = this.valIn(opt, c[2]);
+          const r = this.ratio(fg, bg);
+          const pass = r >= c[3];
+          // the verdict must read on any pair, so it is keyed to the row background only
+          const onDark = this.lum(bg) < 0.45;
+          const okBg = onDark ? '#FFFFFF' : '#11465B';
+          const okFg = onDark ? '#11465B' : '#FFFFFF';
+          const tiers = [
+            ['UI · 3:1', 3, 'Borders, icons, focus rings, chart fills'],
+            ['Large · 3:1', 3, 'Headings from 24px, or 19px bold'],
+            ['Body · 4.5:1', 4.5, 'Everything at normal reading size'],
+            ['AAA · 7:1', 7, 'Enhanced — long-form and small print']
+          ];
+          return {
+            label: c[0],
+            pair: fg + ' on ' + bg,
+            ratio: r.toFixed(2) + ':1',
+            tiers: tiers.map(t => {
+              const ok = r >= t[1];
+              return {
+                label: t[0],
+                title: t[2],
+                mark: ok ? '✓' : '✕',
+                style: 'height:22px;padding:0 9px;display:flex;align-items:center;gap:5px;border-radius:99px;font:700 10px/1 var(--jf-font-sans);letter-spacing:.03em;background:' + (ok ? okBg : '#C42121') + ';color:' + (ok ? okFg : '#FFFFFF') + ';opacity:' + (ok ? '1' : '.92')
+              };
+            }),
+            style: 'display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:var(--t-radius-md);border:1px solid ' + (pass ? 'var(--jf-border)' : '#E8A0A0') + ';background:' + bg + ';color:' + fg,
+            ratioStyle: 'font:700 17px/1 var(--jf-font-display);color:' + (onDark ? 'rgba(255,255,255,.92)' : 'var(--jf-ink)')
+          };
+        });
+        const passes = rows.filter(x => x.tiers[2].mark === '✓').length;
+        return {
+          label: g[0],
+          rows: rows,
+          summary: passes + ' of ' + rows.length + ' clear body text',
+          chipStyle: 'width:14px;height:14px;flex:none;border-radius:4px;border:1px solid var(--jf-border);background:' + this.valIn(opt, { Primary: '--t-primary-500', 'Accent 1': '--t-accent1-500', 'Accent 2': '--t-accent2-500', Magenta: '--t-magenta-500', Rose: '--t-rose-500' }[g[0]] || '--t-neutral-500')
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -3,32 +3,34 @@
    Regenerate with the "tokens.css" button in Token Workbench.dc.html. */
 :root {
   /* Color — ramps */
-  --t-brand-50: #E8F6FC;
-  --t-brand-100: #B1E0F5;
-  --t-brand-300: #8FD2F0;
-  --t-brand-500: #3CB1E5;   /* primary */
-  --t-brand-700: #1A7195;   /* hover / pressed — interaction spec, not the palette sheet */
-  --t-brand-900: #11465B;
+  --t-brand-50: #F0F7FF;
+  --t-brand-100: #DCECFF;
+  --t-brand-300: #99C7FF;
+  --t-brand-500: #0072D5;   /* JF Blue 600 — MAIN */
+  --t-brand-700: #005AAB;   /* Blue 700 — hover / pressed */
+  --t-brand-900: #002854;
   --t-neutral-0: #FFFFFF;
-  --t-neutral-100: #F7F8F9;
-  --t-neutral-300: #E5E5E5;
-  --t-neutral-500: #B7B7B7;
-  --t-neutral-700: #6A6A6A;
-  --t-neutral-900: #373232;
-  --t-positive-50: #E3FCF6;
-  --t-positive-100: #A1F4E1;
-  --t-positive-300: #6EEDD1;
-  --t-positive-500: #20E0B2;
-  --t-positive-900: #005B47;
-  --t-caution-50: #F2EDFD;
-  --t-caution-100: #D4C3FA;
-  --t-caution-300: #BFA2F7;
-  --t-caution-500: #D62CFF;
-  --t-caution-900: #5A0566;
+  --t-neutral-100: #F1F6FD;
+  --t-neutral-300: #E4EBF3;
+  --t-neutral-500: #B9C5D3;
+  --t-neutral-700: #687483;
+  --t-neutral-900: #1F2935;
+  --t-positive-50: #DCFFF5;
+  --t-positive-100: #A4FFE7;
+  --t-positive-300: #11FBD4;
+  --t-positive-500: #00E4C0;
+  --t-positive-700: #0E9C7C;
+  --t-positive-900: #004336;
+  --t-caution-50: #FFF1FD;
+  --t-caution-100: #FFDEFB;
+  --t-caution-300: #FF99F6;
+  --t-caution-500: #ED00E6;
+  --t-caution-700: #9317B3;
+  --t-caution-900: #60005D;
 
   /* Color — semantic */
   --t-text: var(--t-neutral-900);
-  --t-text-heading: var(--t-brand-900);
+  --t-text-heading: var(--t-neutral-900);
   --t-text-muted: var(--t-neutral-700);
   --t-text-subtle: var(--t-neutral-500);
   --t-text-inverse: var(--t-neutral-0);
@@ -36,7 +38,7 @@
   --t-surface-subtle: var(--t-neutral-100);
   --t-surface-tint: var(--t-brand-50);
   --t-surface-sunken: var(--t-neutral-300);
-  --t-surface-dark: var(--t-brand-900);
+  --t-surface-dark: var(--t-neutral-900);
   --t-surface-topbar: var(--t-neutral-900);
   --t-border: var(--t-neutral-300);
   --t-border-strong: var(--t-neutral-500);
@@ -47,8 +49,8 @@
   --t-focus: var(--t-brand-300);
 
   /* Type — families */
-  --t-font-display: Arial, Helvetica, sans-serif;
-  --t-font-body: Arial, Helvetica, sans-serif;
+  --t-font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --t-font-body: 'Lato', system-ui, sans-serif;
   --t-font-mono: ui-monospace, Menlo, monospace;
 
   /* Type — scale */
@@ -95,11 +97,19 @@
   --t-logo-on-light: assets/logos/logo-color.svg;
   --t-logo-on-dark: assets/logos/logo-white.svg;
   --t-logo-favicon: assets/logos/favicon.svg;
+  --t-logo-stacked-light: assets/logos/logo-color.svg;
+  --t-logo-stacked-dark: assets/logos/logo-white.svg;
 
   /* Gradients — never behind headers or body type */
   --t-gradient-primary: linear-gradient(90deg,var(--t-brand-500),var(--t-positive-500));
   --t-gradient-ai: linear-gradient(90deg,var(--t-caution-500),var(--t-brand-500));
   --t-gradient-full: linear-gradient(90deg,var(--t-caution-500),var(--t-brand-500),var(--t-positive-500));
+
+  /* Layout & graphics */
+  --t-layout-gutter: 40px;
+  --t-content-measure: 480px;
+  --t-graphic-dots-size: 480px;
+  --t-graphic-dots-opacity: .3;
 
   /* Iconography */
   --t-icon-color: var(--t-brand-500);

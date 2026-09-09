@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#FFFFFF; }
+  a { color:#0072D5; text-decoration:none; }
+  [data-jf-nav] a:hover { background:#F0F7FF !important; color:#0072D5 !important; }
+  a:hover { color:#005AAB; }
+  input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:99px; background:#D0DAE5; outline:none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:99px; background:#0072D5; border:2px solid #FFFFFF; box-shadow:0 1px 3px rgba(31,41,53,.3); cursor:pointer; }
+  input[type=range]::-moz-range-thumb { width:16px; height:16px; border-radius:99px; background:#0072D5; border:2px solid #FFFFFF; cursor:pointer; }
+</style>
+</helmet>
+
+<div style="min-height:100vh;box-sizing:border-box;font-family:'Lato', system-ui, sans-serif;color:#1F2935;background:#FFFFFF;padding:40px 44px 64px;display:flex;flex-direction:column;gap:28px">
+  <div data-jf-nav="1" style="position:sticky;top:0;z-index:20;margin:-40px -44px 6px -44px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:9px 44px;background:#FFFFFF;border-bottom:1px solid #E4EBF3">
+    <a href="Overview.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:var(--jf-text-muted);">Overview</a>
+    <a href="Logo%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Logo</a>
+    <a href="Colors%202026.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Colors</a>
+    <a href="Typography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Typography</a>
+    <a href="Icons.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Icons</a>
+    <a href="Dot%20Patterns.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:#1F2935;color:#FFFFFF;">Dot patterns</a>
+    <a href="Photography.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Photography</a>
+    <a href="Screens.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Screens</a>
+    <a href="Layout.dc.html" style="flex:none;height:30px;padding:0 13px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap;text-decoration:none;font-size:12.5px;font-weight:700;line-height:1;background:transparent;color:#505C6B;">Layout</a>
+  </div>
+
+
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <div style="font:700 11px/1 'Plus Jakarta Sans', system-ui, sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#BC03B6">Dot patterns</div>
+    <div style="font:700 27px/1.2 'Plus Jakarta Sans', system-ui, sans-serif;color:#1F2935">The background graphic, generated</div>
+    <div style="font-size:13.5px;line-height:1.55;color:#505C6B;max-width:74ch;text-wrap:pretty">A 45° dot lattice masked by a clump or a wave. Set the shape and density, recolour it from the palette, then save it to the approved library or download the SVG.</div>
+    <div style="display:flex;align-items:center;gap:8px;padding-top:4px">
+      <div style="width:60px;height:5px;border-radius:99px;background:#0072D5"></div>
+      <div style="width:26px;height:5px;border-radius:99px;background:#00E4C0"></div>
+      <div style="width:12px;height:5px;border-radius:99px;background:#ED00E6"></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid #E4EBF3;padding-bottom:14px">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+      <div onClick="{{ t.onPick }}" style="{{ t.style }}">{{ t.label }}</div>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ showGen }}"><div style="display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap">
+
+    <div style="width:330px;flex:none;display:flex;flex-direction:column;gap:22px;padding:24px;border:1px solid #D0DAE5;border-radius:14px;background:#FFFFFF;box-shadow:0 1px 2px rgba(31,41,53,.05)">
+      <sc-for list="{{ sliders }}" as="s" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+            <div style="font:700 12.5px/1 'Lato', sans-serif;color:#1F2935">{{ s.label }}</div>
+            <div style="font:500 12px/1 ui-monospace, monospace;color:#505C6B">{{ s.value }}</div>
+          </div>
+          <input type="range" min="{{ s.min }}" max="{{ s.max }}" step="{{ s.step }}" value="{{ s.value }}" onChange="{{ s.onChange }}">
+          <div style="display:flex;justify-content:space-between;font:400 10.5px/1 'Lato', sans-serif;color:#8491A0">
+            <span>{{ s.left }}</span>
+            <span>{{ s.right }}</span>
+          </div>
+        </div>
+      </sc-for>
+
+      <div style="height:1px;background:#E4EBF3"></div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font:700 12.5px/1 'Lato', sans-serif;color:#1F2935">Dot colour</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ swatches }}" as="sw" hint-placeholder-count="5">
+            <div onClick="{{ sw.onPick }}" title="{{ sw.name }}" style="{{ sw.style }}"></div>
+          </sc-for>
+        </div>
+        <div style="font:400 11px/1.4 'Lato', sans-serif;color:#687483">{{ inkName }}</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font:700 12.5px/1 'Lato', sans-serif;color:#1F2935">Ground</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ grounds }}" as="g" hint-placeholder-count="4">
+            <div onClick="{{ g.onPick }}" title="{{ g.name }}" style="{{ g.style }}"></div>
+          </sc-for>
+        </div>
+        <div style="font:400 11px/1.4 'Lato', sans-serif;color:#687483">{{ groundName }}</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font:700 12.5px/1 'Lato', sans-serif;color:#1F2935">Save to library</div>
+        <div style="display:flex;gap:8px">
+          <input type="text" value="{{ name }}" onChange="{{ onName }}" placeholder="Name this pattern" style="flex:1;min-width:0;height:40px;box-sizing:border-box;padding:0 12px;border-radius:9px;border:1px solid #D0DAE5;background:#FFFFFF;font:400 13px/1 'Lato', sans-serif;color:#1F2935;outline:none">
+          <div onClick="{{ onSave }}" style="height:40px;padding:0 16px;display:flex;align-items:center;border-radius:9px;background:#1F2935;color:#FFFFFF;font:700 13px/1 'Lato', sans-serif;cursor:pointer;white-space:nowrap" style-hover="background:#0072D5">Save</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <div onClick="{{ onDownload }}" style="flex:1;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:#0072D5;color:#FFFFFF;font:700 13.5px/1 'Lato', sans-serif;cursor:pointer" style-hover="background:#005AAB">Download SVG</div>
+        <div onClick="{{ onReset }}" style="height:44px;padding:0 16px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1.5px solid #B9C5D3;color:#1F2935;font:700 13.5px/1 'Lato', sans-serif;cursor:pointer" style-hover="border-color:#0072D5;color:#0072D5">Reset</div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-width:520px;display:flex;flex-direction:column;gap:12px">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid #D0DAE5;box-shadow:0 1px 2px rgba(31,41,53,.06),0 14px 36px rgba(31,41,53,.07);background:#FFFFFF">
+        <canvas ref="{{ canvasRef }}" width="800" height="600" style="display:block;width:100%;height:auto"></canvas>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;font:400 11.5px/1.5 'Lato', sans-serif;color:#687483">
+        <span>{{ sizeNote }}</span>
+        <span>45° lattice · seeded, so the same settings always give the same pattern</span>
+      </div>
+
+    </div>
+  </div></sc-if>
+
+  <sc-if value="{{ showApproved }}">
+    <sc-if value="{{ noSaved }}">
+      <div style="border:1px dashed #B9C5D3;border-radius:12px;background:#F0F7FF;padding:34px;display:flex;flex-direction:column;gap:7px;align-items:flex-start">
+        <div style="font:700 15px/1.3 'Plus Jakarta Sans', system-ui, sans-serif;color:#1F2935">Nothing approved yet</div>
+        <div style="font:400 13.5px/1.6 'Lato', sans-serif;color:#505C6B;max-width:56ch">Build a pattern on the Generator tab, name it and save. Anything saved here is cleared for use in a live asset.</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ hasSaved }}">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <div style="font:700 11px/1 'Plus Jakarta Sans', system-ui, sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#687483">Approved patterns</div>
+          <div style="font:400 11.5px/1 'Lato', sans-serif;color:#8491A0">{{ savedCount }}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:14px">
+          <sc-for list="{{ savedList }}" as="p" hint-placeholder-count="0">
+            <div style="min-width:0;border:1px solid #D0DAE5;border-radius:12px;overflow:hidden;background:#FFFFFF;display:flex;flex-direction:column">
+              <div style="{{ p.thumbStyle }}"></div>
+              <div style="padding:12px;display:flex;flex-direction:column;gap:9px;border-top:1px solid #E4EBF3">
+                <div style="display:flex;flex-direction:column;gap:3px">
+                  <div style="font:700 13px/1.3 'Lato', sans-serif;color:#1F2935;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.name }}</div>
+                  <div style="font:400 10.5px/1.35 'Lato', sans-serif;color:#687483">{{ p.meta }}</div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  <div onClick="{{ p.onLoad }}" title="Load these settings" style="height:26px;padding:0 10px;display:flex;align-items:center;border-radius:7px;border:1px solid #B9C5D3;font:700 10.5px/1 'Lato', sans-serif;color:#1F2935;cursor:pointer" style-hover="border-color:#0072D5;color:#0072D5">Load</div>
+                  <div onClick="{{ p.onDownload }}" title="Download the SVG" style="height:26px;padding:0 10px;display:flex;align-items:center;border-radius:7px;background:#0072D5;font:700 10.5px/1 'Lato', sans-serif;color:#FFFFFF;cursor:pointer" style-hover="background:#005AAB">SVG</div>
+                  <div onClick="{{ p.onCopy }}" title="Copy the SVG as a data URI" style="height:26px;padding:0 10px;display:flex;align-items:center;border-radius:7px;border:1px solid #B9C5D3;font:700 10.5px/1 'Lato', sans-serif;color:#1F2935;cursor:pointer" style-hover="border-color:#0072D5;color:#0072D5">Copy URI</div>
+                  <div onClick="{{ p.onDelete }}" title="Remove from the library" style="margin-left:auto;height:26px;padding:0 9px;display:flex;align-items:center;border-radius:7px;font:700 10.5px/1 'Lato', sans-serif;color:#687483;cursor:pointer" style-hover="color:#B3283F">Delete</div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </sc-if>
+
+  <sc-if value="{{ showUsage }}">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #E4EBF3;padding-bottom:8px">
+          <div style="font:700 17px/1.3 'Plus Jakarta Sans', system-ui, sans-serif;color:#1F2935">Usage rules</div>
+          <div style="font:400 12px/1.4 'Lato', sans-serif;color:#687483">{{ ruleCount }}</div>
+          <div onClick="{{ onAddRule }}" style="margin-left:auto;flex:none;white-space:nowrap;font:700 11.5px/1 'Lato', sans-serif;color:#0072D5;cursor:pointer;padding:6px 8px" style-hover="color:#005AAB">+ Add rule</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:14px">
+          <sc-for list="{{ usageRules }}" as="r" hint-placeholder-count="12">
+            <div style="min-width:0;box-sizing:border-box;border:1px solid #D0DAE5;border-left:3px solid #0072D5;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <input type="text" value="{{ r.title }}" onChange="{{ r.onTitle }}" placeholder="Rule" style="width:100%;box-sizing:border-box;border:1px solid transparent;border-radius:6px;padding:3px 5px;margin:0 -5px;font:700 14px/1.3 'Plus Jakarta Sans', system-ui, sans-serif;color:#1F2935;background:transparent">
+                <textarea rows="3" value="{{ r.body }}" onChange="{{ r.onBody }}" placeholder="What this means in practice." style="width:100%;box-sizing:border-box;border:1px solid transparent;border-radius:6px;padding:3px 5px;margin:0 -5px;resize:vertical;font:400 13px/1.55 'Lato', sans-serif;color:#505C6B;background:transparent"></textarea>
+              </div>
+              <sc-if value="{{ r.hasExamples }}"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <sc-for list="{{ r.examples }}" as="e" hint-placeholder-count="2">
+                  <div style="{{ e.boxStyle }}">
+                    <div style="{{ e.labelStyle }}">{{ e.label }}</div>
+                    <sc-if value="{{ e.hasUpload }}"><div style="{{ e.uploadStyle }}"></div></sc-if>
+                    <sc-if value="{{ e.hasUpload }}"><div onClick="{{ e.onClear }}" style="font:700 9.5px/1 'Lato', sans-serif;color:#687483;cursor:pointer" style-hover="color:#B3283F">Remove upload</div></sc-if>
+                    <sc-if value="{{ e.noTileNoUpload }}"><label style="{{ e.emptyStyle }}">Upload example<input type="file" accept="image/*" onChange="{{ e.onPick }}" style="display:none"></label></sc-if>
+                    <sc-if value="{{ e.hasTile }}"><div style="{{ e.tileStyle }}">
+                      <div style="{{ e.maskStyle }}"><div style="{{ e.fieldStyle }}"></div></div>
+                      <sc-if value="{{ e.hasSubject }}"><div style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:54px;height:74px;border-radius:8px 8px 0 0;border:1px dashed #6AAEFE;border-bottom:none;background:rgba(255,255,255,.6)"></div></sc-if>
+                      <sc-if value="{{ e.hasOvertext }}"><div style="position:absolute;left:12px;right:12px;top:38px;font:700 15px/1.2 'Plus Jakarta Sans', system-ui, sans-serif;letter-spacing:-.01em;color:#1F2935">Do your best hiring</div></sc-if>
+                      <sc-if value="{{ e.hasCopy }}"><div style="position:absolute;left:12px;right:12px;top:26px;font:400 8.5px/1.5 'Lato', sans-serif;color:#505C6B">Journeyfront scores every candidate against the outcomes your team cares about, then closes the loop with what happened after the hire.</div></sc-if>
+                      <sc-if value="{{ e.hasSideCopy }}"><div style="position:absolute;right:12px;top:26px;width:96px;font:400 8.5px/1.5 'Lato', sans-serif;color:#505C6B">Journeyfront scores every candidate against the outcomes your team cares about.</div></sc-if>
+                      <sc-if value="{{ e.hasBlueCard }}"><div style="position:absolute;left:12px;top:14px;width:78px;padding:9px;border-radius:7px;background:#002854;font:700 15px/1 'Plus Jakarta Sans', system-ui, sans-serif;color:#6AAEFE">4.5X</div></sc-if>
+                      <sc-if value="{{ e.hasMintCard }}"><div style="position:absolute;left:12px;top:14px;width:78px;padding:9px;border-radius:7px;background:#00E4C0;font:700 15px/1 'Plus Jakarta Sans', system-ui, sans-serif;color:#1F2935">4.5X</div></sc-if>
+                    </div></sc-if>
+                    <sc-if value="{{ e.hasTile }}"><label style="align-self:flex-start;font:700 9.5px/1 'Lato', sans-serif;color:#0072D5;cursor:pointer" style-hover="color:#005AAB">Replace with upload<input type="file" accept="image/*" onChange="{{ e.onPick }}" style="display:none"></label></sc-if>
+                  </div>
+                </sc-for>
+              </div></sc-if>
+              <div onClick="{{ r.onDelete }}" style="align-self:flex-start;font:700 10px/1 'Lato', sans-serif;color:#687483;cursor:pointer;padding:2px 0" style-hover="color:#B3283F">Delete</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:820}}">
+class Component extends DCLogic {
+  BASE_W = 800;
+  BASE_H = 600;
+  COS45 = Math.cos(Math.PI / 4);
+  SIN45 = Math.sin(Math.PI / 4);
+
+  DEFAULTS = { spacing: 20, removal: 30, dotSize: 4, pw: 1, ph: 1, waveMix: 0, rot: 0, ink: '#0072D5', ground: '#FFFFFF' };
+
+  // rule = [title, body, goodTile, avoidTile]
+  // tile = { g:ground, d:dot, gap, r, m:mask, ov:overlay }
+  RULEKEY = 'jf-dot-usage-v1';
+
+  // the saved SVG paints its own ground rect; as a texture it must be transparent
+  patternUrl(entry) {
+    if (!entry || !entry.uri) return '';
+    let text = '';
+    try {
+      const comma = entry.uri.indexOf(',');
+      const head = entry.uri.slice(5, comma);
+      const body = entry.uri.slice(comma + 1);
+      text = /;base64/i.test(head) ? atob(body) : decodeURIComponent(body);
+    } catch (e) { return ''; }
+    const bare = text.replace(/<rect[^>]*\/>\s*/i, '');
+    return this.blobUrl('tex-' + entry.id, 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(bare));
+  }
+
+  seedRules() {
+    const out = {};
+    this.USAGE.forEach(g => {
+      out[g[0]] = g[2].map((r, i) => ({ id: g[0] + '-' + i, title: r[0], body: r[1], good: r[2], bad: r[3] }));
+    });
+    return out;
+  }
+
+  rules() { return this.state.rules || this.seedRules(); }
+
+  allRules() {
+    const all = this.rules();
+    const out = [];
+    Object.keys(all).forEach(k => (all[k] || []).forEach(r => out.push({ group: k, rule: r })));
+    return out;
+  }
+
+  // tile configs live in code, so seed changes reach rules the user has already edited
+  tiles(id) {
+    if (!this._tiles) {
+      this._tiles = {};
+      this.USAGE.forEach(g => {
+        g[2].forEach((r, i) => { this._tiles[g[0] + '-' + i] = { good: r[2], bad: r[3] }; });
+      });
+    }
+    return this._tiles[id] || { good: null, bad: null };
+  }
+
+  saveRules(rules) {
+    this.setState({ rules: rules });
+    const slim = {};
+    Object.keys(rules).forEach(k => {
+      slim[k] = rules[k].map(r => ({ id: r.id, title: r.title, body: r.body, goodImg: r.goodImg || '', badImg: r.badImg || '' }));
+    });
+    try { localStorage.setItem(this.RULEKEY, JSON.stringify(slim)); } catch (e) {}
+  }
+
+  readExample(file, max) {
+    return new Promise(resolve => {
+      const fr = new FileReader();
+      fr.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const scale = Math.min(1, max / Math.max(img.width, img.height));
+          const w = Math.round(img.width * scale), h = Math.round(img.height * scale);
+          const c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          const ctx = c.getContext('2d');
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+          resolve(c.toDataURL('image/jpeg', 0.74));
+        };
+        img.onerror = () => resolve(null);
+        img.src = fr.result;
+      };
+      fr.onerror = () => resolve(null);
+      fr.readAsDataURL(file);
+    });
+  }
+
+  async setExample(group, id, field, ev) {
+    const file = ((ev.target && ev.target.files) || [])[0];
+    if (ev.target) ev.target.value = '';
+    if (!file) return;
+    const uri = await this.readExample(file, 700);
+    if (uri) this.editRule(group, id, field, uri);
+  }
+
+  editRule(group, id, field, value) {
+    const rules = Object.assign({}, this.rules());
+    rules[group] = (rules[group] || []).map(r => (r.id === id ? Object.assign({}, r, { [field]: value }) : r));
+    this.saveRules(rules);
+  }
+
+  addRule(group) {
+    const rules = Object.assign({}, this.rules());
+    rules[group] = (rules[group] || []).concat([{ id: group + '-' + Date.now(), title: '', body: '', good: null, bad: null }]);
+    this.saveRules(rules);
+  }
+
+  deleteRule(group, id) {
+    const rules = Object.assign({}, this.rules());
+    rules[group] = (rules[group] || []).filter(r => r.id !== id);
+    this.saveRules(rules);
+  }
+
+  USAGE = [
+    ['Where dots go', 'the field is background, never content', [
+      ['Behind a subject, never over one',
+       'The field sits behind a cut-out or a card. Nothing important ever reads through the dots — no text, no logo, no interface.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: 'subject', real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'none', ov: 'overtext', real: 1 }],
+      ['One field per composition',
+       'A page, slide or email gets one dot field. Two competing fields turn a layout into a texture study.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'two', ov: null, real: 1 }],
+      ['Anchor it to an edge',
+       'The field enters from an edge or a corner and fades out. A dot cloud floating in the middle of a white page reads as an accident.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'left', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'blob', ov: null, real: 1 }],
+      ['Fade, do not crop',
+       'Mask the field so it dissolves into the ground. A hard rectangular edge on the dots exposes the mechanism.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'crop', ov: null, real: 1 }]
+    ]],
+    ['Colour and contrast', 'blue leads here too', [
+      ['Dots stay quieter than the subject',
+       'On white, use a 200–400 tint. On a dark ground, use Blue 400. The field should never be the first thing seen.',
+       { g: '#FFFFFF', d: '#BFDCFF', gap: 11, r: 2, m: 'up', ov: 'subject', real: 1 },
+       { g: '#FFFFFF', d: '#002854', gap: 11, r: 2.4, m: 'up', ov: 'subject' }],
+      ['One dot colour per field',
+       'No gradients across the lattice and no two-colour dots. Colour changes between assets, not within one.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, mixed: '#ED00E6' }],
+      ['Mint or magenta at small share',
+       'A mint or magenta field is allowed as the accent when JF Blue leads elsewhere on the page — never as the only colour in the asset.',
+       { g: '#FFFFFF', d: '#A4FFE7', gap: 11, r: 2, m: 'up', ov: 'bluecard', real: 1 },
+       { g: '#FFFFFF', d: '#A4FFE7', gap: 11, r: 2, m: 'up', ov: 'mintcard', real: 1 }],
+      ['Never behind body copy',
+       'Even at a light tint, a dot field under a paragraph costs contrast. Move the copy onto flat ground.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'left', ov: 'sidecopy', real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'none', ov: 'copy', real: 1 }]
+    ]],
+    ['Scale and density', 'the lattice has to read as dots', [
+      ['Dots stay visible',
+       'Below about 2px on a final asset the field reads as noise. Increase spacing rather than shrinking the dot.',
+       { g: '#FFFFFF', d: '#6AAEFE', gap: 14, r: 2.4, m: 'up', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#6AAEFE', gap: 5, r: 0.6, m: 'up', ov: null }],
+      ['Spacing scales with the canvas',
+       'A billboard and an email cannot share one spacing value. Regenerate at the output size instead of scaling the SVG down.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 12, r: 2, m: 'up', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 30, r: 5, m: 'up', ov: null }],
+      ['Keep the 45° lattice',
+       'The angle is fixed. Rotate the shape, never the grid — a straight or arbitrary grid is a different brand.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, straight: 1 }],
+      ['Export from the generator',
+       'Use the SVG the generator produced. Do not redraw the field by hand or trace it from a screenshot.',
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, real: 1 },
+       { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up', ov: null, blur: 1 }]
+    ]]
+  ];
+
+  INKS = [
+    ['#99C7FF', 'JF Blue 300'],
+    ['#6AAEFE', 'JF Blue 400'],
+    ['#0072D5', 'JF Blue 600'],
+    ['#004789', 'JF Blue 800'],
+    ['#002854', 'JF Blue 950'],
+    ['#00E4C0', 'Mint 300'],
+    ['#05A78C', 'Mint 500'],
+    ['#004336', 'Mint 900'],
+    ['#FF99F6', 'Magenta 300'],
+    ['#ED00E6', 'Magenta 500'],
+    ['#960192', 'Magenta 700'],
+    ['#AA9AFE', 'Violet 400'],
+    ['#804BFF', 'Violet 600'],
+    ['#FE7A93', 'Rose 400'],
+    ['#FF4B79', 'Rose 500'],
+    ['#B9C5D3', 'Slate 300'],
+    ['#687483', 'Slate 600'],
+    ['#1F2935', 'Slate 950'],
+    ['#FFFFFF', 'White']
+  ];
+
+  GROUNDS = [
+    ['#FFFFFF', 'White'],
+    ['#F0F7FF', 'JF Blue 50'],
+    ['#DCECFF', 'JF Blue 100'],
+    ['#F1F6FD', 'Slate 50'],
+    ['#E4EBF3', 'Slate 100'],
+    ['#DCFFF5', 'Mint 50'],
+    ['#A4FFE7', 'Mint 100'],
+    ['#FFF1FD', 'Magenta 50'],
+    ['#FFDEFB', 'Magenta 100'],
+    ['#F5F4FF', 'Violet 50'],
+    ['#FFF2F3', 'Rose 50'],
+    ['#00376E', 'JF Blue 900'],
+    ['#002854', 'JF Blue 950'],
+    ['#2F3945', 'Slate 900'],
+    ['#1F2935', 'Slate 950'],
+    ['#003127', 'Mint 950'],
+    ['#2E006F', 'Violet 950'],
+    ['#480046', 'Magenta 950']
+  ];
+
+  SLIDERS = [
+    ['dotSize', 'Dot size', 1, 10, 0.5, 'Tiny', 'Large'],
+    ['spacing', 'Dot spacing', 8, 50, 1, 'Dense', 'Sparse'],
+    ['removal', 'Dot removal', 0, 60, 1, 'None', 'Heavy'],
+    ['waveMix', 'Shape', 0, 1, 0.05, 'Clump', 'Wave'],
+    ['pw', 'Pattern width', 0.3, 5, 0.05, 'Narrow', 'Wide'],
+    ['ph', 'Pattern height', 0.3, 2, 0.05, 'Short', 'Tall'],
+    ['rot', 'Shape rotation', -90, 90, 1, '-90°', '90°']
+  ];
+
+  STORE = 'jf-dot-patterns-v1';
+
+  constructor(props) {
+    super(props);
+    this.state = Object.assign({ tab: 'usage', name: '', saved: [], rules: null }, this.DEFAULTS);
+    this.canvas = null;
+    this.setCanvas = el => { this.canvas = el; if (el) this.draw(); };
+  }
+
+  componentDidMount() {
+    let saved = [], rules = null;
+    try { saved = JSON.parse(localStorage.getItem(this.STORE) || '[]') || []; } catch (e) {}
+    try { rules = JSON.parse(localStorage.getItem(this.RULEKEY) || 'null'); } catch (e) {}
+    const next = {};
+    if (saved.length) next.saved = saved;
+    if (rules) next.rules = rules;
+    if (Object.keys(next).length) this.setState(next);
+  }
+
+  componentDidUpdate() { this.draw(); }
+
+  persist(list) {
+    this.setState({ saved: list });
+    try { localStorage.setItem(this.STORE, JSON.stringify(list)); } catch (e) {}
+  }
+
+  dataUri(svg) { return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); }
+
+  save() {
+    const s = this.state;
+    const svg = this.svg();
+    const { w, h } = this.size();
+    const name = (s.name || '').trim() || 'Pattern ' + (s.saved.length + 1);
+    const params = { spacing: s.spacing, removal: s.removal, dotSize: s.dotSize, pw: s.pw, ph: s.ph, waveMix: s.waveMix, rot: s.rot || 0, ink: s.ink, ground: s.ground };
+    const entry = { id: String(Date.now()), name: name, file: this.slug(name) + '.svg', w: w, h: h, uri: this.dataUri(svg), params: params };
+    this.persist([entry].concat(s.saved));
+    this.setState({ name: '' });
+  }
+
+  slug(name) {
+    return String(name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'dot-pattern';
+  }
+
+  downloadUri(uri, file) {
+    const a = document.createElement('a');
+    a.href = uri;
+    a.download = file;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  copy(text) {
+    if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+  }
+
+  _blobs = {};
+
+  // a blob: URL survives the inline-style parser (a data URI's semicolon does not)
+  blobUrl(key, uri) {
+    if (this._blobs[key]) return this._blobs[key];
+    try {
+      const comma = uri.indexOf(',');
+      const head = uri.slice(5, comma);
+      const type = head.split(';')[0] || 'image/png';
+      const body = uri.slice(comma + 1);
+      let bytes;
+      if (/;base64/i.test(head)) {
+        const bin = atob(body);
+        bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      } else {
+        bytes = new TextEncoder().encode(decodeURIComponent(body));
+      }
+      this._blobs[key] = URL.createObjectURL(new Blob([bytes], { type: type }));
+    } catch (e) { this._blobs[key] = ''; }
+    return this._blobs[key];
+  }
+
+  seededRandom(seed) {
+    let s = seed | 0;
+    return () => {
+      s = s + 0x6D2B79F5 | 0;
+      let t = Math.imul(s ^ s >>> 15, 1 | s);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  ef(nx, ny, p) {
+    return Math.max(0, Math.min(nx / p, (1 - nx) / p, 1)) * Math.max(0, Math.min(ny / p, (1 - ny) / p, 1));
+  }
+
+  clumpVal(nx, ny, pw, ph) {
+    const dx = nx - 0.5, dy = ny - 0.5;
+    const cosR = Math.cos(0.3), sinR = Math.sin(0.3);
+    const lx = dx * cosR + dy * sinR;
+    const ly = -dx * sinR + dy * cosR;
+    const rx = 0.42 * pw, ry = 0.27 * ph;
+    const ex = lx / rx, ey = ly / ry;
+    const dist = Math.sqrt(ex * ex + ey * ey);
+    const a = Math.atan2(ly, lx);
+    const dent = Math.max(0, Math.cos(a - Math.PI * 0.5)) * 0.35;
+    return Math.max(0, Math.min(1, Math.max(0, 1 - (dist + dent)) * 1.6)) * this.ef(nx, ny, 0.08);
+  }
+
+  waveVal(nx, ny, pw, ph) {
+    const wave1 = Math.sin(nx * Math.PI * 3) * 0.12 * ph;
+    const wave2 = Math.sin(nx * Math.PI * 5 + 1.5) * 0.08 * ph;
+    const center = 0.5 + wave1 + wave2;
+    const dist = Math.abs(ny - center);
+    const thickness = 4 / (ph * 1.5);
+    const band = Math.max(0, 1 - dist * thickness);
+    const swell = Math.sin(nx * Math.PI * 7) * 0.06;
+    const hFade = Math.sin(nx * Math.PI / pw);
+    const hClamp = Math.max(0, Math.min(1, hFade));
+    return Math.max(0, Math.min(1, band + swell * band)) * hClamp * this.ef(nx, ny, 0.08);
+  }
+
+  getVal(nx, ny, pw, ph, waveMix, rot) {
+    let x = nx, y = ny;
+    if (rot) {
+      const a = rot * Math.PI / 180;
+      const c = Math.cos(a), sn = Math.sin(a);
+      const dx = nx - 0.5, dy = ny - 0.5;
+      x = dx * c + dy * sn + 0.5;
+      y = -dx * sn + dy * c + 0.5;
+    }
+    if (waveMix <= 0) return this.clumpVal(x, y, pw, ph);
+    if (waveMix >= 1) return this.waveVal(x, y, pw, ph);
+    return this.clumpVal(x, y, pw, ph) * (1 - waveMix) + this.waveVal(x, y, pw, ph) * waveMix;
+  }
+
+  size() {
+    const s = this.state;
+    return {
+      w: Math.round(this.BASE_W * Math.max(1, s.pw * 1.2)),
+      h: Math.round(this.BASE_H * Math.max(1, s.ph * 1.2))
+    };
+  }
+
+  // one pass over the rotated lattice; emit is given x, y, r
+  walk(emit) {
+    const s = this.state;
+    const { w, h } = this.size();
+    const rand = this.seededRandom(42);
+    const d = Math.sqrt(w * w + h * h);
+    const cx = w / 2, cy = h / 2;
+    for (let u = -d; u < d; u += s.spacing) {
+      for (let v = -d; v < d; v += s.spacing) {
+        const x = this.COS45 * u - this.SIN45 * v + cx;
+        const y = this.SIN45 * u + this.COS45 * v + cy;
+        if (x < -s.spacing || x > w + s.spacing || y < -s.spacing || y > h + s.spacing) continue;
+        const val = this.getVal(x / w, y / h, s.pw, s.ph, s.waveMix, s.rot);
+        const r = Math.max(0, val * s.dotSize);
+        if (r > 0.3) {
+          if (rand() < (s.removal * (1.2 - val * 0.8)) / 100) continue;
+          emit(x, y, r);
+        }
+      }
+    }
+    return { w: w, h: h };
+  }
+
+  draw() {
+    if (!this.canvas) return;
+    const { w, h } = this.size();
+    this.canvas.width = w;
+    this.canvas.height = h;
+    const ctx = this.canvas.getContext('2d');
+    ctx.fillStyle = this.state.ground;
+    ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = this.state.ink;
+    this.walk((x, y, r) => { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); });
+  }
+
+  svg() {
+    const circles = [];
+    const { w, h } = this.walk((x, y, r) => {
+      circles.push('<circle cx="' + x.toFixed(2) + '" cy="' + y.toFixed(2) + '" r="' + r.toFixed(2) + '"/>');
+    });
+    return '<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h +
+      '" viewBox="0 0 ' + w + ' ' + h + '">\n<rect width="' + w + '" height="' + h + '" fill="' + this.state.ground +
+      '"/>\n<g fill="' + this.state.ink + '">\n' + circles.join('\n') + '\n</g>\n</svg>';
+  }
+
+  download() {
+    const blob = new Blob([this.svg()], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'jf-dot-pattern.svg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  nameOf(list, hex) {
+    const f = list.find(i => i[0].toLowerCase() === String(hex).toLowerCase());
+    return f ? f[1] + ' · ' + f[0] : hex;
+  }
+
+  renderVals() {
+    const s = this.state;
+    const { w, h } = this.size();
+    const chip = (hex, on) => 'width:26px;height:26px;flex:none;border-radius:7px;cursor:pointer;background:' + hex +
+      ';border:1px solid ' + (on ? '#0072D5' : '#D0DAE5') + ';box-shadow:' + (on ? '0 0 0 2px rgba(0,114,213,.28)' : 'none');
+    const tab = s.tab || 'usage';
+    const tabChip = on => 'flex:none;height:34px;padding:0 16px;display:flex;align-items:center;border-radius:9px;cursor:pointer;white-space:nowrap;font:700 12.5px/1 Lato, sans-serif;border:1px solid ' +
+      (on ? '#1F2935' : '#D0DAE5') + ';background:' + (on ? '#1F2935' : '#FFFFFF') + ';color:' + (on ? '#FFFFFF' : '#1F2935');
+    return {
+      tabs: [['usage', 'Rules'], ['approved', 'Approved patterns'], ['gen', 'Generator']].map(t => ({
+        label: t[1],
+        style: tabChip(t[0] === tab),
+        onPick: () => this.setState({ tab: t[0] })
+      })),
+      showGen: tab === 'gen',
+      showApproved: tab === 'approved',
+      showUsage: tab === 'usage',
+      noSaved: (s.saved || []).length === 0,
+      ruleCount: (() => { const n = this.allRules().length; return n === 1 ? '1 rule' : n + ' rules'; })(),
+      onAddRule: () => this.addRule(this.USAGE[0][0]),
+      usageRules: (tab === 'usage' ? this.allRules() : []).map((entry, ruleIndex) => {
+        const g = [entry.group];
+        const r = entry.rule;
+        return ({
+          title: r.title,
+          body: r.body,
+          onTitle: ev => this.editRule(g[0], r.id, 'title', ev.target.value),
+          onBody: ev => this.editRule(g[0], r.id, 'body', ev.target.value),
+          onDelete: () => this.deleteRule(g[0], r.id),
+          hasExamples: true,
+          examples: [['Good', this.tiles(r.id).good, '#05A78C', 0], ['Avoid', this.tiles(r.id).bad, '#B3283F', 1]].map(e => {
+            const t = e[1] || { g: '#FFFFFF', d: '#99C7FF', gap: 11, r: 2, m: 'up' };
+            const masks = {
+              up: 'linear-gradient(to top, #000 0%, rgba(0,0,0,.4) 55%, transparent 100%)',
+              left: 'linear-gradient(to right, #000 0%, rgba(0,0,0,.4) 55%, transparent 100%)',
+              blob: 'radial-gradient(circle at 50% 50%, #000 0%, rgba(0,0,0,.5) 40%, transparent 68%)',
+              two: 'linear-gradient(to right, #000 0%, transparent 34%, transparent 66%, #000 100%)',
+              crop: 'linear-gradient(to top, #000 0%, #000 62%, transparent 62.5%)',
+              none: 'none'
+            };
+            const mask = masks[t.m] || 'none';
+            const angle = t.straight ? '0deg' : '45deg';
+            const field = 'radial-gradient(circle at ' + (t.gap / 2) + 'px ' + (t.gap / 2) + 'px, ' + t.d + ' ' + t.r +
+              'px, transparent ' + (t.r + 0.6) + 'px)';
+            const lib = s.saved || [];
+            const pick = t.real && lib.length ? lib[(ruleIndex * 2 + e[3]) % lib.length] : null;
+            const texture = pick ? this.patternUrl(pick) : '';
+            const layer = texture
+              ? 'background-image:url(' + texture + ');background-size:cover;background-position:center'
+              : t.mixed
+              ? 'background-image:radial-gradient(circle at ' + (t.gap / 2) + 'px ' + (t.gap / 2) + 'px, ' + t.mixed + ' ' + t.r + 'px, transparent ' + (t.r + 0.6) + 'px), ' + field +
+                ';background-size:' + t.gap + 'px ' + t.gap + 'px, ' + t.gap + 'px ' + t.gap + 'px;background-position:0 0, ' + (t.gap / 2) + 'px 0'
+              : 'background-image:' + field + ';background-size:' + t.gap + 'px ' + t.gap + 'px';
+            const upField = e[3] ? 'badImg' : 'goodImg';
+            const upload = r[upField] || '';
+            return {
+              label: e[0],
+              hasUpload: !!upload,
+              noUpload: !upload,
+              hasTile: !upload && !!e[1],
+              noTileNoUpload: !upload && !e[1],
+              uploadStyle: 'width:100%;box-sizing:border-box;height:240px;border-radius:9px;border:1px solid #E4EBF3;background-color:#FFFFFF;background-image:url(' +
+                this.blobUrl('ex-' + r.id + '-' + upField + '-' + upload.length, upload) +
+                ');background-size:contain;background-repeat:no-repeat;background-position:center',
+              emptyStyle: 'width:100%;box-sizing:border-box;height:240px;border-radius:9px;border:1px dashed #B9C5D3;background:#F7F9FC;display:flex;align-items:center;justify-content:center;cursor:pointer;font:700 10.5px/1 Lato, sans-serif;color:' + e[2],
+              onPick: ev => this.setExample(g[0], r.id, upField, ev),
+              onClear: () => this.editRule(g[0], r.id, upField, ''),
+              maskStyle: 'position:absolute;inset:0;overflow:hidden' +
+                (mask === 'none' ? '' : ';-webkit-mask-image:' + mask + ';mask-image:' + mask),
+              fieldStyle: 'position:absolute;inset:' + (texture ? '0' : '-40%') + ';' + layer +
+                (texture || t.straight ? '' : ';transform:rotate(45deg)') +
+                (t.blur ? ';filter:blur(1.1px)' : ''),
+              tileStyle: 'position:relative;width:100%;box-sizing:border-box;height:240px;border-radius:9px;overflow:hidden;background:' + t.g + ';border:1px solid #E4EBF3',
+              boxStyle: 'display:flex;flex-direction:column;gap:8px;min-width:0',
+              labelStyle: 'align-self:flex-start;padding:2px 8px;border-radius:99px;font:700 9px/1.6 Lato, sans-serif;letter-spacing:.1em;text-transform:uppercase;color:' +
+                e[2] + ';border:1px solid ' + e[2],
+              ov: t.ov || '',
+              hasSubject: t.ov === 'subject',
+              hasOvertext: t.ov === 'overtext',
+              hasCopy: t.ov === 'copy',
+              hasSideCopy: t.ov === 'sidecopy',
+              hasBlueCard: t.ov === 'bluecard',
+              hasMintCard: t.ov === 'mintcard'
+            };
+          })
+        });
+      }),
+
+      canvasRef: this.setCanvas,
+      sizeNote: w + ' × ' + h + ' px export',
+      inkName: this.nameOf(this.INKS, s.ink),
+      groundName: this.nameOf(this.GROUNDS, s.ground),
+      sliders: this.SLIDERS.map(sl => ({
+        key: sl[0],
+        label: sl[1],
+        min: sl[2],
+        max: sl[3],
+        step: sl[4],
+        left: sl[5],
+        right: sl[6],
+        value: s[sl[0]],
+        onChange: e => { const v = Number(e.target.value); this.setState({ [sl[0]]: v }); }
+      })),
+      swatches: this.INKS.map(i => ({
+        name: i[1],
+        style: chip(i[0], i[0] === s.ink),
+        onPick: () => this.setState({ ink: i[0] })
+      })),
+      grounds: this.GROUNDS.map(g => ({
+        name: g[1],
+        style: chip(g[0], g[0] === s.ground),
+        onPick: () => this.setState({ ground: g[0] })
+      })),
+      onDownload: () => this.download(),
+      onReset: () => this.setState(Object.assign({}, this.DEFAULTS)),
+
+      name: s.name,
+      onName: e => this.setState({ name: e.target.value }),
+      onSave: () => this.save(),
+      hasSaved: (s.saved || []).length > 0,
+      savedCount: (s.saved || []).length === 1 ? '1 approved pattern' : (s.saved || []).length + ' approved patterns',
+      savedList: (s.saved || []).map(p => ({
+        id: p.id,
+        name: p.name,
+        file: p.file,
+        uri: p.uri,
+        meta: p.w + ' × ' + p.h + ' px · ' + this.nameOf(this.INKS, p.params.ink).split(' · ')[0] + ' on ' + this.nameOf(this.GROUNDS, p.params.ground).split(' · ')[0],
+        thumbStyle: 'width:100%;height:240px;background-color:#FFFFFF;background-image:url(' + this.blobUrl(p.id, p.uri) + ');background-size:contain;background-repeat:no-repeat;background-position:center',
+        onLoad: () => this.setState(Object.assign({}, p.params)),
+        onDownload: () => this.downloadUri(p.uri, p.file),
+        onCopy: () => this.copy(p.uri),
+        onDelete: () => this.persist((this.state.saved || []).filter(x => x.id !== p.id))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
